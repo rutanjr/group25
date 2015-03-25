@@ -4,13 +4,13 @@ Meeting Agenda for Group 25
 
   Facilitator: Malin Thelin
 
-  Participants: Malin Thelin, Björn Bergqvist, Oskar Rutqvist, Robin Jansson
+  Participants: Malin Thelin, BjÃ¶rn Bergqvist, Oskar Rutqvist, Robin Jansson
 
 1. Objectives (5 min). Resolve any issues preventing the team to 
   continue.
 
   - Come up with a project idea.
-  - Start with the RAD. Section 1,2,3
+  - Start with the RAD. Section 1,2.1-2.2
   - Start thinking about Use Cases
 
 2. Reports (15 min) from previous meeting
