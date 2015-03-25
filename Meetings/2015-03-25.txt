@@ -1,0 +1,43 @@
+Meeting Agenda for Group 25
+
+  Date: 2015-03-25
+
+  Facilitator: Malin Thelin
+
+  Participants: Malin Thelin, Björn Bergqvist, Oskar Rutqvist, Robin Jansson
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+  - Come up with a project idea.
+  - Start with the RAD. Section 1,2,3
+  - Start thinking about Use Cases
+
+2. Reports (15 min) from previous meeting
+
+  - NAN 
+
+
+3. Discussion items (35 min) 
+
+  - Some ideas:
+	Tower Defense
+	Boardgames : Settlers Of Catan, Risk
+  - Tower Defense could be implemented, but maybe not as well as we should like
+	or have time to do.
+  - A boardgame seems alot more fun to implement as there would not be as much focus
+	on things like graphics. Instead we can focus more on gamelogic. Risk seems like
+	a good choice for a game. 
+	
+
+4. Outcomes and assignments (5 min) 
+
+  - Everyone should do the RAD together.
+
+  - Everyone should think about Use Cases.
+
+  - Meetings should be held every Monday 13:00 and Wednesday 13:00
+
+5. Wrap up
+
+  - Time and location for next meeting: Monday 13:00 in 5209
