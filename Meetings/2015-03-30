@@ -1,0 +1,58 @@
+Meeting Agenda
+
+  Date: 150330
+  Facilitator: Björn Bergqvist
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+UML
+Additional working period this week. 
+Discuss the git implementation of the project.  
+Meetings during the easter break. 
+Rules of the RISK game.
+
+2. Reports (15 min) from previous meeting
+
+We have worked on the RAD together.
+We have followed our meeting scheduling. 
+
+3. Discussion items (35 min) 
+
+UML
+Use cases
+Remove the win use case. 
+Start working on the use cases directly after the meeting. 
+Work on UML when the uses cases are done. 
+
+Work together after the meeting. If we still have unresolved issues work tomorrow. 
+
+GIT
+Read through the link before next meeting. 
+
+Easter break
+Work a couple of hours a couple of days. Oskar has a high workload during the break and won’t be able to participate as much as the rest of the group during the break. 
+
+Rules of the game
+Oskar will create a document containing the rules of the RISK game, which the group then will review before the end of next meeting. The rules might be subject to change. 
+
+We are happy with the current version of the RAD, but we realise that it might be changed in the future. The current version of the RAD should be put on the GIT, Malin will do that. 
+
+We are happy with the Monday and Wednesday meetings.
+
+4. Outcomes and assignments (5 min) 
+
+Everyone work on UML, Use cases and read through: http://nvie.com/posts/a-successful-git-branching-model/
+
+Oskar create a document of the rules.
+
+Malin push the RAD to GIT.
+
+Björn publish the meeting agenda to GIT. 
+
+
+5. Wrap up
+Next meeting: Wednesday 15-04-01 13:15. 
+
+
