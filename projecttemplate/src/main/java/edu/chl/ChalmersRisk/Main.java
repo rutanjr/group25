@@ -1,8 +1,8 @@
-package edu.chl.change2projectname;
+package edu.chl.ChalmersRisk;
 
-import edu.chl.change2projectname.controller.ProjectController;
-import edu.chl.change2projectname.model.Project;
-import edu.chl.change2projectname.view.ProjectView;
+import edu.chl.ChalmersRisk.controller.ProjectController;
+import edu.chl.ChalmersRisk.model.Project;
+import edu.chl.ChalmersRisk.view.ProjectView;
 import javax.swing.SwingUtilities;
 
 /*
