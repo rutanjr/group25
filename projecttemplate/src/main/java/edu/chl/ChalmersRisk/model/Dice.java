@@ -16,7 +16,7 @@ public class Dice {
     }
 
     public int rollDie() {
-        int roll = dieRoll.nextInt();
+        int roll = dieRoll.nextInt(6)+1;
         lastRolls = new int[] {roll};
         return roll;
     }
