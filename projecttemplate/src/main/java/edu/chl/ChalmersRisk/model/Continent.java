@@ -8,6 +8,10 @@ public class Continent {
 
     private String name;
 
+    //TODO territory references.
+
+    //player owns all contintent Bololean? Player? 
+
     public Continent(String name){
         this.name = name;
     }

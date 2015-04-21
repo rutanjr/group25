@@ -7,6 +7,7 @@ package edu.chl.ChalmersRisk.model;
 public class Player {
 
     private String name;
+    //TODO territory reference, troop reference
 
     public Player(String name){
         this.name = name;

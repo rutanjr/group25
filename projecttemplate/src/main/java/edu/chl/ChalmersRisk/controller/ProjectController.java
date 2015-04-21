@@ -16,6 +16,7 @@ public class ProjectController {
 
 	private ProjectController(Project project, ProjectView projectView) {
 		projectView.getButton().addActionListener(new ProjectButtonPressed());
+        projectView.getDieRollButton().addActionListener(new DieRollButtonPressed());
 
 		this.project = project;
 		this.projectView = projectView;
@@ -28,4 +29,13 @@ public class ProjectController {
 			projectView.getPressesLabel().setText(String.valueOf(project.getPresses()));
 		}
 	}
+
+    private class DieRollButtonPressed implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            project.rollDie();
+            projectView.getDieRollLabel().setText(String.valueOf(project.getDieRoll()));
+        }
+    }
+
 }

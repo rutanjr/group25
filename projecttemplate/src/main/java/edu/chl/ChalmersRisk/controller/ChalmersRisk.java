@@ -7,4 +7,6 @@ package edu.chl.ChalmersRisk.controller;
  */
 public class ChalmersRisk {
 
+
+    //TODO doCombat() - what should this method take?
 }

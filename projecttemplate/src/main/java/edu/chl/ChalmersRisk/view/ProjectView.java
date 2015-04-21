@@ -9,8 +9,9 @@ import javax.swing.SwingConstants;
 
 public class ProjectView extends JFrame {
 
-    private final JButton button = new JButton(Project.PROJECT_BUTTON_TEXT);
+    private final JButton button = new JButton(Project.PROJECT_BUTTON_TEXT), dieRollButton = new JButton("Roll die");
     private final JLabel pressesLabel;
+    private final JLabel dieRollLabel;
 
     public ProjectView(Project project) {
         super(Project.PROJECT_WINDOW_TEXT);
@@ -22,10 +23,23 @@ public class ProjectView extends JFrame {
         pressesLabel = new JLabel(String.valueOf(project.getPresses()));
         pressesLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pressesLabel.setLabelFor(button);
+        dieRollLabel = new JLabel(String.valueOf(project.getDieRoll()));
+        dieRollLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        dieRollLabel.setLabelFor(dieRollButton);
 
         add(button);
         add(pressesLabel);
+        add(dieRollButton);
+        add(dieRollLabel);
         pack();
+    }
+
+    public JButton getDieRollButton () {
+        return dieRollButton;
+    }
+
+    public JLabel getDieRollLabel() {
+        return dieRollLabel;
     }
 
     public JButton getButton() {
