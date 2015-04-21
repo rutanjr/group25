@@ -10,7 +10,7 @@ public class Continent {
 
     //TODO territory references.
 
-    //player owns all contintent Bololean? Player? 
+    //player owns all contintent Bololean? Player? Where to check this?
 
     public Continent(String name){
         this.name = name;
