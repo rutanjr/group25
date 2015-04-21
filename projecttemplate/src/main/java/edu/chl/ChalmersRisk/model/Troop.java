@@ -9,6 +9,8 @@ package edu.chl.ChalmersRisk.model;
 public class Troop {
     private final Player owner;
 
+    //TODO territory reference
+
     public Troop(Player owner) {
         this.owner = owner;
     }
