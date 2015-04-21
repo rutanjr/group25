@@ -10,7 +10,11 @@ public class Continent {
 
     //TODO territory references.
 
+<<<<<<< Updated upstream
     //player owns all contintent Bololean? Player? Where to check this?
+=======
+    //player owns all contintent Bololean? Player?
+>>>>>>> Stashed changes
 
     public Continent(String name){
         this.name = name;
