@@ -32,7 +32,7 @@ public class Troop {
 
 
     //used by Player method placeTroop to tell the troop that it is placed.
-    public void getPlaced(Territory territory){
+    public void placeMe(Territory territory){
         this.territory = territory;
     }
 
