@@ -17,11 +17,11 @@ public class GameBoard extends JFrame{
     //either this or make the continents themselves be JButtons or something similar.
     private JButton[] herp;
 
-    public GameBoard(int nmbrOfContinents){
+    public GameBoard(int nmbrOfContinents, Continent[] continents){
 
         super("Chalmers RISK!");
 
-        continents = new Continent[nmbrOfContinents];
+        this.continents = continents;
         herp = new JButton[nmbrOfContinents];
 
 

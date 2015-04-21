@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk.view;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Malin on 2015-04-17.
@@ -13,6 +14,14 @@ public class StartScreen extends JFrame{
 
     public StartScreen(){
         start = new JButton("New game");
+
+        setLayout(new GridLayout(2,2));
+        add(start);
+        pack();
+    }
+
+    public JButton getStartButton(){
+        return start;
     }
 
 }
