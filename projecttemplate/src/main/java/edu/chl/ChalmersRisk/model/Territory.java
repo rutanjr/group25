@@ -1,5 +1,7 @@
 package edu.chl.ChalmersRisk.model;
 
+import edu.chl.ChalmersRisk.utilities.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +25,7 @@ public class Territory {
     // Constructors
 
     public Territory(String name, Continent continent) {
-        this.name = name;
-        this.continent = continent;
-        this.owner = null;
-        this.troops = 0;
+        this(name, continent,Constants.EMPTY_PLAYER);
     }
 
     public Territory(String name, Continent continent, Player player) {
@@ -40,7 +39,7 @@ public class Territory {
     // Command - Methods
 
     /**
-     * Removes troops from a Territory.
+     * Add troops to a Territory.
      * @param newTroops an positive integer that indicates the number of troops that should be added to the current Territory.
      * @throws java.lang.IllegalArgumentException if the player sends a negative integer.
      */
@@ -92,9 +91,7 @@ public class Territory {
     /**
      * @return returns the amount of troops in the current Territory.
      */
-    public int getTroops() {
-        return this.troops;
-    }
+    public int getTroops() {return this.troops;}
 
     /**
      * @return returns a list with Territories that are adjacent to the current Territory.
@@ -110,4 +107,5 @@ public class Territory {
     public boolean isAdjacent(Territory possibleNeighbor) {
         return this.getAdjacentTerritories().contains(possibleNeighbor);
     }
+
 }
