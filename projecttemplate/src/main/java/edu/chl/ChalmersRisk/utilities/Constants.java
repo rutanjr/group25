@@ -9,5 +9,5 @@ import edu.chl.ChalmersRisk.model.Player;
  */
 public class Constants {
 
-    public final Player EMPTY_PLAYER = new Player("EMPTY");
+    public static final Player EMPTY_PLAYER = new Player("EMPTY");
 }
