@@ -1,5 +1,6 @@
 package edu.chl.ChalmersRisk.controller;
 
+import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.model.Troop;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class ChalmersRisk implements KeyListener, ActionListener {
 
     private Territory A, B;
+    private Continent continent;
     private Player one,two,currentPlayer;
     private int phase, oldPhase;
 
@@ -80,8 +82,10 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     public void loadMap(String name){
 
         if(name.equals("Chalmers")){
-            A = new Territory();
-            B = new Territory();
+            continent = new Continent("Chalmers");
+
+            A = new Territory("A",continent);
+            B = new Territory("B", continent);
         }
     }
 
