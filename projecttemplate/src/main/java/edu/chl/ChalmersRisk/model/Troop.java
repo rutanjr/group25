@@ -34,6 +34,7 @@ public class Troop {
     //used by Player method placeTroop to tell the troop that it is placed.
     public void placeMe(Territory territory){
         this.territory = territory;
+        this.territory.addTroops(1);
     }
 
 
