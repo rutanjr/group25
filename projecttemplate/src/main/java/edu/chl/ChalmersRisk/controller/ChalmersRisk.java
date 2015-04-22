@@ -19,9 +19,13 @@ import java.util.ArrayList;
  */
 public class ChalmersRisk implements KeyListener, ActionListener {
 
-    Territory A, B;
-    Player one,two,currentPlayer;
-    int phase;
+    private Territory A, B;
+    private Player one,two,currentPlayer;
+    private int phase, oldPhase;
+
+    //final variables defining the phases
+    private final int lastPhase = 1;
+    private final int firstPhase = 1;
 
     Timer gameTimer,phaseTimer;
 
@@ -53,11 +57,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
         //give currentPlayer their first troops.
         // TODO : this looks awful. Maybe rethink how a player owns his troops etc?
-        ArrayList<Troop> troops = new ArrayList<>(2);
-        for(int i = 0; i< 2;i++){
-            troops.add(new Troop(currentPlayer));
-        }
-        currentPlayer.receiveTroops(troops);
+        giveCurrentPlayerTroops();
 
 
         //set up the mainframe, adds keylistener to the game
@@ -65,6 +65,14 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         mainFrame.addKeyListener(this);
         mainFrame.setVisible(true);
         mainFrame.setSize(1, 1);
+    }
+
+    public void giveCurrentPlayerTroops(){
+        ArrayList<Troop> troops = new ArrayList<>(2);
+        for(int i = 0; i< 2;i++){
+            troops.add(new Troop(currentPlayer));
+        }
+        currentPlayer.receiveTroops(troops);
     }
 
 
@@ -91,43 +99,68 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent evt) {
-        if(phaseTimer.isRunning() && phase == 1){
-            System.out.println("GOGOGOGO");
+        if(phaseTimer.isRunning() && phase == 1) {
+
             if (evt.getKeyCode() == KeyEvent.VK_A) {
                 currentPlayer.placeTroops(A, 1);
                 System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
-            }else if(evt.getKeyCode() == KeyEvent.VK_B){
+            } else if (evt.getKeyCode() == KeyEvent.VK_B) {
                 currentPlayer.placeTroops(B, 1);
                 System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
             }
-            if(currentPlayer.amountOfTroops() == 0){
-                //phase = 2;
-                endturn(currentPlayer);
+            if(currentPlayer.amountOfTroops() == 0 ){
+                //make phase undefined for now, so above code can't be activated
+                oldPhase = phase;
+                phase = 0;
             }
+        }
+        if(phaseTimer.isRunning() && phase == 0){
+                if(evt.getKeyCode() == KeyEvent.VK_Y){
+                    endTurn();
+                }
+        }
             phaseTimer.stop();
             gameTimer.start();
-            }
+
         }
 
     //what should happen when a player ends their turn.
-    public void endTurn(Player player){
-        
+    public void endTurn(){
 
+        //first of all we need to check if currentPlayer has done all their phases
+        if(oldPhase == lastPhase ){
+            //we should change players
+            //this piece of code has to be changed if we in the future want to have more players, and phases
+            if(currentPlayer.equals(one)){
+                currentPlayer = two;
+            }else{
+                currentPlayer = one;
+            }
+            giveCurrentPlayerTroops();
+        }
 
+        phase = firstPhase;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(phase == 1){
-        //we always want to start the game in phase 1 so we will always print out this text first:
+        //phase 1 is for placing troops
+        if(phase == 0){
+            gameTimer.stop();
+            System.out.println("No troops to place. End turn? Y/N");
+
+            phaseTimer.start();
+
+        } else if(phase == 1){
             gameTimer.stop();
             System.out.println("Player: " + currentPlayer.getName() + " you have " + currentPlayer.amountOfTroops() + " troops to place." +
                     " Do you want to place a troop on territory A or B?");
             phaseTimer.start();
         }else if(phase == 2){
-
+            // TODO: this shit
         }
+
 
     }
 
