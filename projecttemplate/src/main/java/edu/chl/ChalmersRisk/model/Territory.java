@@ -1,10 +1,113 @@
 package edu.chl.ChalmersRisk.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rutanjr on 2015-03-31.
  * A class to represent each territory. Certain territories together is a continent. All territories belongs to a continent.
+ *
+ * @revisedBy Robin Jansson
  */
 public class Territory {
 
-    //TODO player reference, continent reference
+    // Variables
+
+    private String name;
+    private Player owner;
+    private int troops;
+    private Continent continent;
+    private List<Territory> adjacentTerritories = null;
+
+
+    // Constructors
+
+    public Territory(String name, Continent continent) {
+        this.name = name;
+        this.continent = continent;
+        this.owner = null;
+        this.troops = 0;
+    }
+
+    public Territory(String name, Continent continent, Player player) {
+        this.name = name;
+        this.continent = continent;
+        this.owner = player;
+        this.troops = 0;
+    }
+
+
+    // Command - Methods
+
+    /**
+     * Removes troops from a Territory.
+     * @param newTroops an positive integer that indicates the number of troops that should be added to the current Territory.
+     * @throws java.lang.IllegalArgumentException if the player sends a negative integer.
+     */
+    public void addTroops(int newTroops) {
+        if (newTroops < 0) {
+            throw new IllegalArgumentException("Tried to add a negative amount of troops");
+        }
+        this.troops += newTroops;
+    }
+
+    /**
+     * Removes troops from a Territory.
+     * @param remTroops an positive integer that indicates the number of troops that should be removed from the current Territory.
+     * @throws java.lang.IllegalArgumentException if the player sends a negative integeror tries to remove more troops than the Territory owns.
+     */
+    public void removeTroops(int remTroops) {
+        if (remTroops < 0 || remTroops > this.getTroops()) {
+            throw new IllegalArgumentException("Tried to remove a negative amount of troops or the player has tried to remove more troops than the Territory owns");
+        }
+        this.troops -= remTroops;
+    }
+
+    public void setnewOwner(Player newOwner) {
+        this.owner = newOwner;
+    }
+
+    public void addAdjacent(List<Territory> newAdjacent) {
+        adjacentTerritories = new ArrayList<Territory>(newAdjacent);
+    }
+
+
+    // Query - Methods
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Continent getContinent() {
+        return this.continent;
+    }
+
+    /**
+     * @return Returns the owner of the current Territory.
+     */
+    public Player getOwner() {
+        return this.owner;
+    }
+
+    /**
+     * @return returns the amount of troops in the current Territory.
+     */
+    public int getTroops() {
+        return this.troops;
+    }
+
+    /**
+     * @return returns a list with Territories that are adjacent to the current Territory.
+     */
+    public List<Territory> getAdjacentTerritories() {
+        return adjacentTerritories;
+    }
+
+    /**
+     * @param possibleNeighbor a Territory that might be adjacent to the current Territory
+     * @return returns true if the Territory in the argument is adjacent to the current Territory.
+     */
+    public boolean isAdjacent(Territory possibleNeighbor) {
+        return this.getAdjacentTerritories().contains(possibleNeighbor);
+    }
 }
