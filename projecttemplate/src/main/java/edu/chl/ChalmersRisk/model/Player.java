@@ -46,6 +46,7 @@ public class Player {
             }
             placedTroops.add(troopsToPlace.get(0));
             troopsToPlace.remove(0);
+            nrOfPlaced++;
         }
 
     }
@@ -81,6 +82,14 @@ public class Player {
      */
     public ArrayList<Troop> getTroopsToPlce() {
         return (ArrayList<Troop>) troopsToPlace.clone();
+    }
+
+    public int amountOfTroops(){
+        int count = 0;
+        for(Troop t : getTroopsToPlce()){
+            count++;
+        }
+        return count;
     }
 
     /**
