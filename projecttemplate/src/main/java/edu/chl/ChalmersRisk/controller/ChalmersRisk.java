@@ -11,6 +11,12 @@ public class ChalmersRisk {
 
 
     //TODO doCombat() - what should this method take?
+
+    /**
+     * A method for resolving combat.
+     * @param attacker the Territory that the attacking troops comes from.
+     * @param defender the Territory that is being defended.
+     */
     public void combat(Territory attacker, Territory defender){
         Dice die = new Dice();
         int atkRoll = 0;
@@ -18,6 +24,7 @@ public class ChalmersRisk {
         //Attacker selects a number of dice <= #troops - 1 and 3
         int AtkTroops = 3;    //attacker.getNbrOfTroops() - 1;
         if (AtkTroops<1) return; //No troops attacking.
+        //TODO implement an exception here?
 
         if (AtkTroops>3) AtkTroops = 3;
 
