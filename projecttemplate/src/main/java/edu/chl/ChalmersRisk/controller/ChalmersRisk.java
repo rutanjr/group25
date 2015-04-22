@@ -99,25 +99,30 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent evt) {
-        if(phaseTimer.isRunning() && phase == 1) {
-
-            if (evt.getKeyCode() == KeyEvent.VK_A) {
-                currentPlayer.placeTroops(A, 1);
-                System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
-            } else if (evt.getKeyCode() == KeyEvent.VK_B) {
-                currentPlayer.placeTroops(B, 1);
-                System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
-            }
-            if(currentPlayer.amountOfTroops() == 0 ){
-                //make phase undefined for now, so above code can't be activated
-                oldPhase = phase;
-                phase = 0;
-            }
-        }
-        if(phaseTimer.isRunning() && phase == 0){
+        if(phaseTimer.isRunning()) {
+            //if currentplayer no longer has any troops to place
+            if(phase == 0){
                 if(evt.getKeyCode() == KeyEvent.VK_Y){
                     endTurn();
                 }
+                //TODO : what happens if we press N(o) ? Just ask the same question perhaps..
+
+            } else if(phase == 1){
+                //else if currentplayer has troops to place.
+                if (evt.getKeyCode() == KeyEvent.VK_A) {
+                    currentPlayer.placeTroops(A, 1);
+                    System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
+                } else if (evt.getKeyCode() == KeyEvent.VK_B) {
+                    currentPlayer.placeTroops(B, 1);
+                    System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
+                }
+                if(currentPlayer.amountOfTroops() == 0 ){
+                    //make phase undefined for now, so above code can't be activated
+                    oldPhase = phase;
+                    phase = 0;
+                }
+            }
+
         }
             phaseTimer.stop();
             gameTimer.start();
