@@ -90,16 +90,6 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     }
 
 
-    public void doAction(){
-        //if we're in placing troops phase
-        if(phase == 1){
-            System.out.println("Välj ett territorium att placera en trupp på: A eller B");
-
-
-        }
-    }
-
-
 
     @Override
     public void keyPressed(KeyEvent evt) {
