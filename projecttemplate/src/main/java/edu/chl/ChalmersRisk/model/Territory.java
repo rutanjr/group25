@@ -108,4 +108,13 @@ public class Territory {
         return this.getAdjacentTerritories().contains(possibleNeighbor);
     }
 
+
+    public boolean isAvailabe(Player player){
+        if(owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
