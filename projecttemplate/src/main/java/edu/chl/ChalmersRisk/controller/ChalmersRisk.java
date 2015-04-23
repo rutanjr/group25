@@ -1,8 +1,10 @@
 package edu.chl.ChalmersRisk.controller;
 
+import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.model.Troop;
+import edu.chl.ChalmersRisk.utilities.Constants;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,14 +22,17 @@ import java.util.ArrayList;
 public class ChalmersRisk implements KeyListener, ActionListener {
 
     private Territory A, B;
+    private Continent continent;
     private Player one,two,currentPlayer;
     private int phase, oldPhase;
 
-    //final variables defining the phases
+    //final variables defining the last and first phases. Meaning that
+    //the last phase should be the one before a player ends their turn, and the first
+    //phase is the first phase a player is in when a turn begins.
     private final int lastPhase = 1;
     private final int firstPhase = 1;
 
-    Timer gameTimer,phaseTimer;
+    private Timer gameTimer,phaseTimer;
 
     //TODO doCombat() - what should this method take?
 
@@ -57,7 +62,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
         //give currentPlayer their first troops.
         // TODO : this looks awful. Maybe rethink how a player owns his troops etc?
-        giveCurrentPlayerTroops();
+        giveTroops(currentPlayer);
 
 
         //set up the mainframe, adds keylistener to the game
@@ -67,12 +72,20 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         mainFrame.setSize(1, 1);
     }
 
-    public void giveCurrentPlayerTroops(){
-        ArrayList<Troop> troops = new ArrayList<>(2);
-        for(int i = 0; i< 2;i++){
-            troops.add(new Troop(currentPlayer));
+    public void giveTroops(Player player){
+
+        ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
+        for(int i = 0; i< nbrOfTroopsToGive(player) + 2 ; i++){
+            troops.add(new Troop(player));
         }
-        currentPlayer.receiveTroops(troops);
+        player.receiveTroops(troops);
+    }
+
+    public int nbrOfTroopsToGive(Player player) {
+        int total;
+        total = player.numberOfTerritorys();
+        //TODO add continent bonuses.
+        return total;
     }
 
 
@@ -80,20 +93,14 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     public void loadMap(String name){
 
         if(name.equals("Chalmers")){
-            A = new Territory();
-            B = new Territory();
+            continent = new Continent("Chalmers");
+
+            A = new Territory("A",continent);
+            B = new Territory("B", continent);
         }
     }
 
 
-    public void doAction(){
-        //if we're in placing troops phase
-        if(phase == 1){
-            System.out.println("Välj ett territorium att placera en trupp på: A eller B");
-
-
-        }
-    }
 
 
 
@@ -109,12 +116,14 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
             } else if(phase == 1){
                 //else if currentplayer has troops to place.
-                if (evt.getKeyCode() == KeyEvent.VK_A) {
+                if (evt.getKeyCode() == KeyEvent.VK_A && A.isAvailabe(currentPlayer)) {
                     currentPlayer.placeTroops(A, 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
-                } else if (evt.getKeyCode() == KeyEvent.VK_B) {
+                    System.out.println("There are now a total of :" + A.getTroops() +" troops on territory A");
+                } else if (evt.getKeyCode() == KeyEvent.VK_B && B.isAvailabe(currentPlayer)) {
                     currentPlayer.placeTroops(B, 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
+                    System.out.println("There are now a total of :" + B.getTroops() +" troops on territory B");
                 }
                 if(currentPlayer.amountOfTroops() == 0 ){
                     //make phase undefined for now, so above code can't be activated
@@ -136,12 +145,13 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         if(oldPhase == lastPhase ){
             //we should change players
             //this piece of code has to be changed if we in the future want to have more players, and phases
+            //because this looks kindof bad
             if(currentPlayer.equals(one)){
                 currentPlayer = two;
             }else{
                 currentPlayer = one;
             }
-            giveCurrentPlayerTroops();
+            giveTroops(currentPlayer);
         }
 
         phase = firstPhase;
@@ -159,13 +169,34 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
         } else if(phase == 1){
             gameTimer.stop();
+
+
+
             System.out.println("Player: " + currentPlayer.getName() + " you have " + currentPlayer.amountOfTroops() + " troops to place." +
-                    " Do you want to place a troop on territory A or B?");
+                    " Do you want to place a troop on territory " + checkFreeTerritories());
+
+
             phaseTimer.start();
         }else if(phase == 2){
             // TODO: this shit
         }
+    }
 
+
+    //for now this method will return a String. However in the future this should be up to change.
+    public String checkFreeTerritories(){
+        //first see if
+        if(A.isAvailabe(currentPlayer)){
+            if(B.isAvailabe(currentPlayer)){
+                return "A or B???";
+            }else{
+                return "A?";
+            }
+        }else if(B.isAvailabe(currentPlayer)){
+            return "B?";
+        }else{
+            return "NO TERRITORIES";
+        }
 
     }
 
