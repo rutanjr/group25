@@ -1,0 +1,41 @@
+Meeting Agenda
+
+  Date: 2015-04-23
+  Facilitator:Oskar Rutqvist
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist, Björn Bergqvist
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+
+ - Start working with javaFX instead of swing. 
+ - Resolve new phases.
+
+2. Reports (15 min) from previous meeting
+
+ - Fixed territorys.
+ - Place troops use case implemented. 
+ - Updated waffle. 
+
+3. Discussion items (35 min) 
+
+  - Map vs. board, differences and which one to use. 
+  - Start working with javaFX, small turorials. 
+  - Player calculates how many troops to receive. 
+  - Look in to how to implement the turns and phases of the game.
+
+4. Outcomes and assignments (5 min) 
+
+  - Map and board is still going to be implemented. 
+  - Everyone does the javaFX tutorial.
+  - Robin updates the RAD
+  - Everyone is encouraged to use our waffle. 
+  - Oskar looks up receive troops.
+
+5. Wrap up
+
+  - Next meeting 13.00 Monday 2015-04-27 
+
+
+
+
