@@ -17,10 +17,10 @@ public class Territory {
 
     private String name;
     private Player owner;
-    private int troops;
+    //private int troops;
     private Continent continent;
     private List<Territory> adjacentTerritories = null;
-
+    private List<Troop> troops = new ArrayList<>();
 
     // Constructors
 
@@ -32,7 +32,6 @@ public class Territory {
         this.name = name;
         this.continent = continent;
         this.owner = player;
-        this.troops = 0;
     }
 
 
@@ -47,7 +46,10 @@ public class Territory {
         if (newTroops < 0) {
             throw new IllegalArgumentException("Tried to add a negative amount of troops");
         }
-        this.troops += newTroops;
+
+        for (int i = newTroops; i > 0; i--) {
+            troops.add(new Troop(this.getOwner()));
+        }
     }
 
     /**
@@ -59,7 +61,10 @@ public class Territory {
         if (remTroops < 0 || remTroops > this.getTroops()) {
             throw new IllegalArgumentException("Tried to remove a negative amount of troops or the player has tried to remove more troops than the Territory owns");
         }
-        this.troops -= remTroops;
+
+        for (int i = remTroops; i > 0; i--) {
+            troops.remove( (troops.size() - 1) );
+        }
     }
 
     public void setnewOwner(Player newOwner) {
@@ -91,7 +96,7 @@ public class Territory {
     /**
      * @return returns the amount of troops in the current Territory.
      */
-    public int getTroops() {return this.troops;}
+    public int getTroops() {return this.troops.size();}
 
     /**
      * @return returns a list with Territories that are adjacent to the current Territory.
