@@ -62,7 +62,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
         //give currentPlayer their first troops.
         // TODO : this looks awful. Maybe rethink how a player owns his troops etc?
-        giveCurrentPlayerTroops();
+        giveTroops(currentPlayer);
 
 
         //set up the mainframe, adds keylistener to the game
@@ -72,12 +72,20 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         mainFrame.setSize(1, 1);
     }
 
-    public void giveCurrentPlayerTroops(){
-        ArrayList<Troop> troops = new ArrayList<>(2);
-        for(int i = 0; i< 2;i++){
-            troops.add(new Troop(currentPlayer));
+    public void giveTroops(Player player){
+
+        ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
+        for(int i = 0; i< nbrOfTroopsToGive(player) + 2 ; i++){
+            troops.add(new Troop(player));
         }
-        currentPlayer.receiveTroops(troops);
+        player.receiveTroops(troops);
+    }
+
+    public int nbrOfTroopsToGive(Player player) {
+        int total;
+        total = player.numberOfTerritorys();
+        //TODO add continent bonuses.
+        return total;
     }
 
 
@@ -91,6 +99,8 @@ public class ChalmersRisk implements KeyListener, ActionListener {
             B = new Territory("B", continent);
         }
     }
+
+
 
 
 
@@ -141,7 +151,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
             }else{
                 currentPlayer = one;
             }
-            giveCurrentPlayerTroops();
+            giveTroops(currentPlayer);
         }
 
         phase = firstPhase;
