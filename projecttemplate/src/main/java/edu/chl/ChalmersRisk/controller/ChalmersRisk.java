@@ -10,46 +10,86 @@ import edu.chl.ChalmersRisk.model.Dice;
 public class ChalmersRisk {
 
 
-    //TODO doCombat() - what should this method take?
 
     /**
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
      */
-    public void combat(Territory attacker, Territory defender){
+    public static boolean combat(Territory attacker, Territory defender){
         Dice die = new Dice();
-        int atkRoll = 0;
-        int defRoll = 0;
+        int[] atkRoll;
+        int[] defRoll;
         //Attacker selects a number of dice <= #troops - 1 and 3
-        int AtkTroops = 3;    //attacker.getNbrOfTroops() - 1;
-        if (AtkTroops<1) return; //No troops attacking.
-        //TODO implement an exception here?
+        //TODO remove hardcoded value;
+        int atkTroops = 3;    //attacker.getNbrOfTroops() - 1;
 
-        if (AtkTroops>3) AtkTroops = 3;
+        //TODO throw exception instead?
+        if (atkTroops<1) return false; //No troops attacking.
 
-        //Attacker selects its highest die
-        for (int i=0; i<AtkTroops; i++){
-            int j = die.rollDie();
-            if (j>atkRoll) atkRoll = j;
-        }
+        if (atkTroops >3) atkTroops = 3;
 
         //Defender gets two die if #troops <= 2, #troops = 1 gives 1 die.
-        int DefTroops = 2; //defender.getNbrOfTroops();
-        if (DefTroops>2) DefTroops = 2;
+        //TODO Remove hardcoded value;
+        int defTroops = 2; //defender.getNbrOfTroops()
+        if (defTroops>2) defTroops = 2;
 
-        //Defender selects its highest die
-        for (int i=0; i<DefTroops; i++){
-            int j = die.rollDie();
-            if (j>defRoll) defRoll = j;
+        //Creating attacker's die array.
+        if(atkTroops>=3){
+            atkRoll = die.rollThreeDice();
+        }
+        else if (atkTroops==2){
+            atkRoll = die.rollTwoDice();
+        } else {
+            atkRoll = new int[die.rollDie()];
         }
 
-        //if the attacker's die is higher than the defender's then defender loses a troop
-        //else attacker loses a troop
-        if (atkRoll > defRoll){
-            //Defender lose a troop;
-        }else{
-            //Attacker lose a troop;
+
+        //Creating defender's die array.
+        if (defTroops>=2){
+            defRoll = die.rollTwoDice();
+            System.out.println(defRoll[0]);
+        } else {
+            defRoll = new int[die.rollDie()];
         }
+
+        while (atkTroops > 0 && defTroops >0){
+            int atkHighest = 0;
+            for (int i=0;i<atkTroops;i++){
+                if (atkRoll[i]>atkRoll[atkHighest]){
+
+                    atkHighest = i;
+                }
+            }
+
+            int defHighest = 0;
+            for (int i=0;i<defTroops;i++){
+                if (defRoll[i]>defRoll[defHighest]){
+                    defHighest = i;
+                }
+            }
+
+            //if the attacker's die is higher than the defender's then defender loses a troop
+            //else attacker loses a troop
+            if (atkRoll[atkHighest] > defRoll[defHighest]){
+                //Defender lose a troop;
+                System.out.println("Defender lose a troop.");
+                //TODO Call method for removing troop.
+            }else{
+                //Attacker lose a troop;
+                System.out.println("Attacker lose a troop.");
+                //TODO Call method for removing troop.
+            }
+
+            //Remove die roll from pool.
+            atkRoll[atkHighest] = 0;
+            defRoll[defHighest] = 0;
+
+            atkTroops--;
+            defTroops--;
+        }
+
+        //TODO add if defending territory has lost all its troops return true
+        return false;
     }
 }
