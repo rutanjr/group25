@@ -245,12 +245,10 @@ public class ChalmersRisk implements KeyListener, ActionListener {
             //else attacker loses a troop
             if (atkRoll[atkHighest] > defRoll[defHighest]){
                 //Defender lose a troop;
-                System.out.println("Defender lose a troop.");
-                //TODO Call method for removing troop.
+                defender.removeTroops(1);
             }else{
                 //Attacker lose a troop;
-                System.out.println("Attacker lose a troop.");
-                //TODO Call method for removing troop.
+                attacker.removeTroops(1);
             }
 
             //Remove die roll from pool.
