@@ -195,8 +195,9 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         //TODO remove hardcoded value;
         int atkTroops = 3;    //attacker.getNbrOfTroops() - 1;
 
-        //TODO throw exception instead?
-        if (atkTroops<1) return false; //No troops attacking.
+        if (atkTroops<1){
+            throw new IllegalArgumentException("There are too few troops to attack");
+        }
 
         if (atkTroops >3) atkTroops = 3;
 
