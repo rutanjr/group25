@@ -4,7 +4,6 @@ import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.model.Troop;
-import edu.chl.ChalmersRisk.utilities.Constants;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -106,11 +105,11 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
             } else if(phase == 1){
                 //else if currentplayer has troops to place.
-                if (evt.getKeyCode() == KeyEvent.VK_A && A.isAvailabe(currentPlayer)) {
+                if (evt.getKeyCode() == KeyEvent.VK_A && A.isAvailable(currentPlayer)) {
                     currentPlayer.placeTroops(A, 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
                     System.out.println("There are now a total of :" + A.getTroops() +" troops on territory A");
-                } else if (evt.getKeyCode() == KeyEvent.VK_B && B.isAvailabe(currentPlayer)) {
+                } else if (evt.getKeyCode() == KeyEvent.VK_B && B.isAvailable(currentPlayer)) {
                     currentPlayer.placeTroops(B, 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
                     System.out.println("There are now a total of :" + B.getTroops() +" troops on territory B");
@@ -123,8 +122,8 @@ public class ChalmersRisk implements KeyListener, ActionListener {
             }
 
         }
-            phaseTimer.stop();
-            gameTimer.start();
+        phaseTimer.stop();
+        gameTimer.start();
 
         }
 
@@ -176,13 +175,13 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     //for now this method will return a String. However in the future this should be up to change.
     public String checkFreeTerritories(){
         //first see if
-        if(A.isAvailabe(currentPlayer)){
-            if(B.isAvailabe(currentPlayer)){
+        if(A.isAvailable(currentPlayer)){
+            if(B.isAvailable(currentPlayer)){
                 return "A or B???";
             }else{
                 return "A?";
             }
-        }else if(B.isAvailabe(currentPlayer)){
+        }else if(B.isAvailable(currentPlayer)){
             return "B?";
         }else{
             return "NO TERRITORIES";
