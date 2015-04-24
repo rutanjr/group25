@@ -192,8 +192,8 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         int[] atkRoll;
         int[] defRoll;
         //Attacker selects a number of dice <= #troops - 1 and 3
-        //TODO remove hardcoded value;
-        int atkTroops = 3;    //attacker.getNbrOfTroops() - 1;
+
+        int atkTroops = attacker.getTroops() - 1;
 
         if (atkTroops<1){
             throw new IllegalArgumentException("There are too few troops to attack");
@@ -202,8 +202,8 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         if (atkTroops >3) atkTroops = 3;
 
         //Defender gets two die if #troops <= 2, #troops = 1 gives 1 die.
-        //TODO Remove hardcoded value;
-        int defTroops = 2; //defender.getNbrOfTroops()
+
+        int defTroops = defender.getTroops();
         if (defTroops>2) defTroops = 2;
 
         //Creating attacker's die array.
