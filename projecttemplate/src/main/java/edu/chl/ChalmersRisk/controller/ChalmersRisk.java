@@ -5,6 +5,8 @@ import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.model.Troop;
 import edu.chl.ChalmersRisk.utilities.Constants;
+import edu.chl.ChalmersRisk.view.ProjectView;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,6 +27,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     private Continent continent;
     private Player one,two,currentPlayer;
     private int phase, oldPhase;
+    private ProjectView projectView;
 
     //final variables defining the last and first phases. Meaning that
     //the last phase should be the one before a player ends their turn, and the first
@@ -36,7 +39,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     //TODO doCombat() - what should this method take?
 
-    public ChalmersRisk(JFrame mainFrame){
+    public ChalmersRisk(String[] args){
         one = new Player("Lol");
         two = new Player("plz");
 
@@ -44,14 +47,22 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         //phase 1=place troops 2=move
         phase = 1;
 
+        try {
+            projectView = new ProjectView(args);
+        } catch (Exception e) {
+            System.out.println(e.getCause() + "    :    " + e.getMessage());
+        }
+
         //TODO , some kindof loadMap() method ??
         loadMap("Chalmers");
 
-        startGame(one, two, mainFrame);
+        //projectView.start(new Stage());
+
+        //startGame(one, two, mainFrame);
     }
 
 
-    public void startGame(Player one, Player two, JFrame mainFrame){
+  /*  public void startGame(Player one, Player two, JFrame mainFrame){
 
         //initialize timers
         gameTimer = new Timer(10,this);
@@ -70,7 +81,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         mainFrame.addKeyListener(this);
         mainFrame.setVisible(true);
         mainFrame.setSize(1, 1);
-    }
+    }*/
 
     public void giveTroops(Player player){
 

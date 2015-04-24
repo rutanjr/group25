@@ -14,8 +14,8 @@ public class ProjectController {
 	}
 
 	private ProjectController(Project project, ProjectView projectView) {
-		projectView.getButton().addActionListener(new ProjectButtonPressed());
-        projectView.getDieRollButton().addActionListener(new DieRollButtonPressed());
+		/*projectView.getButton().addActionListener(new ProjectButtonPressed());
+        projectView.getDieRollButton().addActionListener(new DieRollButtonPressed());*/
 
 		this.project = project;
 		this.projectView = projectView;
@@ -25,7 +25,7 @@ public class ProjectController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			project.incrementPresses();
-			projectView.getPressesLabel().setText(String.valueOf(project.getPresses()));
+			/*projectView.getPressesLabel().setText(String.valueOf(project.getPresses()));*/
 		}
 	}
 
@@ -33,7 +33,7 @@ public class ProjectController {
         @Override
         public void actionPerformed(ActionEvent e) {
             project.rollDie();
-            projectView.getDieRollLabel().setText(String.valueOf(project.getDieRoll()));
+            /*projectView.getDieRollLabel().setText(String.valueOf(project.getDieRoll()));*/
         }
     }
 }

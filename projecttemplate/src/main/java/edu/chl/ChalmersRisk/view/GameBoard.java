@@ -1,45 +1,45 @@
 package edu.chl.ChalmersRisk.view;
 
+
 import edu.chl.ChalmersRisk.model.*;
+import javafx.scene.control.Button;
 
-
-import javax.swing.*;
-import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by rutanjr on 2015-03-31.
  * A board for the risk game. This class will do the graphical work, holding the map and painting/repainting it.
  */
-public class GameBoard extends JFrame{
+public class GameBoard {
 
-    private Continent[] continents;
+    private ArrayList<Continent> continents;
+    private ArrayList<ArrayList<Territory>> territorys; //ArrayList(size: amount of continents) of ArrayLists with territorys (for each continent).
+    private Button[] territoryButtons;
 
-    //either this or make the continents themselves be JButtons or something similar.
-    private JButton[] herp;
-
-    public GameBoard(int nmbrOfContinents, Continent[] continents){
-
-        super("Chalmers RISK!");
-
-        this.continents = continents;
-        herp = new JButton[nmbrOfContinents];
-
-
-        final GridLayout layout = new GridLayout(2, 2);
-        setLayout(layout);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //for now, most likely change later
-        for(int i = 0; i < continents.length; i++){
-            herp[i] = new JButton(continents[i].getName());
-            add(herp[i]);
-        }
-
-
-        pack();
+    public GameBoard() {
     }
 
+    public GameBoard(ArrayList<Continent> continents) {
 
+        this.continents = continents;
+        territorys = new ArrayList<ArrayList<Territory>>(continents.size());
+
+        int i = 0;
+        for(ArrayList<Territory> a : territorys) {
+            //a = continents.get(i).getTerritories();
+            i++;
+        }
+        i = 0;
+        for (ArrayList<Territory> a: territorys) {
+            for (Territory t: a) {
+                //territoryButtons[i] = new Button(t.getName() + " : " + t.getTroops().size());
+                i++;
+            }
+        }
+    }
+
+    public Button[] getTerritoryButtons() {
+        return territoryButtons;
+    }
 
 }

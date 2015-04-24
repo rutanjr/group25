@@ -1,52 +1,54 @@
 package edu.chl.ChalmersRisk.view;
 
+import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Project;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import edu.chl.ChalmersRisk.model.Territory;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-public class ProjectView extends JFrame {
+import java.util.ArrayList;
 
-    private final JButton button = new JButton(Project.PROJECT_BUTTON_TEXT), dieRollButton = new JButton("Roll die");
-    private final JLabel pressesLabel;
-    private final JLabel dieRollLabel;
 
-    public ProjectView(Project project) {
-        super(Project.PROJECT_WINDOW_TEXT);
+public class ProjectView extends Application {
 
-        final GridLayout layout = new GridLayout(0, 2);
-        setLayout(layout);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pressesLabel = new JLabel(String.valueOf(project.getPresses()));
-        pressesLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        pressesLabel.setLabelFor(button);
-        dieRollLabel = new JLabel(String.valueOf(project.getDieRoll()));
-        dieRollLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        dieRollLabel.setLabelFor(dieRollButton);
+    GameBoard gameBoard;
+    ArrayList<Territory> territories;
+    ArrayList<Continent> continents;
 
-        add(button);
-        add(pressesLabel);
-        add(dieRollButton);
-        add(dieRollLabel);
-        pack();
+    public ProjectView() {}
+
+    public ProjectView(String[] args, ArrayList<Territory> territories, ArrayList<Continent> continents) {
+        this.territories = territories;
+        this.continents = continents;
+        launch(args);
     }
 
-    public JButton getDieRollButton () {
-        return dieRollButton;
-    }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("ChalmersRisk");
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
 
-    public JLabel getDieRollLabel() {
-        return dieRollLabel;
-    }
+        //Change these values to set the distances between objects in the view.
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25,25,25,25));
 
-    public JButton getButton() {
-        return button;
-    }
+        gameBoard = new GameBoard(continents);
 
-    public JLabel getPressesLabel() {
-        return pressesLabel;
+        int i = 0;
+        for (Button territorybutton: gameBoard.getTerritoryButtons()){
+            grid.add(territorybutton, 0, i);
+            i ++;
+        }
+
+        Scene scene = new Scene(grid, 500, 500);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

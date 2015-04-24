@@ -25,6 +25,6 @@ public final class Main {
           //      });
 
 
-        new ChalmersRisk(new MainFrame());
+        new ChalmersRisk(args);
 	}
 }
