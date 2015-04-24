@@ -1,5 +1,7 @@
 package edu.chl.ChalmersRisk.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Malin on 2015-04-23.
  */
@@ -8,17 +10,19 @@ public class ChalmersMap implements Maps {
 
     //defining how many total continents and territories
     private final Continent[] continents = new Continent[1];
-    private final Territory[] territories = new Territory[2];
+    private final ArrayList<Territory> territories = new ArrayList<Territory>();
 
     public ChalmersMap(){
-        continents[0] = new Continent("Chalmers");
-        territories[0] = new Territory("A",continents[0]);
-        territories[1] = new Territory("B",continents[0]);
+        territories.add(new Territory("A",continents[0]));
+        territories.add(new Territory("B", continents[0]));
+
+
+        continents[0] = new Continent("Chalmers",4,territories);
     }
 
 
     @Override
-    public Territory[] getTerritories() {
+    public ArrayList<Territory> getTerritories() {
         return territories;
     }
 

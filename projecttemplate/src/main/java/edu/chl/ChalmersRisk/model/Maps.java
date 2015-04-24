@@ -1,5 +1,7 @@
 package edu.chl.ChalmersRisk.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Malin on 2015-04-23.
  *
@@ -7,7 +9,7 @@ package edu.chl.ChalmersRisk.model;
  */
 public interface Maps {
 
-    public Territory[] getTerritories();
+    public ArrayList<Territory> getTerritories();
     public Continent[] getContinents();
 
 }

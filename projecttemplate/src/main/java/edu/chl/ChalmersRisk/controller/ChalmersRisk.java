@@ -20,7 +20,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     //all variables for the map
     private Maps map;
     private Continent continents[];
-    private Territory territories[];
+    private ArrayList<Territory> territories;
 
     private Player one,two,currentPlayer;
     private int phase, oldPhase;
@@ -119,14 +119,14 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
             } else if(phase == 1){
                 //else if currentplayer has troops to place.
-                if (evt.getKeyCode() == KeyEvent.VK_A && territories[0].isAvailableTo(currentPlayer)) {
-                    currentPlayer.placeTroops(territories[0], 1);
+                if (evt.getKeyCode() == KeyEvent.VK_A && territories.get(0).isAvailableTo(currentPlayer)) {
+                    currentPlayer.placeTroops(territories.get(0), 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
-                    System.out.println("There are now a total of :" + territories[0].getTroops() +" troops on territory A");
-                } else if (evt.getKeyCode() == KeyEvent.VK_B && territories[1].isAvailableTo(currentPlayer)) {
-                    currentPlayer.placeTroops(territories[1], 1);
+                    System.out.println("There are now a total of :" + territories.get(0).getTroops() +" troops on territory A");
+                } else if (evt.getKeyCode() == KeyEvent.VK_B && territories.get(1).isAvailableTo(currentPlayer)) {
+                    currentPlayer.placeTroops(territories.get(1), 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
-                    System.out.println("There are now a total of :" + territories[1].getTroops() +" troops on territory B");
+                    System.out.println("There are now a total of :" + territories.get(1).getTroops() +" troops on territory B");
                 }
                 if(currentPlayer.amountOfTroops() == 0 ){
                     //make phase undefined for now, so above code can't be activated
@@ -190,27 +190,22 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     public String checkFreeTerritories(){
 
 
+        String result = "";
+        int count = 0;
 
-
-        ArrayList<Territory> availableTerritories = new ArrayList<Territory>();
+        //ArrayList<Territory> availableTerritories = new ArrayList<Territory>(); this is probably unnecessary
         for(Territory t : territories){
             if(t.isAvailableTo(currentPlayer)){
-                availableTerritories.add(t);
+                //availableTerritories.add(t);
+                result += t.getName()+ ", ";
+                count ++;
             }
         }
 
-
-        //first see if
-        if(territories[0].isAvailableTo(currentPlayer)){
-            if(territories[1].isAvailableTo(currentPlayer)){
-                return "A or B???";
-            }else{
-                return "A?";
-            }
-        }else if(territories[1].isAvailableTo(currentPlayer)){
-            return "B?";
-        }else{
+        if(count == 0){
             return "NO TERRITORIES";
+        }else{
+            return result;
         }
 
     }
