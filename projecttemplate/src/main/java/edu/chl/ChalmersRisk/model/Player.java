@@ -35,6 +35,7 @@ public class Player {
      */
     public void placeTroops(Territory territory, int number){
         if(number > troopsToPlace.size()) {
+            //dumt att kasta exception.. vi kan hantera det lätt med nån text bara som säger det här och typ "try again"
             throw new IllegalArgumentException("The number of troops you want to place is larger than what you have. " +
                     "You have " + String.valueOf(troopsToPlace.size()) + " troops");
         }
@@ -42,6 +43,7 @@ public class Player {
         while (!troopsToPlace.isEmpty() && nrOfPlaced < number) {
             if(!troopsToPlace.get(0).isPlaced()) {
                 troopsToPlace.get(0).placeMe(territory);
+                territory.setnewOwner(this);
                 System.out.println("Placing troop!");
             }
             placedTroops.add(troopsToPlace.get(0));
@@ -58,6 +60,10 @@ public class Player {
         else {
             return false;
         }
+    }
+
+    public int getnmbrOfTerritories() {
+        return territories.size();
     }
 
     /**
