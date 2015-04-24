@@ -74,18 +74,25 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     }
 
     public void giveTroops(Player player){
-
+        int lol = 0;
         ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
         for(int i = 0; i< nbrOfTroopsToGive(player) + 2 ; i++){
             troops.add(new Troop(player));
+            lol++;
         }
+        System.out.println(lol);
         player.receiveTroops(troops);
     }
 
     public int nbrOfTroopsToGive(Player player) {
-        int total;
-        total = player.getnmbrOfTerritories();
-        //TODO add continent bonuses.
+        int total = player.getnmbrOfTerritories();
+        //for all continents in continents see if player is an owner
+        for(Continent c : continents){
+            if(c.isContinentOwned(currentPlayer)){
+                total += c.getValue();
+            }
+        }
+
         return total;
     }
 
@@ -179,6 +186,11 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
             System.out.println("Player: " + currentPlayer.getName() + " you have " + currentPlayer.amountOfTroops() + " troops to place." +
                     " Do you want to place a troop on territory " + checkFreeTerritories());
+
+
+            if(checkFreeTerritories().equals("NO TERRITORIES")){
+                phase = 0;
+            }
 
 
             phaseTimer.start();

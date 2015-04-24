@@ -44,6 +44,7 @@ public class Player {
             if(!troopsToPlace.get(0).isPlaced()) {
                 troopsToPlace.get(0).placeMe(territory);
                 territory.setnewOwner(this);
+                territories.add(territory);
                 System.out.println("Placing troop!");
             }
             placedTroops.add(troopsToPlace.get(0));
