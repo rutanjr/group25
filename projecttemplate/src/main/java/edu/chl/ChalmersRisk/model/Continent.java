@@ -1,5 +1,7 @@
 package edu.chl.ChalmersRisk.model;
 
+import edu.chl.ChalmersRisk.utilities.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Continent {
     private String name;
     private int value; // this is used if we intend to have different Continents giving a different amount of bonus troops
     private List<Territory> territories = new ArrayList<Territory>();
+    private Player owner = Constants.EMPTY_PLAYER;
 
     // Constructor
 
@@ -28,7 +31,7 @@ public class Continent {
     public String getName() { return this.name; }
     public int getValue()   { return this.value; }
     public List<Territory> getTerritories() { return this.territories; }
-
+    public Player getOwner() { return this.owner; }
 
     // Comand - Methods
 
@@ -36,6 +39,7 @@ public class Continent {
         this.name = name;
     }
 
+    public void setOwner(Player owner) { this.owner = owner;}
     /*
     * Compares owners of territories to see if they are all owned by the same player.
     *@param The Player object reference to the player who's tested if he controls all the
