@@ -293,4 +293,32 @@ public class ChalmersRisk{
             return false;
         }
     }
+
+    //TODO fix this when getTroops() method returns correct type.
+    /*
+    public void moveTroops(Territory fromTerritory, Territory toTerritory){
+        moveTroops(fromTerritory,toTerritory,fromTerritory.getTroops());
+    }
+    */
+
+    public void moveTroops(Territory fromT, Territory toT, int amount){
+        if(fromT.getOwner()!=toT.getOwner()){
+            throw new IllegalArgumentException("Territories aren't owned by the same player.");
+            //TODO Should this call the combat method instead?
+        }
+        Boolean adjacent = false;
+        for  (Territory checked : fromT.getAdjacentTerritories()){
+            if (toT.equals(checked)){
+                adjacent = true;
+            }
+        }
+
+        if (!adjacent){
+            throw new IllegalArgumentException("Territories aren't adjacent.");
+            //TODO cancel method.
+        }
+
+
+
+    }
 }
