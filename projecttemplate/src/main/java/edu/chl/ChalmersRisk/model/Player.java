@@ -43,8 +43,11 @@ public class Player {
         while (!troopsToPlace.isEmpty() && nrOfPlaced < number) {
             if(!troopsToPlace.get(0).isPlaced()) {
                 troopsToPlace.get(0).placeMe(territory);
-                territory.setnewOwner(this);
                 System.out.println("Placing troop!");
+                if(!territory.getOwner().equals(this)){
+                    territories.add(territory);
+                    territory.setnewOwner(this);
+                }
             }
             placedTroops.add(troopsToPlace.get(0));
             troopsToPlace.remove(0);
@@ -62,7 +65,7 @@ public class Player {
         }
     }
 
-    public int numberOfTerritorys() {
+    public int getnmbrOfTerritories() {
         return territories.size();
     }
 

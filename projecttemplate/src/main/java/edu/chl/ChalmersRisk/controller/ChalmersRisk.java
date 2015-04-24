@@ -1,12 +1,11 @@
 package edu.chl.ChalmersRisk.controller;
 
-import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.model.Territory;
-import edu.chl.ChalmersRisk.model.Troop;
+
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.ProjectView;
 import javafx.stage.Stage;
+
+import edu.chl.ChalmersRisk.model.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,8 +22,11 @@ import java.util.ArrayList;
  */
 public class ChalmersRisk implements KeyListener, ActionListener {
 
-    private Territory A, B;
-    private Continent continent;
+    //all variables for the map
+    private Maps map;
+    private ArrayList<Continent> continents;
+    private ArrayList<Territory> territories;
+
     private Player one,two,currentPlayer;
     private int phase, oldPhase;
     private ProjectView projectView;
@@ -47,8 +49,12 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         //phase 1=place troops 2=move
         phase = 1;
 
+        map = new ChalmersMap();
+        territories = map.getTerritories();
+        continents = map.getContinents();
+
         try {
-            projectView = new ProjectView(args);
+            projectView = new ProjectView(args, territories, continents);
         } catch (Exception e) {
             System.out.println(e.getCause() + "    :    " + e.getMessage());
         }
@@ -84,18 +90,25 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     }*/
 
     public void giveTroops(Player player){
-
+        int lol = 0;
         ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
         for(int i = 0; i< nbrOfTroopsToGive(player) + 2 ; i++){
             troops.add(new Troop(player));
+            lol++;
         }
+        System.out.println(lol);
         player.receiveTroops(troops);
     }
 
     public int nbrOfTroopsToGive(Player player) {
-        int total;
-        total = player.numberOfTerritorys();
-        //TODO add continent bonuses.
+        int total = player.getnmbrOfTerritories();
+        //for all continents in continents see if player is an owner
+        for(Continent c : continents){
+            if(c.isContinentOwned(currentPlayer)){
+                total += c.getValue();
+            }
+        }
+
         return total;
     }
 
@@ -104,17 +117,21 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     public void loadMap(String name){
 
         if(name.equals("Chalmers")){
-            continent = new Continent("Chalmers");
-
-            A = new Territory("A",continent);
-            B = new Territory("B", continent);
+            map = new ChalmersMap();
         }
+
+        //this code will always be done last
+        territories = map.getTerritories();
+        continents = map.getContinents();
+
+
     }
 
 
 
 
 
+    //basically all of this code is void and should be moved to somekindof mouselistener/actionlistener later
     @Override
     public void keyPressed(KeyEvent evt) {
         if(phaseTimer.isRunning()) {
@@ -127,14 +144,14 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
             } else if(phase == 1){
                 //else if currentplayer has troops to place.
-                if (evt.getKeyCode() == KeyEvent.VK_A && A.isAvailabe(currentPlayer)) {
-                    currentPlayer.placeTroops(A, 1);
+                if (evt.getKeyCode() == KeyEvent.VK_A && territories.get(0).isAvailableTo(currentPlayer)) {
+                    currentPlayer.placeTroops(territories.get(0), 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
-                    System.out.println("There are now a total of :" + A.getTroops() +" troops on territory A");
-                } else if (evt.getKeyCode() == KeyEvent.VK_B && B.isAvailabe(currentPlayer)) {
-                    currentPlayer.placeTroops(B, 1);
+                    System.out.println("There are now a total of :" + territories.get(0).getTroops() +" troops on territory A");
+                } else if (evt.getKeyCode() == KeyEvent.VK_B && territories.get(1).isAvailableTo(currentPlayer)) {
+                    currentPlayer.placeTroops(territories.get(1), 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
-                    System.out.println("There are now a total of :" + B.getTroops() +" troops on territory B");
+                    System.out.println("There are now a total of :" + territories.get(1).getTroops() +" troops on territory B");
                 }
                 if(currentPlayer.amountOfTroops() == 0 ){
                     //make phase undefined for now, so above code can't be activated
@@ -144,8 +161,8 @@ public class ChalmersRisk implements KeyListener, ActionListener {
             }
 
         }
-            phaseTimer.stop();
-            gameTimer.start();
+        phaseTimer.stop();
+        gameTimer.start();
 
         }
 
@@ -187,6 +204,11 @@ public class ChalmersRisk implements KeyListener, ActionListener {
                     " Do you want to place a troop on territory " + checkFreeTerritories());
 
 
+            if(checkFreeTerritories().equals("NO TERRITORIES")){
+                phase = 0;
+            }
+
+
             phaseTimer.start();
         }else if(phase == 2){
             // TODO: this shit
@@ -196,17 +218,24 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     //for now this method will return a String. However in the future this should be up to change.
     public String checkFreeTerritories(){
-        //first see if
-        if(A.isAvailabe(currentPlayer)){
-            if(B.isAvailabe(currentPlayer)){
-                return "A or B???";
-            }else{
-                return "A?";
+
+
+        String result = "";
+        int count = 0;
+
+        //ArrayList<Territory> availableTerritories = new ArrayList<Territory>(); this is probably unnecessary
+        for(Territory t : territories){
+            if(t.isAvailableTo(currentPlayer)){
+                //availableTerritories.add(t);
+                result += t.getName()+ ", ";
+                count ++;
             }
-        }else if(B.isAvailabe(currentPlayer)){
-            return "B?";
-        }else{
+        }
+
+        if(count == 0){
             return "NO TERRITORIES";
+        }else{
+            return result;
         }
 
     }
@@ -217,4 +246,89 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     @Override
     public void keyTyped(KeyEvent e) {}
+
+    /**
+     * A method for resolving combat.
+     * @param attacker the Territory that the attacking troops comes from.
+     * @param defender the Territory that is being defended.
+     * @return true if the defender has lost all it troops in the territory.
+     */
+    public static boolean combat(Territory attacker, Territory defender){
+        Dice die = new Dice();
+        int[] atkRoll;
+        int[] defRoll;
+        //Attacker selects a number of dice <= #troops - 1 and 3
+
+        int atkTroops = attacker.getTroops() - 1;
+
+        if (atkTroops<1){
+            throw new IllegalArgumentException("There are too few troops to attack");
+        }
+
+        if (atkTroops >3) atkTroops = 3;
+
+        //Defender gets two die if #troops <= 2, #troops = 1 gives 1 die.
+
+        int defTroops = defender.getTroops();
+        if (defTroops>2) defTroops = 2;
+
+        //Creating attacker's die array.
+        if(atkTroops>=3){
+            atkRoll = die.rollThreeDice();
+        }
+        else if (atkTroops==2){
+            atkRoll = die.rollTwoDice();
+        } else {
+            atkRoll = new int[die.rollDie()];
+        }
+
+
+        //Creating defender's die array.
+        if (defTroops>=2){
+            defRoll = die.rollTwoDice();
+            System.out.println(defRoll[0]);
+        } else {
+            defRoll = new int[die.rollDie()];
+        }
+
+        while (atkTroops > 0 && defTroops >0){
+            int atkHighest = 0;
+            for (int i=0;i<atkTroops;i++){
+                if (atkRoll[i]>atkRoll[atkHighest]){
+
+                    atkHighest = i;
+                }
+            }
+
+            int defHighest = 0;
+            for (int i=0;i<defTroops;i++){
+                if (defRoll[i]>defRoll[defHighest]){
+                    defHighest = i;
+                }
+            }
+
+            //if the attacker's die is higher than the defender's then defender loses a troop
+            //else attacker loses a troop
+            if (atkRoll[atkHighest] > defRoll[defHighest]){
+                //Defender lose a troop;
+                defender.removeTroops(1);
+            }else{
+                //Attacker lose a troop;
+                attacker.removeTroops(1);
+            }
+
+            //Remove die roll from pool.
+            atkRoll[atkHighest] = 0;
+            defRoll[defHighest] = 0;
+
+            atkTroops--;
+            defTroops--;
+        }
+
+        if (defender.getTroops()<1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -24,7 +24,12 @@ public class ProjectView extends Application {
 
     public ProjectView(String[] args, ArrayList<Territory> territories, ArrayList<Continent> continents) {
         this.territories = territories;
+        for (Territory t : territories)
+            System.out.println(t.getName());
+
         this.continents = continents;
+        for(Continent c: continents)
+            System.out.println(c.getName());
         launch(args);
     }
 
