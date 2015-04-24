@@ -228,6 +228,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
+     * @return true if the defender has lost all it troops in the territory.
      */
     public static boolean combat(Territory attacker, Territory defender){
         Dice die = new Dice();
@@ -301,7 +302,10 @@ public class ChalmersRisk implements KeyListener, ActionListener {
             defTroops--;
         }
 
-        //TODO add if defending territory has lost all its troops return true
-        return false;
+        if (defender.getTroops()<1){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
