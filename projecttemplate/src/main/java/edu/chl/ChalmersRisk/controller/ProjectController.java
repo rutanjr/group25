@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 public class ProjectController {
 	private final Project project;
 	private final ProjectView projectView;
-	public static final int KO = 1;
 
 	public static ProjectController create(Project project, ProjectView projectView) {
 		return new ProjectController(project, projectView);
@@ -37,5 +36,4 @@ public class ProjectController {
             projectView.getDieRollLabel().setText(String.valueOf(project.getDieRoll()));
         }
     }
-
 }

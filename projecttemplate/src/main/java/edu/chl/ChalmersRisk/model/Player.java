@@ -62,6 +62,10 @@ public class Player {
         }
     }
 
+    public int numberOfTerritorys() {
+        return territories.size();
+    }
+
     /**
      *
      * @return ArrayList of this players all placed troops.
