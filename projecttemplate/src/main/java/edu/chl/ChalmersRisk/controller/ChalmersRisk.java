@@ -318,7 +318,9 @@ public class ChalmersRisk{
             //TODO cancel method.
         }
 
-
+        //TODO this should use some kind of list of troops instead of ints.
+        fromT.removeTroops(amount);
+        toT.addTroops(amount);
 
     }
 }
