@@ -62,7 +62,7 @@ public class Player {
         }
     }
 
-    public int numberOfTerritorys() {
+    public int getnmbrOfTerritories() {
         return territories.size();
     }
 

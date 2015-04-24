@@ -10,6 +10,7 @@ import java.util.List;
  * A class to represent each territory. Certain territories together is a continent. All territories belongs to a continent.
  *
  * @revisedBy Robin Jansson
+ * @revisedBy Malin Thelin
  */
 public class Territory {
 
@@ -114,7 +115,7 @@ public class Territory {
     }
 
 
-    public boolean isAvailabe(Player player){
+    public boolean isAvailableTo(Player player){
         if(owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player)){
             return true;
         }else{
