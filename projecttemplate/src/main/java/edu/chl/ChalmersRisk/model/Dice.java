@@ -22,16 +22,16 @@ public class Dice {
     }
 
     public int[] rollTwoDice() {
-        int first = dieRoll.nextInt();
-        int second = dieRoll.nextInt();
+        int first = dieRoll.nextInt(6)+1;
+        int second = dieRoll.nextInt(6)+1;
         lastRolls = new int[]{first, second};
         return lastRolls;
     }
 
     public int[] rollThreeDice() {
-        int first = dieRoll.nextInt();
-        int second = dieRoll.nextInt();
-        int third = dieRoll.nextInt();
+        int first = dieRoll.nextInt(6)+1;
+        int second = dieRoll.nextInt(6)+1;
+        int third = dieRoll.nextInt(6)+1;
         lastRolls =  new int[]{first, second, third};
         return lastRolls;
     }
