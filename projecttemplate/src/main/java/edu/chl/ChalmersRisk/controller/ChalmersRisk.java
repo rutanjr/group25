@@ -1,9 +1,6 @@
 package edu.chl.ChalmersRisk.controller;
 
-import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.model.Territory;
-import edu.chl.ChalmersRisk.model.Troop;
+import edu.chl.ChalmersRisk.model.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,8 +17,11 @@ import java.util.ArrayList;
  */
 public class ChalmersRisk implements KeyListener, ActionListener {
 
-    private Territory A, B;
-    private Continent continent;
+    //all variables for the map
+    private Maps map;
+    private Continent continents[];
+    private Territory territories[];
+
     private Player one,two,currentPlayer;
     private int phase, oldPhase;
 
@@ -82,7 +82,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     public int nbrOfTroopsToGive(Player player) {
         int total;
-        total = player.numberOfTerritorys();
+        total = player.getnmbrOfTerritories();
         //TODO add continent bonuses.
         return total;
     }
@@ -92,17 +92,21 @@ public class ChalmersRisk implements KeyListener, ActionListener {
     public void loadMap(String name){
 
         if(name.equals("Chalmers")){
-            continent = new Continent("Chalmers");
-
-            A = new Territory("A",continent);
-            B = new Territory("B", continent);
+            map = new ChalmersMap();
         }
+
+        //this code will always be done last
+        territories = map.getTerritories();
+        continents = map.getContinents();
+
+
     }
 
 
 
 
 
+    //basically all of this code is void and should be moved to somekindof mouselistener/actionlistener later
     @Override
     public void keyPressed(KeyEvent evt) {
         if(phaseTimer.isRunning()) {
@@ -115,14 +119,14 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
             } else if(phase == 1){
                 //else if currentplayer has troops to place.
-                if (evt.getKeyCode() == KeyEvent.VK_A && A.isAvailable(currentPlayer)) {
-                    currentPlayer.placeTroops(A, 1);
+                if (evt.getKeyCode() == KeyEvent.VK_A && territories[0].isAvailableTo(currentPlayer)) {
+                    currentPlayer.placeTroops(territories[0], 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory A");
-                    System.out.println("There are now a total of :" + A.getTroops() +" troops on territory A");
-                } else if (evt.getKeyCode() == KeyEvent.VK_B && B.isAvailable(currentPlayer)) {
-                    currentPlayer.placeTroops(B, 1);
+                    System.out.println("There are now a total of :" + territories[0].getTroops() +" troops on territory A");
+                } else if (evt.getKeyCode() == KeyEvent.VK_B && territories[1].isAvailableTo(currentPlayer)) {
+                    currentPlayer.placeTroops(territories[1], 1);
                     System.out.println("Player " + currentPlayer.getName() + " Added a troop to territory B");
-                    System.out.println("There are now a total of :" + B.getTroops() +" troops on territory B");
+                    System.out.println("There are now a total of :" + territories[1].getTroops() +" troops on territory B");
                 }
                 if(currentPlayer.amountOfTroops() == 0 ){
                     //make phase undefined for now, so above code can't be activated
@@ -184,14 +188,26 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     //for now this method will return a String. However in the future this should be up to change.
     public String checkFreeTerritories(){
+
+
+
+
+        ArrayList<Territory> availableTerritories = new ArrayList<Territory>();
+        for(Territory t : territories){
+            if(t.isAvailableTo(currentPlayer)){
+                availableTerritories.add(t);
+            }
+        }
+
+
         //first see if
-        if(A.isAvailable(currentPlayer)){
-            if(B.isAvailable(currentPlayer)){
+        if(territories[0].isAvailableTo(currentPlayer)){
+            if(territories[1].isAvailableTo(currentPlayer)){
                 return "A or B???";
             }else{
                 return "A?";
             }
-        }else if(B.isAvailable(currentPlayer)){
+        }else if(territories[1].isAvailableTo(currentPlayer)){
             return "B?";
         }else{
             return "NO TERRITORIES";
