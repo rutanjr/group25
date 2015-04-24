@@ -7,6 +7,7 @@ package edu.chl.ChalmersRisk.model;
  */
 public interface Maps {
 
-
+    public Territory[] getTerritories();
+    public Continent[] getContinents();
 
 }

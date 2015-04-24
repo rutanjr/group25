@@ -14,7 +14,16 @@ public class ChalmersMap implements Maps {
         continents[0] = new Continent("Chalmers");
         territories[0] = new Territory("A",continents[0]);
         territories[1] = new Territory("B",continents[0]);
+    }
 
 
+    @Override
+    public Territory[] getTerritories() {
+        return territories;
+    }
+
+    @Override
+    public Continent[] getContinents() {
+        return continents;
     }
 }
