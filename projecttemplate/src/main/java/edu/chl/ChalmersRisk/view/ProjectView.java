@@ -72,7 +72,7 @@ public class ProjectView extends Application {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ChalmersRisk.startGame(new String[] {playerOne.getText(), playerTwo.getText()});
+                ChalmersRisk.startGame(new String[] {playerOne.getText(), playerTwo.getText()}, primaryStage);
             }
         });
 

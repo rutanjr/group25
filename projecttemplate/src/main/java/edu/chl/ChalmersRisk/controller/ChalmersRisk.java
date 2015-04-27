@@ -4,6 +4,10 @@ package edu.chl.ChalmersRisk.controller;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.ProjectView;
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import edu.chl.ChalmersRisk.model.*;
@@ -59,11 +63,19 @@ public class ChalmersRisk{
         //startGame(one, two, mainFrame);
     }
 
-    public static void startGame(String[] players) {
+    public static void startGame(String[] players, Stage primaryStage) {
         playerOne = new Player(players[0]);
         playerTwo = new Player(players[1]);
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
+
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(25);
+        grid.setVgap(25);
+        grid.add(new Button("YOLO"), 1,1);
+        Scene scene = new Scene(grid, 200,200);
+        primaryStage.setScene(scene);
     }
 
 
