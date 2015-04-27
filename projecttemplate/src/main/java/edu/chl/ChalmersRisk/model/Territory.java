@@ -20,8 +20,8 @@ public class Territory {
     private Player owner;
     //private int troops;
     private Continent continent;
-    private List<Territory> adjacentTerritories = null;
-    private List<Troop> troops = new ArrayList<>();
+    private ArrayList<Territory> adjacentTerritories = null;
+    private ArrayList<Troop> troops = new ArrayList<>();
 
     // Constructors
 
@@ -72,7 +72,7 @@ public class Territory {
         this.owner = newOwner;
     }
 
-    public void addAdjacent(List<Territory> newAdjacent) {
+    public void addAdjacent(ArrayList<Territory> newAdjacent) {
         adjacentTerritories = new ArrayList<Territory>(newAdjacent);
     }
 
@@ -102,7 +102,7 @@ public class Territory {
     /**
      * @return returns a list with Territories that are adjacent to the current Territory.
      */
-    public List<Territory> getAdjacentTerritories() {
+    public ArrayList<Territory> getAdjacentTerritories() {
         return adjacentTerritories;
     }
 

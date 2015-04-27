@@ -41,7 +41,7 @@ public class ChalmersRisk implements KeyListener, ActionListener {
 
     //TODO doCombat() - what should this method take?
 
-    public ChalmersRisk(String[] args){
+    public ChalmersRisk(){
         one = new Player("Lol");
         two = new Player("plz");
 
@@ -53,8 +53,8 @@ public class ChalmersRisk implements KeyListener, ActionListener {
         territories = map.getTerritories();
         continents = map.getContinents();
 
-        try {
-            projectView = new ProjectView(args, territories, continents);
+       try {
+            projectView = new ProjectView(territories, continents);
         } catch (Exception e) {
             System.out.println(e.getCause() + "    :    " + e.getMessage());
         }

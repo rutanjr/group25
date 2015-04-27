@@ -25,6 +25,7 @@ public final class Main {
           //      });
 
 
-        new ChalmersRisk(args);
+        ProjectView.launch(args);
+        new ChalmersRisk();
 	}
 }
