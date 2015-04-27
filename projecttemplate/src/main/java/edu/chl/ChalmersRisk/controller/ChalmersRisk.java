@@ -5,15 +5,20 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.ProjectView;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import edu.chl.ChalmersRisk.model.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -70,8 +75,27 @@ public class ChalmersRisk{
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
 
+        GameBoard gameBoard = new GameBoard(new ChalmersMap());
 
-        Scene scene = new Scene(new GameBoard(new ChalmersMap()), 200,200);
+        Scene scene = new Scene(gameBoard, 200,200);
+        Button[] territoryButtons = gameBoard.getButtons();
+
+        for (Button button: territoryButtons){
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                int i = 0;
+                @Override
+                public void handle(ActionEvent event) {
+                    System.out.println("hejsan");
+                    if(i % 2 == 0){
+                        button.setTextFill(Paint.valueOf("pink"));
+                    }else{
+                        System.out.println("Else");
+                        button.setTextFill(Paint.valueOf("blue"));
+                    }
+                    i++;
+                }
+            });
+        }
         primaryStage.setScene(scene);
     }
 

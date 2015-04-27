@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class GameBoard extends GridPane {
 
-    Button[] buttons;
+    private Button[] buttons;
 
     public GameBoard(){
 
@@ -41,15 +41,18 @@ public class GameBoard extends GridPane {
         buttons = new Button[map.getTerritories().size()];
         int i = 0;
         for(Territory t : map.getTerritories()) {
-            buttons[i] = new Button(t.getName());
+            buttons[i] = new Button(t.getName() + " : " + t.getTroops());
             this.add(buttons[i], 1, i);
             i++;
         }
 
 
+
     }
 
-
+    public Button[] getButtons(){
+        return buttons;
+    }
 
 
 }
