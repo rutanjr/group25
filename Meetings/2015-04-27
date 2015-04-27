@@ -1,0 +1,51 @@
+Meeting Agenda
+
+  Date: 27/4 - 2015
+  Facilitator: Robin Jansson 
+  Participants: Malin Thelin, Oskar Rutqvist, Björn Bergqvist
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+
+Look at and complete the JavaFX tutorials posted by Oskar in our Links document.
+
+Oskar has encountered a problem and want assistance.
+
+
+2. Reports (15 min) from previous meeting
+
+
+Everyone has completed the JavaFX tutorial and the RAD has been updated with the improved Domain model.
+
+3. Discussion items (35 min) 
+
+
+How should we implement the turn and the different phases?
+
+Troops in a priority queue?
+
+Gitinspector - check our line numbers.
+
+
+4. Outcomes and assignments (5 min) 
+
+
+Phases
+Place troops
+Attack
+Move troops
+
+We discussed implementing the phases as a simple Enum/Integer and Display different GUI elements depending on which phase, and thus we control what the user is allowed to do. This might be something we need to discuss with Christer in order to get an outside opinion.
+
+
+A player should be allowed to move troops from any one territory the player control to any other territory given that the territories are connected  to each other by territories owned by the player.
+
+Gitinspector 
+We decided to check our line numbers at least once a week, so that none can be surprised at the end of the course and to help us delegate work. 
+
+5. Wrap up
+
+Since this is a half week, we decided to have a preliminary meeting after the meeting with our supervisor Thursday 09:45 30/4.
+
+
