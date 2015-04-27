@@ -10,4 +10,7 @@ import edu.chl.ChalmersRisk.model.Player;
 public class Constants {
 
     public static final Player EMPTY_PLAYER = new Player("EMPTY");
+    public static final int width = 500;
+    public static final int height = 500;
+
 }
