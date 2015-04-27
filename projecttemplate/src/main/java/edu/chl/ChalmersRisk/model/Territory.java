@@ -18,7 +18,6 @@ public class Territory {
 
     private String name;
     private Player owner;
-    //private int troops;
     private Continent continent;
     private ArrayList<Territory> adjacentTerritories = null;
     private ArrayList<Troop> troops = new ArrayList<>();
@@ -59,7 +58,7 @@ public class Territory {
      * @throws java.lang.IllegalArgumentException if the player sends a negative integeror tries to remove more troops than the Territory owns.
      */
     public void removeTroops(int remTroops) {
-        if (remTroops < 0 || remTroops > this.getTroops()) {
+        if (remTroops < 0 || remTroops > this.getAmountOfTroops()) {
             throw new IllegalArgumentException("Tried to remove a negative amount of troops or the player has tried to remove more troops than the Territory owns");
         }
 
@@ -97,7 +96,13 @@ public class Territory {
     /**
      * @return returns the amount of troops in the current Territory.
      */
-    public int getTroops() {return this.troops.size();}
+    public int getAmountOfTroops() {return this.troops.size();}
+
+    /**
+     * @return returns a List of troops in the current Territory.
+     */
+    public List<Troop> getTroops() {return this.troops;}
+
 
     /**
      * @return returns a list with Territories that are adjacent to the current Territory.
@@ -116,11 +121,7 @@ public class Territory {
 
 
     public boolean isAvailableTo(Player player){
-        if(owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player)){
-            return true;
-        }else{
-            return false;
-        }
+        return (owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player));
     }
 
 }
