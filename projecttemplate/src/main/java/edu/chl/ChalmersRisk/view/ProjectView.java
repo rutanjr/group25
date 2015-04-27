@@ -1,18 +1,25 @@
 package edu.chl.ChalmersRisk.view;
 
 import edu.chl.ChalmersRisk.controller.ChalmersRisk;
+import edu.chl.ChalmersRisk.model.ChalmersMap;
 import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Project;
 import edu.chl.ChalmersRisk.model.Territory;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+
+import static edu.chl.ChalmersRisk.controller.ChalmersRisk.*;
 
 
 public class ProjectView extends Application {
@@ -24,11 +31,10 @@ public class ProjectView extends Application {
 
     public ProjectView() {
         System.out.println("Projectview no param constructor");
-        new ChalmersRisk();
+        System.out.println(this);
     }
 
     public ProjectView(ArrayList<Territory> territories, ArrayList<Continent> continents) {
-        this.args = args;
         this.territories = territories;
         for (Territory t : territories)
             System.out.println(t.getName());
@@ -40,7 +46,6 @@ public class ProjectView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("Start Method");
         primaryStage.setTitle("ChalmersRisk");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -51,16 +56,31 @@ public class ProjectView extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25,25,25,25));
 
-        System.out.println("Grid settings made");
-        gameBoard = new GameBoard(continents);
+        Button startButton = new Button("Start game");
+        HBox hBox = new HBox(10);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().add(startButton);
+        grid.add(hBox,1,3);
 
-        System.out.println("Gameboard created");
 
-        int i = 0;
+        TextField playerOne = new TextField("First plyers name");
+        grid.add(playerOne, 1, 1);
+
+        TextField playerTwo = new TextField("Second players name");
+        grid.add(playerTwo,1,2);
+
+        startButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ChalmersRisk.startGame(new String[] {playerOne.getText(), playerTwo.getText()});
+            }
+        });
+
+       /* int i = 0;
         for (Button territorybutton: gameBoard.getTerritoryButtons()){
             grid.add(territorybutton, 0, i);
             i ++;
-        }
+        }*/
 
         Scene scene = new Scene(grid, 500, 500);
         primaryStage.setScene(scene);
