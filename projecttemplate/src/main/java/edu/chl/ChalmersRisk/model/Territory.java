@@ -121,7 +121,7 @@ public class Territory {
 
 
     public boolean isAvailableTo(Player player){
-        return (owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player))
+        return (owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player));
     }
 
 }
