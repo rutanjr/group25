@@ -18,8 +18,8 @@ public class CRApplication extends Application {
         primaryStage.setTitle("ChalmersRisk");
 
 
-        ChalmersRisk chalmersRisk = new ChalmersRisk();
-        StartScreen startScreen = new StartScreen(primaryStage,chalmersRisk);
+        StartScreen startScreen = new StartScreen(primaryStage); //view
+        ChalmersRisk chalmersRisk = new ChalmersRisk(startScreen); //controller
 
         Scene scene = new Scene(startScreen, 500, 500);
         primaryStage.setScene(scene);

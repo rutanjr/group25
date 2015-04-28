@@ -4,9 +4,11 @@ package edu.chl.ChalmersRisk.controller;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.ProjectView;
+import edu.chl.ChalmersRisk.view.StartScreen;
 import javafx.application.Application;
+import javafx.event.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,6 +21,8 @@ import edu.chl.ChalmersRisk.model.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Color;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
@@ -40,6 +44,9 @@ public class ChalmersRisk{
     private int phase, oldPhase;
     private ProjectView projectView;
 
+
+    private StartScreen startScreen;
+
     //final variables defining the last and first phases. Meaning that
     //the last phase should be the one before a player ends their turn, and the first
     //phase is the first phase a player is in when a turn begins.
@@ -50,54 +57,45 @@ public class ChalmersRisk{
 
     //TODO doCombat() - what should this method take?
 
-    public ChalmersRisk(){
+    public ChalmersRisk(StartScreen startScreen){
+
+        //set the startButton
+        this.startScreen = startScreen;
+        this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
+
+
+
         one = new Player("Lol");
         two = new Player("plz");
-
         currentPlayer = one;
         //phase 1=place troops 2=move
         phase = 1;
-
-
         //TODO , some kindof loadMap() method ??
-        loadMap("Chalmers");
-
-        Application.launch(ProjectView.class, null);
-
+        //loadMap("Chalmers");
         //projectView.start(new Stage());
 
         //startGame(one, two, mainFrame);
     }
 
-    public static void startGame(String[] players, Stage primaryStage) {
+    public void startGame(String[] players, Stage primaryStage) {
         playerOne = new Player(players[0]);
         playerTwo = new Player(players[1]);
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
 
-        GameBoard gameBoard = new GameBoard(new ChalmersMap());
+        GameBoard gB = new GameBoard(new ChalmersMap());
 
-        Scene scene = new Scene(gameBoard, 200,200);
-        Button[] territoryButtons = gameBoard.getButtons();
+        Scene gameBoard = new Scene(gB, 200,200);
+        Button[] territoryButtons = gB.getButtons();
 
         for (Button button: territoryButtons){
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                int i = 0;
-                @Override
-                public void handle(ActionEvent event) {
-                    System.out.println("hejsan");
-                    if(i % 2 == 0){
-                        button.setTextFill(Paint.valueOf("pink"));
-                    }else{
-                        System.out.println("Else");
-                        button.setTextFill(Paint.valueOf("blue"));
-                    }
-                    i++;
-                }
-            });
+            System.out.println("tjena");
+           button.setOnAction(new ButtonPressed());
         }
-        primaryStage.setScene(scene);
+        primaryStage.setScene(gameBoard);
     }
+
+
 
 
   /*  public void startGame(Player one, Player two, JFrame mainFrame){
@@ -128,7 +126,6 @@ public class ChalmersRisk{
             troops.add(new Troop(player));
             lol++;
         }
-        System.out.println(lol);
         player.receiveTroops(troops);
     }
 
@@ -293,4 +290,26 @@ public class ChalmersRisk{
             return false;
         }
     }
+
+    private class ButtonPressed implements EventHandler {
+        @Override
+        public void handle(Event event) {
+            Button btn = (Button)event.getSource();
+            btn.setTextFill(Paint.valueOf("blue"));
+        }
+    }
+
+
+    private class StartButtonPressed implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("hejsan");
+            String[] players = new String[2];
+            players[0] = startScreen.getPlayerOne().getPromptText();
+            players[1] = startScreen.getPlayerTwo().getPromptText();
+            startGame(players, startScreen.getPrimaryStage());
+        }
+    }
 }
+
+

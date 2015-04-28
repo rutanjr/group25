@@ -1,11 +1,6 @@
 package edu.chl.ChalmersRisk;
 
-import edu.chl.ChalmersRisk.controller.ChalmersRisk;
-import edu.chl.ChalmersRisk.controller.ProjectController;
-import edu.chl.ChalmersRisk.gui.MainFrame;
-import edu.chl.ChalmersRisk.model.Project;
-import edu.chl.ChalmersRisk.view.ProjectView;
-import javax.swing.SwingUtilities;
+import javafx.application.Application;
 
 /*
   Application entry class (if using standard java and Swing)
@@ -22,6 +17,9 @@ public final class Main {
          //           projectView.setVisible(true);
           //      });
 
-        new ChalmersRisk();
+
+		Application.launch(CRApplication.class, null);
+
+
 	}
 }
