@@ -301,30 +301,25 @@ public class ChalmersRisk{
     }
     */
 
+
     public void moveTroops(Territory fromT, Territory toT, int amount){
         if(fromT.getOwner()!=toT.getOwner()){
             throw new IllegalArgumentException("Territories aren't owned by the same player.");
             //TODO Should this call the combat method instead?
         }
-        Boolean adjacent = false;
-        for  (Territory checked : fromT.getAdjacentTerritories()){
-            if (toT.equals(checked)){
-                adjacent = true;
-            }
+
+        if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
+            //TODO this should use some kind of list of troops instead of ints.
+            fromT.removeTroops(amount);
+            toT.addTroops(amount);
+        }else{
+            throw new IllegalArgumentException("There are no path between the territories.");
         }
 
-        if (!adjacent){
-            throw new IllegalArgumentException("Territories aren't adjacent.");
-            //TODO cancel method.
-        }
-
-        //TODO this should use some kind of list of troops instead of ints.
-        fromT.removeTroops(amount);
-        toT.addTroops(amount);
 
     }
 
-    private boolean territoriesAreConnected(List<Territory> checked, Territory fromT, Territory toT, Player owner){
+    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
         boolean hasPath = false;
         Stack<Territory> toTest = new Stack<Territory>();
         List<Territory> discovered = new LinkedList<Territory>();
