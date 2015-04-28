@@ -321,15 +321,17 @@ public class ChalmersRisk{
 
         //Tests if there is a path between two territories.
         if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
-            //TODO this should use some kind of list of troops instead of ints.
-            //TODO there needs to be a method in Territory to check how many troops there are in it.
-            fromT.removeTroops(amount);
-            toT.addTroops(amount);
-            return true;
-        }else{
-            return false;
-            //throw new IllegalArgumentException("There are no path between the territories.");
+            //TODO this removes an amount of troops and adds the same amount somewhere else
+            // should it move the actual troops instead?
+            if (fromT.getAmountOfTroops()>amount){
+                fromT.removeTroops(amount);
+                toT.addTroops(amount);
+                return true;
+            }
         }
+        return false;
+        //throw new IllegalArgumentException("There are no path between the territories.");
+
     }
 
     //TODO write comments.
