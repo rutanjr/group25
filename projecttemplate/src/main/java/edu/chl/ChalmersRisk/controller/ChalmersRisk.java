@@ -299,12 +299,9 @@ public class ChalmersRisk{
         }
     }
 
-    //TODO fix this when getTroops() method returns correct type.
-    /*
-    public void moveTroops(Territory fromTerritory, Territory toTerritory){
-        moveTroops(fromTerritory,toTerritory,fromTerritory.getTroops());
+    public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
+        return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
-    */
 
     //TODO Should this return a boolean or throw exceptions?
     /**
@@ -315,6 +312,7 @@ public class ChalmersRisk{
      * @return if the move was successful.
      */
     public boolean moveTroops(Territory fromT, Territory toT, int amount){
+        //TODO add a test to see if owner is equal to the current active player.
         //Tests if the territories are owned by the same player.
         if(fromT.getOwner()!=toT.getOwner()){
             //throw new IllegalArgumentException("Territories aren't owned by the same player.");
