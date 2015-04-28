@@ -20,6 +20,7 @@ import edu.chl.ChalmersRisk.model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.Stack;
 import java.util.List;
@@ -336,10 +337,10 @@ public class ChalmersRisk{
     //TODO write comments.
     /**
      * A method for finding a path of territories that is owned by the same player
-     * between two territories.
+     * between two territories. Based on a depth first algorithm.
      * @param fromT the territory to start checking.
      * @param toT the terrtiroy to find.
-     * @param owner the owner of the territories.
+     * @param owner the player who owns of the territories.
      * @return
      */
     private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
@@ -359,6 +360,7 @@ public class ChalmersRisk{
                     if (it.getOwner().equals(owner)){
                         Boolean isUndiscovered = true;
 
+                        //Loop through the discovered territories to see if it has already been searched.
                         int i = 0;
                         while (i < discovered.size() && isUndiscovered) {
                             if (discovered.get(i).equals(it)){
