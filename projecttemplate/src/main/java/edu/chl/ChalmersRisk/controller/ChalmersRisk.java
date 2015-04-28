@@ -301,24 +301,43 @@ public class ChalmersRisk{
     }
     */
 
-
-    public void moveTroops(Territory fromT, Territory toT, int amount){
+    //TODO Should this return a boolean or throw exceptions?
+    /**
+     * A method for moving troops from one territory to another.
+     * @param fromT the territory to move the troops from.
+     * @param toT the territory to move the troops to.
+     * @param amount the amount of troops.
+     * @return if the move was successful.
+     */
+    public boolean moveTroops(Territory fromT, Territory toT, int amount){
+        //Tests if the territories are owned by the same player.
         if(fromT.getOwner()!=toT.getOwner()){
-            throw new IllegalArgumentException("Territories aren't owned by the same player.");
-            //TODO Should this call the combat method instead?
+            //throw new IllegalArgumentException("Territories aren't owned by the same player.");
+            return false;
         }
 
+        //Tests if there is a path between two territories.
         if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
             //TODO this should use some kind of list of troops instead of ints.
+            //TODO there needs to be a method in Territory to check how many troops there are in it.
             fromT.removeTroops(amount);
             toT.addTroops(amount);
+            return true;
         }else{
-            throw new IllegalArgumentException("There are no path between the territories.");
+            return false;
+            //throw new IllegalArgumentException("There are no path between the territories.");
         }
-
-
     }
 
+    //TODO write comments.
+    /**
+     * A method for finding a path of territories that is owned by the same player
+     * between two territories.
+     * @param fromT the territory to start checking.
+     * @param toT the terrtiroy to find.
+     * @param owner the owner of the territories.
+     * @return
+     */
     private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
         boolean hasPath = false;
         Stack<Territory> toTest = new Stack<Territory>();
@@ -329,6 +348,7 @@ public class ChalmersRisk{
             Territory search = toTest.pop();
             if (search.equals(toT)){
                 hasPath=true;
+                //This could be move to anywhere with a return true statement.
             }else{
                 discovered.add(search);
                 for (Territory it : search.getAdjacentTerritories()){
