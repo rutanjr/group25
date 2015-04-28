@@ -17,9 +17,13 @@ import javafx.stage.Stage;
 
 import edu.chl.ChalmersRisk.model.*;
 
-import javax.swing.Timer;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.List;
 
-import java.util.*;
 
 /**
  * Created by rutanjr on 2015-03-31.
