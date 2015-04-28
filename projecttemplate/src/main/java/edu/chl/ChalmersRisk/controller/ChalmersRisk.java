@@ -17,9 +17,9 @@ import javafx.stage.Stage;
 
 import edu.chl.ChalmersRisk.model.*;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
+import javax.swing.Timer;
+
+import java.util.*;
 
 /**
  * Created by rutanjr on 2015-03-31.
@@ -322,5 +322,39 @@ public class ChalmersRisk{
         fromT.removeTroops(amount);
         toT.addTroops(amount);
 
+    }
+
+    private boolean territoriesAreConnected(List<Territory> checked, Territory fromT, Territory toT, Player owner){
+        boolean hasPath = false;
+        Stack<Territory> toTest = new Stack<Territory>();
+        List<Territory> discovered = new LinkedList<Territory>();
+        toTest.push(fromT);
+
+        while(!toTest.isEmpty()&&!hasPath){
+            Territory search = toTest.pop();
+            if (search.equals(toT)){
+                hasPath=true;
+            }else{
+                discovered.add(search);
+                for (Territory it : search.getAdjacentTerritories()){
+                    if (it.getOwner().equals(owner)){
+                        Boolean isUndiscovered = true;
+
+                        int i = 0;
+                        while (i < discovered.size() && isUndiscovered) {
+                            if (discovered.get(i).equals(it)){
+                                isUndiscovered=false;
+                            }
+                            i++;
+                        }
+
+                        if (isUndiscovered){
+                            toTest.push(it);
+                        }
+                    }
+                }
+            }
+        }
+        return hasPath;
     }
 }
