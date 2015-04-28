@@ -343,7 +343,7 @@ public class ChalmersRisk{
      * @param owner the player who owns of the territories.
      * @return
      */
-    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
+    public static boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
         boolean hasPath = false;
         Stack<Territory> toTest = new Stack<Territory>();
         List<Territory> discovered = new LinkedList<Territory>();
