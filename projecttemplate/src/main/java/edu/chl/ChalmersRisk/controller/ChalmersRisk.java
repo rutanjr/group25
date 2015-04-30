@@ -31,6 +31,7 @@ import java.util.Stack;
  * A class to be the main controller of the game, controls the board and then actions performed in the game.
  *
  * @revisedBy malin thelin
+ * @revisedBy Björn Bergqvist
  */
 public class ChalmersRisk {
 
@@ -200,19 +201,33 @@ public class ChalmersRisk {
         return continents;
     }
 
+
     /**
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
      * @return true if the defender has lost all it troops in the territory.
      */
-    public static boolean combat(Territory attacker, Territory defender){
+    public boolean combat(Territory attacker, Territory defender){
+        return combat(attacker, defender, attacker.getAmountOfTroops()-1);
+    }
+
+    /**
+     * A method for resolving combat.
+     * @param attacker the Territory that the attacking troops comes from.
+     * @param defender the Territory that is being defended.
+     * @param atkTroops the amount of troops to attack with.
+     * @return true if the defender has lost all it troops in the territory.
+     */
+    public boolean combat(Territory attacker, Territory defender, int atkTroops){
         Dice die = new Dice();
         int[] atkRoll;
         int[] defRoll;
         //Attacker selects a number of dice <= #troops - 1 and 3
 
-        int atkTroops = attacker.getAmountOfTroops() - 1;
+        if(attacker.getOwner().equals(defender.getOwner())){
+            throw new IllegalArgumentException("Both territories are own by the same player.");
+        }
 
         if (atkTroops<1){
             throw new IllegalArgumentException("There are too few troops to attack");
@@ -285,6 +300,7 @@ public class ChalmersRisk {
         }
     }
 
+    //TODO create javadoc
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
         return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
@@ -297,7 +313,11 @@ public class ChalmersRisk {
      * @param amount the amount of troops.
      * @return if the move was successful.
      */
-    public boolean moveTroops(Territory fromT, Territory toT, int amount){
+    public static boolean moveTroops(Territory fromT, Territory toT, int amount){
+        //Return false if less than 1 troops should be moved.
+        if (amount<1){
+            return false;
+        }
         //TODO add a test to see if owner is equal to the current active player.
         //Tests if the territories are owned by the same player.
         if(fromT.getOwner()!=toT.getOwner()){
@@ -307,9 +327,8 @@ public class ChalmersRisk {
 
         //Tests if there is a path between two territories.
         if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
-            //TODO this removes an amount of troops and adds the same amount somewhere else
             // should it move the actual troops instead?
-            if (fromT.getAmountOfTroops()>amount){
+            if (fromT.getAmountOfTroops()-1>=amount){
                 fromT.removeTroops(amount);
                 toT.addTroops(amount);
                 return true;
@@ -329,7 +348,7 @@ public class ChalmersRisk {
      * @param owner the player who owns of the territories.
      * @return
      */
-    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner) {
+    public static boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner) {
         boolean hasPath = false;
         Stack<Territory> toTest = new Stack<Territory>();
         List<Territory> discovered = new LinkedList<Territory>();
