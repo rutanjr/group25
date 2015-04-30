@@ -15,8 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 
 import static edu.chl.ChalmersRisk.controller.ChalmersRisk.*;
@@ -58,16 +59,23 @@ public class ProjectView extends Application {
 
         Button startButton = new Button("Start game");
         HBox hBox = new HBox(10);
-        hBox.setAlignment(Pos.CENTER);
+        hBox.setAlignment(Pos.BOTTOM_RIGHT);
         hBox.getChildren().add(startButton);
-        grid.add(hBox,1,3);
+        grid.add(hBox,2,3);
 
+        Text playerOneLabel = new Text("First player");
+        playerOneLabel.setTextAlignment(TextAlignment.RIGHT);
+        grid.add(playerOneLabel, 1, 1);
 
-        TextField playerOne = new TextField("First plyers name");
-        grid.add(playerOne, 1, 1);
+        Text playerTwoLabel = new Text("Second player");
+        playerTwoLabel.setTextAlignment(TextAlignment.RIGHT);
+        grid.add(playerTwoLabel, 1, 2);
 
-        TextField playerTwo = new TextField("Second players name");
-        grid.add(playerTwo,1,2);
+        TextField playerOne = new TextField();
+        grid.add(playerOne, 2, 1);
+
+        TextField playerTwo = new TextField();
+        grid.add(playerTwo,2,2);
 
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
