@@ -220,7 +220,7 @@ public class ChalmersRisk{
      * @param defender the Territory that is being defended.
      * @return true if the defender has lost all it troops in the territory.
      */
-    public static boolean combat(Territory attacker, Territory defender){
+    public boolean combat(Territory attacker, Territory defender){
         Dice die = new Dice();
         int[] atkRoll;
         int[] defRoll;
