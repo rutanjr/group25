@@ -312,6 +312,10 @@ public class ChalmersRisk{
      * @return if the move was successful.
      */
     public boolean moveTroops(Territory fromT, Territory toT, int amount){
+        //Return false if less than 1 troops should be moved.
+        if (amount<1){
+            return false;
+        }
         //TODO add a test to see if owner is equal to the current active player.
         //Tests if the territories are owned by the same player.
         if(fromT.getOwner()!=toT.getOwner()){
@@ -323,7 +327,7 @@ public class ChalmersRisk{
         if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
             //TODO this removes an amount of troops and adds the same amount somewhere else
             // should it move the actual troops instead?
-            if (fromT.getAmountOfTroops()>amount){
+            if (fromT.getAmountOfTroops()-1>amount){
                 fromT.removeTroops(amount);
                 toT.addTroops(amount);
                 return true;

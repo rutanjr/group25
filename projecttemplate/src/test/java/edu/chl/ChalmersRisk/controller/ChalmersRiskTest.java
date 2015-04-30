@@ -94,5 +94,8 @@ public class ChalmersRiskTest {
 
         //Test moving all troops
         assertTrue(testRisk.moveTroops(testTer1,testTer2));
+
+        //Test if moved troops have arrived.
+        //assertTrue(testTer2.getAmountOfTroops()==1);
     }
 }
