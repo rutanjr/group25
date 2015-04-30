@@ -56,13 +56,16 @@ public class ChalmersRisk {
 
     private Timer gameTimer,phaseTimer;
 
-    //TODO doCombat() - what should this method take?
-
     public ChalmersRisk(StartScreen startScreen){
 
         //set the startButton
         this.startScreen = startScreen;
         this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
+
+    }
+
+    //This is an empty constructor to used test some methods that don't require a working view.
+    public ChalmersRisk(){
 
     }
 
