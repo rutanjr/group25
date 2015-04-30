@@ -72,6 +72,14 @@ public class ChalmersRiskTest {
         //Test with unreachable territory.
         assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer6, testPlayer1));
 
+        Territory testTer7 = new Territory("Test1",testContinent,testPlayer2);
+        ArrayList<Territory> adjTers7 = new ArrayList<Territory>();
+        adjTers7.add(testTer7);
+        testTer5.addAdjacent(adjTers7);
+
+        //Test moving to territory that the player doesn't own.
+        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer7, testPlayer1));
+
     }
 
     @Test
@@ -90,12 +98,16 @@ public class ChalmersRiskTest {
         adjTers1.add(testTer2);
         testTer1.addAdjacent(adjTers1);
 
+        //Test moving 1 troop when there are no troops available to move.
         testTer1.addTroops(1);
+        assertFalse(testRisk.moveTroops(testTer1, testTer2, 1));
 
-        //Test moving all troops
+
+        //Test moving all troops when there are troops available to move.
+        testTer1.addTroops(2);
         assertTrue(testRisk.moveTroops(testTer1,testTer2));
+        assertTrue(testTer2.getAmountOfTroops()==2);
 
-        //Test if moved troops have arrived.
-        //assertTrue(testTer2.getAmountOfTroops()==1);
+
     }
 }

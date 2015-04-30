@@ -299,6 +299,7 @@ public class ChalmersRisk{
         }
     }
 
+    //TODO create javadoc
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
         return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
@@ -325,9 +326,8 @@ public class ChalmersRisk{
 
         //Tests if there is a path between two territories.
         if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
-            //TODO this removes an amount of troops and adds the same amount somewhere else
             // should it move the actual troops instead?
-            if (fromT.getAmountOfTroops()-1>amount){
+            if (fromT.getAmountOfTroops()-1>=amount){
                 fromT.removeTroops(amount);
                 toT.addTroops(amount);
                 return true;
