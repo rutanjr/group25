@@ -214,6 +214,7 @@ public class ChalmersRisk{
         return continents;
     }
 
+
     /**
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
@@ -221,12 +222,25 @@ public class ChalmersRisk{
      * @return true if the defender has lost all it troops in the territory.
      */
     public boolean combat(Territory attacker, Territory defender){
+        return combat(attacker, defender, attacker.getAmountOfTroops()-1);
+    }
+
+    /**
+     * A method for resolving combat.
+     * @param attacker the Territory that the attacking troops comes from.
+     * @param defender the Territory that is being defended.
+     * @param atkTroops the amount of troops to attack with.
+     * @return true if the defender has lost all it troops in the territory.
+     */
+    public boolean combat(Territory attacker, Territory defender, int atkTroops){
         Dice die = new Dice();
         int[] atkRoll;
         int[] defRoll;
         //Attacker selects a number of dice <= #troops - 1 and 3
 
-        int atkTroops = attacker.getAmountOfTroops() - 1;
+        if(attacker.getOwner().equals(defender.getOwner())){
+            throw new IllegalArgumentException("Both territories are own by the same player.");
+        }
 
         if (atkTroops<1){
             throw new IllegalArgumentException("There are too few troops to attack");

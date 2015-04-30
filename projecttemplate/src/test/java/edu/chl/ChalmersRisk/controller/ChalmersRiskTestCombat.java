@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by Björn Bergqvist on 28/04/15.
@@ -26,10 +26,13 @@ public class ChalmersRiskTestCombat {
 
         Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
         Territory testTer2 = new Territory("Test2",testContinent,testPlayer2);
+        Territory testTer3 = new Territory("Test3",testContinent,testPlayer2);
 
         testTer1.addTroops(1);
         testTer2.addTroops(1);
 
         testRisk2.combat(testTer1,testTer2);
+        testRisk2.combat(testTer3,testTer2);
+
     }
 }
