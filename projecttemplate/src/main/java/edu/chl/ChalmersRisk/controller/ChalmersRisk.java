@@ -32,7 +32,7 @@ import java.util.Stack;
  *
  * @revisedBy malin thelin
  */
-public class ChalmersRisk implements ActionListener {
+public class ChalmersRisk {
 
     //all variables for the map
     private Maps map;
@@ -71,8 +71,8 @@ public class ChalmersRisk implements ActionListener {
         currentPlayer = playerOne;
         phase = 1;
 
-        gameTimer = new Timer(10, this);
-        gameTimer.start();
+//        gameTimer = new Timer(10, this);
+//        gameTimer.start();
 
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
@@ -285,7 +285,6 @@ public class ChalmersRisk implements ActionListener {
         }
     }
 
-<<<<<<< HEAD
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
         return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
