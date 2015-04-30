@@ -115,6 +115,19 @@ public class ChalmersRiskTest {
 
         //Test moving a negative amount of troops
         testTer1.addTroops(2);
-        assertFalse(testRisk.moveTroops(testTer1,testTer2,-3));
+        assertFalse(testRisk.moveTroops(testTer1, testTer2, -3));
+    }
+
+    @Test 
+    public void testCombat(){
+        ChalmersRisk testRisk = new ChalmersRisk();
+        ArrayList<Territory> territories = new ArrayList<Territory>();
+        Continent testContinent = new Continent("test",1,territories);
+        Player testPlayer1 = new Player("1");
+        Player testPlayer2 = new Player("2");
+
+        Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
+        Territory testTer2 = new Territory("Test2",testContinent,testPlayer2)  
+        
     }
 }
