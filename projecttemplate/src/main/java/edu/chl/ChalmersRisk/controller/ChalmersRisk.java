@@ -25,22 +25,22 @@ import java.awt.Color;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+
 /**
  * Created by rutanjr on 2015-03-31.
  * A class to be the main controller of the game, controls the board and then actions performed in the game.
  *
  * @revisedBy malin thelin
  */
-public class ChalmersRisk{
+public class ChalmersRisk implements ActionListener {
 
     //all variables for the map
     private Maps map;
     private ArrayList<Continent> continents;
     private ArrayList<Territory> territories;
 
-    private static Player playerOne, playerTwo;
 
-    private Player one,two,currentPlayer;
+    private Player playerOne,playerTwo,currentPlayer;
     private int phase, oldPhase;
     private ProjectView projectView;
 
@@ -63,34 +63,27 @@ public class ChalmersRisk{
         this.startScreen = startScreen;
         this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
 
-
-
-        one = new Player("Lol");
-        two = new Player("plz");
-        currentPlayer = one;
-        //phase 1=place troops 2=move
-        phase = 1;
-        //TODO , some kindof loadMap() method ??
-        //loadMap("Chalmers");
-        //projectView.start(new Stage());
-
-        //startGame(one, two, mainFrame);
     }
 
     public void startGame(String[] players, Stage primaryStage) {
         playerOne = new Player(players[0]);
         playerTwo = new Player(players[1]);
+        currentPlayer = playerOne;
+        phase = 1;
+
+        gameTimer = new Timer(10, this);
+        gameTimer.start();
+
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
 
         GameBoard gB = new GameBoard(new ChalmersMap());
 
-        Scene gameBoard = new Scene(gB, 200,200);
+        Scene gameBoard = new Scene(gB, Constants.width,Constants.height);
         Button[] territoryButtons = gB.getButtons();
 
         for (Button button: territoryButtons){
-            System.out.println("tjena");
-           button.setOnAction(new ButtonPressed());
+            button.setOnAction(new ButtonPressed());
         }
         primaryStage.setScene(gameBoard);
     }
@@ -163,10 +156,10 @@ public class ChalmersRisk{
             //we should change players
             //this piece of code has to be changed if we in the future want to have more players, and phases
             //because this looks kindof bad
-            if(currentPlayer.equals(one)){
-                currentPlayer = two;
+            if(currentPlayer.equals(playerOne)){
+                currentPlayer = playerTwo;
             }else{
-                currentPlayer = one;
+                currentPlayer = playerOne;
             }
             giveTroops(currentPlayer);
         }
@@ -291,6 +284,12 @@ public class ChalmersRisk{
         }
     }
 
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent e) {
+
+
+    }
+
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
@@ -303,7 +302,6 @@ public class ChalmersRisk{
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("hejsan");
             String[] players = new String[2];
             players[0] = startScreen.getPlayerOne().getPromptText();
             players[1] = startScreen.getPlayerTwo().getPromptText();
