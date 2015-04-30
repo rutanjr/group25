@@ -119,22 +119,4 @@ public class ChalmersRiskTest {
         testTer1.addTroops(2);
         assertFalse(testRisk.moveTroops(testTer1, testTer2, -3));
     }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void testCombatThrowsExceptionWhenTooFewTroops(){
-
-        ChalmersRisk testRisk2 = new ChalmersRisk();
-        ArrayList<Territory> territories = new ArrayList<Territory>();
-        Continent testContinent = new Continent("test",1,territories);
-        Player testPlayer1 = new Player("1");
-        Player testPlayer2 = new Player("2");
-
-        Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
-        Territory testTer2 = new Territory("Test2",testContinent,testPlayer2);
-
-        testTer1.addTroops(1);
-        testTer2.addTroops(1);
-
-        testRisk2.combat(testTer1,testTer2);
-    }
 }
