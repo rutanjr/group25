@@ -2,21 +2,28 @@ package edu.chl.ChalmersRisk.controller;
 
 
 import edu.chl.ChalmersRisk.model.*;
+import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.ProjectView;
+import edu.chl.ChalmersRisk.view.StartScreen;
 import javafx.application.Application;
+import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
+
 
 
 /**
@@ -25,18 +32,20 @@ import java.util.Stack;
  *
  * @revisedBy malin thelin
  */
-public class ChalmersRisk{
+public class ChalmersRisk implements ActionListener {
 
     //all variables for the map
     private Maps map;
     private ArrayList<Continent> continents;
     private ArrayList<Territory> territories;
 
-    private static Player playerOne, playerTwo;
 
-    private Player one,two,currentPlayer;
+    private Player playerOne,playerTwo,currentPlayer;
     private int phase, oldPhase;
     private ProjectView projectView;
+
+
+    private StartScreen startScreen;
 
     //final variables defining the last and first phases. Meaning that
     //the last phase should be the one before a player ends their turn, and the first
@@ -48,54 +57,39 @@ public class ChalmersRisk{
 
     //TODO doCombat() - what should this method take?
 
-    public ChalmersRisk(){
-        one = new Player("Lol");
-        two = new Player("plz");
+    public ChalmersRisk(StartScreen startScreen){
 
-        currentPlayer = one;
-        //phase 1=place troops 2=move
-        phase = 1;
+        //set the startButton
+        this.startScreen = startScreen;
+        this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
 
-
-        //TODO , some kindof loadMap() method ??
-        loadMap("Chalmers");
-
-        Application.launch(ProjectView.class, null);
-
-        //projectView.start(new Stage());
-
-        //startGame(one, two, mainFrame);
     }
 
-    public static void startGame(String[] players, Stage primaryStage) {
+    public void startGame(String[] players, Stage primaryStage) {
         playerOne = new Player(players[0]);
         playerTwo = new Player(players[1]);
+        currentPlayer = playerOne;
+        phase = 1;
+
+        gameTimer = new Timer(10, this);
+        gameTimer.start();
+
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
 
-        GameBoard gameBoard = new GameBoard(new ChalmersMap());
+        GameBoard gB = new GameBoard(new ChalmersMap());
 
-        Scene scene = new Scene(gameBoard, 200,200);
-        Button[] territoryButtons = gameBoard.getButtons();
+        Scene gameBoard = new Scene(gB, Constants.width,Constants.height);
+        Button[] territoryButtons = gB.getButtons();
 
 
         for (Button button: territoryButtons){
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                int i = 0;
-                @Override
-                public void handle(ActionEvent event) {
-                    if(i % 2 == 0){
-                        button.setTextFill(Paint.valueOf("DARKMAGENTA"));
-                    }else{
-                        System.out.println("Else");
-                        button.setTextFill(Paint.valueOf("DARKCYAN"));
-                    }
-                    i++;
-                }
-            });
+            button.setOnAction(new ButtonPressed());
         }
-        primaryStage.setScene(scene);
+        primaryStage.setScene(gameBoard);
     }
+
+
 
 
   /*  public void startGame(Player one, Player two, JFrame mainFrame){
@@ -126,7 +120,6 @@ public class ChalmersRisk{
             troops.add(new Troop(player));
             lol++;
         }
-        System.out.println(lol);
         player.receiveTroops(troops);
     }
 
@@ -164,10 +157,10 @@ public class ChalmersRisk{
             //we should change players
             //this piece of code has to be changed if we in the future want to have more players, and phases
             //because this looks kindof bad
-            if(currentPlayer.equals(one)){
-                currentPlayer = two;
+            if(currentPlayer.equals(playerOne)){
+                currentPlayer = playerTwo;
             }else{
-                currentPlayer = one;
+                currentPlayer = playerOne;
             }
             giveTroops(currentPlayer);
         }
@@ -292,6 +285,7 @@ public class ChalmersRisk{
         }
     }
 
+<<<<<<< HEAD
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
         return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
@@ -336,33 +330,33 @@ public class ChalmersRisk{
      * @param owner the player who owns of the territories.
      * @return
      */
-    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
+    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner) {
         boolean hasPath = false;
         Stack<Territory> toTest = new Stack<Territory>();
         List<Territory> discovered = new LinkedList<Territory>();
         toTest.push(fromT);
 
-        while(!toTest.isEmpty()&&!hasPath){
+        while (!toTest.isEmpty() && !hasPath) {
             Territory search = toTest.pop();
-            if (search.equals(toT)){
-                hasPath=true;
+            if (search.equals(toT)) {
+                hasPath = true;
                 //This could be move to anywhere with a return true statement.
-            }else{
+            } else {
                 discovered.add(search);
-                for (Territory it : search.getAdjacentTerritories()){
-                    if (it.getOwner().equals(owner)){
+                for (Territory it : search.getAdjacentTerritories()) {
+                    if (it.getOwner().equals(owner)) {
                         Boolean isUndiscovered = true;
 
                         //Loop through the discovered territories to see if it has already been searched.
                         int i = 0;
                         while (i < discovered.size() && isUndiscovered) {
-                            if (discovered.get(i).equals(it)){
-                                isUndiscovered=false;
+                            if (discovered.get(i).equals(it)) {
+                                isUndiscovered = false;
                             }
                             i++;
                         }
 
-                        if (isUndiscovered){
+                        if (isUndiscovered) {
                             toTest.push(it);
                         }
                     }
@@ -371,4 +365,25 @@ public class ChalmersRisk{
         }
         return hasPath;
     }
+
+    private class ButtonPressed implements EventHandler {
+        @Override
+        public void handle(Event event) {
+            Button btn = (Button)event.getSource();
+            btn.setTextFill(Paint.valueOf("blue"));
+        }
+    }
+
+
+    private class StartButtonPressed implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            String[] players = new String[2];
+            players[0] = startScreen.getPlayerOne().getPromptText();
+            players[1] = startScreen.getPlayerTwo().getPromptText();
+            startGame(players, startScreen.getPrimaryStage());
+        }
+    }
 }
+
+

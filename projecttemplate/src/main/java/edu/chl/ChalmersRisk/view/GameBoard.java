@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class GameBoard extends GridPane {
 
     private Button[] buttons;
+    private Text message,playerMessage;
 
     public GameBoard(){
 
@@ -34,7 +36,7 @@ public class GameBoard extends GridPane {
 
     public GameBoard(Maps map) {
 
-        this.setAlignment(Pos.CENTER);
+        this.setAlignment(Pos.TOP_CENTER);
         this.setHgap(25);
         this.setVgap(25);
 
@@ -42,9 +44,15 @@ public class GameBoard extends GridPane {
         int i = 0;
         for(Territory t : map.getTerritories()) {
             buttons[i] = new Button(t.getName() + " : " + t.getTroops());
-            this.add(buttons[i], 1, i);
+            this.add(buttons[i], 0, i+2);
             i++;
         }
+
+        message = new Text("A new game started");
+        playerMessage = new Text("");
+
+        this.add(message, 0, 0);
+        this.add(playerMessage,0,1);
 
 
 
@@ -52,6 +60,14 @@ public class GameBoard extends GridPane {
 
     public Button[] getButtons(){
         return buttons;
+    }
+
+    public Text getMessage(){
+        return message;
+    }
+
+    public Text getPlayerMessage(){
+        return playerMessage;
     }
 
 

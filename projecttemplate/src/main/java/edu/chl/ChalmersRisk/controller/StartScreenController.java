@@ -11,25 +11,5 @@ import java.awt.event.ActionListener;
  */
 public class StartScreenController {
 
-    private final StartScreenModel startScreenModel;
-    private final StartScreen screenView;
 
-    public static StartScreenController create(StartScreenModel startScreenModel, StartScreen screenView) {
-        return new StartScreenController(startScreenModel, screenView);
-    }
-
-    private StartScreenController(StartScreenModel startScreenModel, StartScreen screenView) {
-        screenView.getStartButton().addActionListener(new ButtonPressed());
-
-        this.startScreenModel = startScreenModel;
-        this.screenView = screenView;
-    }
-
-    private class ButtonPressed implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            startScreenModel.newGame();
-
-        }
-    }
 }
