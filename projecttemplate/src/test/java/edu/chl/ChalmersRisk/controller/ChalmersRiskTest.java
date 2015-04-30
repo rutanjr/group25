@@ -63,6 +63,15 @@ public class ChalmersRiskTest {
 
         //Test with a chain that includes a loop.
         assertTrue(ChalmersRisk.territoriesAreConnected(testTer1, testTer5, testPlayer1));
+
+        ArrayList<Territory> adjTers6 = new ArrayList<Territory>();
+        testTer5.addAdjacent(adjTers6);
+
+        Territory testTer6 = new Territory("Test1",testContinent,testPlayer1);
+
+        //Test with unreachable territory.
+        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer6, testPlayer1));
+
     }
 
     @Test
