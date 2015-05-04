@@ -1,0 +1,32 @@
+Meeting Agenda
+
+  Date: 2015-04-04
+  Facilitator: Oskar Rutqvist
+  Participants: Robin Jansson,Oskar Rutqvist, Björn Bergqvist
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+- UML
+- LibGDX
+
+2. Reports (15 min) from previous meeting
+
+ - Oskar checked out LibGDX after previous meeting. 
+ - Robin fixed a few bugs/added some features in the territories.
+ - Björn made some changes in ChalmersRisk. 
+
+3. Discussion items (35 min) 
+
+- LibGDX for the map presentation and functionality with the map. 
+- UML & SDD when and how to produce this. 
+- JUnit tests.
+
+4. Outcomes and assignments (5 min) 
+
+- Start including and developing a graphical view with libGDX.
+- Decide a time and place (book a room) for producing the UML on a whiteboard at first to transfer to a digital version.
+- Oskar & Robin needs to start looking at the JUnit tests.
+
+5. Wrap up
+
+- Next meeting 13.15 wednesday in Hubben 2.1.
