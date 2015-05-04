@@ -32,6 +32,7 @@ public class Territory {
         this.name = name;
         this.continent = continent;
         this.owner = player;
+        this.adjacentTerritories = new ArrayList<Territory>();
     }
 
 
@@ -63,7 +64,7 @@ public class Territory {
         }
 
         for (int i = remTroops; i > 0; i--) {
-            troops.remove( (troops.size() - 1) );
+            troops.remove((troops.size() - 1));
         }
     }
 
@@ -71,8 +72,22 @@ public class Territory {
         this.owner = newOwner;
     }
 
+    /**
+     * Adds an arraylist as adjacent territories.
+     */
     public void addAdjacent(ArrayList<Territory> newAdjacent) {
-        adjacentTerritories = new ArrayList<Territory>(newAdjacent);
+          for (int i = 0; i <newAdjacent.size(); i++) {
+            addNeighbor(newAdjacent.get(i));
+        }
+    }
+
+    public void addNeighbor(Territory neighbor) {
+        if (!this.getAdjacentTerritories().contains(neighbor)) {
+            this.getAdjacentTerritories().add(neighbor);
+        }
+        if (!neighbor.getAdjacentTerritories().contains(this)) {
+            neighbor.getAdjacentTerritories().add(this);
+        }
     }
 
 
