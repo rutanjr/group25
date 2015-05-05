@@ -1,6 +1,9 @@
 package edu.chl.ChalmersRisk.view;
 
 
+import edu.chl.ChalmersRisk.controller.ChalmersRisk;
+import edu.chl.ChalmersRisk.controller.Controller;
+import edu.chl.ChalmersRisk.gui.InformationStrip;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.beans.NamedArg;
@@ -9,7 +12,9 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -18,42 +23,50 @@ import java.util.ArrayList;
  * Created by rutanjr on 2015-03-31.
  * A board for the risk game. This class will do the graphical work, holding the map and painting/repainting it.
  */
-public class GameBoard extends GridPane {
+public class GameBoard extends BorderPane {
 
     private Button[] buttons;
-    private Text message,playerMessage;
+    private Text message;
+    private Controller controller;
+    private InformationStrip infoStrip;
 
     public GameBoard(){
 
-        this.setAlignment(Pos.CENTER);
-        this.setHgap(25);
-        this.setVgap(25);
-        this.add(new Button("YOLO"), 1, 1);
+
+        this.setTop(new Button("YOLO"));
         System.out.println("hallå");
 
 
     }
 
-    public GameBoard(Maps map) {
+    public GameBoard(Maps map,Controller controller) {
+        this.controller = controller;
 
-        this.setAlignment(Pos.TOP_CENTER);
-        this.setHgap(25);
-        this.setVgap(25);
 
+        //informationstrip at the bottom.
+        infoStrip = new InformationStrip();
+        this.setBottom(infoStrip);
+
+
+        //"map"
+        GridPane gp = new GridPane();
+        gp.setHgap(25);
+        gp.setVgap(25);
         buttons = new Button[map.getTerritories().size()];
+
+
         int i = 0;
         for(Territory t : map.getTerritories()) {
             buttons[i] = new Button(t.getName() + " : " + t.getTroops());
-            this.add(buttons[i], 0, i+2);
+            gp.add(buttons[i],i,0);
             i++;
         }
+        this.setCenter(gp);
 
-        message = new Text("A new game started");
-        playerMessage = new Text("");
 
-        this.add(message, 0, 0);
-        this.add(playerMessage,0,1);
-
+        //gameMessage
+        message = new Text();
+        this.setTop(message);
 
 
     }
@@ -62,12 +75,23 @@ public class GameBoard extends GridPane {
         return buttons;
     }
 
+    public Text getGametext(){
+        return infoStrip.getGameText();
+    }
+
+    public void setGameText(String text){
+        infoStrip.setGameText(text);
+    }
+
     public Text getMessage(){
         return message;
     }
+    public void setMessage(String text){
+        message.setText(text);
+    }
 
-    public Text getPlayerMessage(){
-        return playerMessage;
+    public void setController(Controller controller){
+        this.controller = controller;
     }
 
 
