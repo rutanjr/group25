@@ -5,7 +5,7 @@ public class Project {
 	public static final String PROJECT_BUTTON_TEXT = "Press me!";
 
 	private int presses, lastRoll;
-    private Dice die = new Dice();
+    private Die die = new Die();
 
     public int getDieRoll() {
         return lastRoll;

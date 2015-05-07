@@ -6,8 +6,6 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.ProjectView;
 import edu.chl.ChalmersRisk.view.StartScreen;
-import javafx.application.Application;
-import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.Event;
@@ -18,7 +16,6 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -223,7 +220,7 @@ public class ChalmersRisk {
      * @return true if the defender has lost all it troops in the territory.
      */
     public boolean combat(Territory attacker, Territory defender, int atkTroops){
-        Dice die = new Dice();
+        Die die = new Die();
         int[] atkRoll;
         int[] defRoll;
         //Attacker selects a number of dice <= #troops - 1 and 3
