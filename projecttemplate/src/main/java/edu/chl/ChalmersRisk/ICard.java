@@ -7,9 +7,7 @@ package edu.chl.ChalmersRisk;
 
 public interface ICard {
 
-    // the title of the card
-    public String title();
-
+    // returns the title of the card
     public String getTitle();
 
     //turns the card, revealing its effect
