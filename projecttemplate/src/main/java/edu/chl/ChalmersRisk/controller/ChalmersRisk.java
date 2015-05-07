@@ -53,17 +53,19 @@ public class ChalmersRisk {
 
     private Timer gameTimer,phaseTimer;
 
+    private DiceCup cup;
+
     public ChalmersRisk(StartScreen startScreen){
 
         //set the startButton
         this.startScreen = startScreen;
         this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
-
+        this.cup = new DiceCup();
     }
 
     //This is an empty constructor to used test some methods that don't require a working view.
     public ChalmersRisk(){
-
+        this.cup = new DiceCup();
     }
 
     public void startGame(String[] players, Stage primaryStage) {
@@ -240,23 +242,23 @@ public class ChalmersRisk {
         int defTroops = defender.getAmountOfTroops();
         if (defTroops>2) defTroops = 2;
 
+
         //Creating attacker's die array.
         if(atkTroops>=3){
-            atkRoll = die.rollThreeDice();
+            atkRoll = cup.rollDice(3);
         }
         else if (atkTroops==2){
-            atkRoll = die.rollTwoDice();
+            atkRoll = cup.rollDice(2);
         } else {
-            atkRoll = new int[die.rollDie()];
+            atkRoll = cup.rollDice(1);
         }
 
 
         //Creating defender's die array.
         if (defTroops>=2){
-            defRoll = die.rollTwoDice();
-            System.out.println(defRoll[0]);
+            defRoll = cup.rollDice(2);
         } else {
-            defRoll = new int[die.rollDie()];
+            defRoll = cup.rollDice(1);
         }
 
         while (atkTroops > 0 && defTroops >0){
