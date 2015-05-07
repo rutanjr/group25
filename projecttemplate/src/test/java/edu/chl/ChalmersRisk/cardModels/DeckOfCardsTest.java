@@ -1,5 +1,6 @@
 package edu.chl.ChalmersRisk.cardModels;
 
+import edu.chl.ChalmersRisk.ICard;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertFalse;
@@ -39,7 +40,7 @@ public class DeckOfCardsTest {
         //There is a small chance this will give a false negative.
         boolean inOrder = true;
         for (int i=0;i<10;i++){
-            CardTest pulledCard = testDeck.pullCard();
+            ICard pulledCard = testDeck.pullCard();
             if (Integer.parseInt(pulledCard.toString())!=i){
                 inOrder = false;
             }
@@ -54,7 +55,7 @@ public class DeckOfCardsTest {
         testDeck.addCardToBackOfDeck(new CardTest("A"));
         testDeck.addCardToBackOfDeck(new CardTest("B"));
 
-        CardTest pulledCard = testDeck.pullCard();
+        ICard pulledCard = testDeck.pullCard();
 
         assertTrue(pulledCard.toString().equals("A"));
     }

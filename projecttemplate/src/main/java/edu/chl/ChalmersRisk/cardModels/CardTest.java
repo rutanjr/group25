@@ -1,9 +1,11 @@
 package edu.chl.ChalmersRisk.cardModels;
 
+import edu.chl.ChalmersRisk.ICard;
+
 /** This class is used to test DeckOfCards.
  * Created by viking on 07/05/15.
  */
-public class CardTest {
+public class CardTest implements ICard {
     // the title of the card
     private String title;
 

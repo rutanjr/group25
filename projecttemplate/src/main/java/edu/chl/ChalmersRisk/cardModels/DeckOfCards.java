@@ -11,12 +11,12 @@ import java.util.Random;
  */
 public class DeckOfCards {
     //TODO fix so the lists uses the interface.
-    private LinkedList<CardTest> deck;
-    private LinkedList<CardTest> sortedDeck;
+    private LinkedList<ICard> deck;
+    private LinkedList<ICard> sortedDeck;
 
     public DeckOfCards(){
-        deck = new LinkedList<CardTest>();
-        sortedDeck = new LinkedList<CardTest>();
+        deck = new LinkedList<ICard>();
+        sortedDeck = new LinkedList<ICard>();
     }
 
     /**
@@ -24,7 +24,7 @@ public class DeckOfCards {
      * it wont show up in play until deck has been reshuffled.
      * @param card the card to be added.
      */
-    public void addCardToDeck(CardTest card){
+    public void addCardToDeck(ICard card){
         sortedDeck.add(card);
     }
 
@@ -33,7 +33,7 @@ public class DeckOfCards {
      * Add a card to the deck that is currently in use.
      * @param card
      */
-    public void addCardToBackOfDeck(CardTest card){
+    public void addCardToBackOfDeck(ICard card){
         sortedDeck.add(card);
         deck.add(card);
     }
@@ -47,7 +47,7 @@ public class DeckOfCards {
         for (int i=0;i<deck.size()-1;i++){
             int j = rand.nextInt(deck.size()-i)+i;
             //Switch places for deck[i] and deck[j];
-            CardTest temp = deck.get(i);
+            ICard temp = deck.get(i);
             deck.set(i,deck.get(j));
             deck.set(j,temp);
         }
@@ -66,8 +66,8 @@ public class DeckOfCards {
      * If it pulls the last card the deck will reset.
      * @return a card.
      */
-    public CardTest pullCard(){
-        CardTest card =  deck.get(0);
+    public ICard pullCard(){
+        ICard card =  deck.get(0);
         deck.remove(card);
 
         if (deck.size()<1){
@@ -81,7 +81,7 @@ public class DeckOfCards {
      * Get the first card in the deck.
      * @return the first card in the deck.
      */
-    public CardTest getFirst(){
+    public ICard getFirst(){
         return deck.getFirst();
     }
 
@@ -89,7 +89,7 @@ public class DeckOfCards {
      * Get the last card in the deck.
      * @return the last card in the deck.
      */
-    public CardTest getLast(){
+    public ICard getLast(){
         return deck.getLast();
     }
 }
