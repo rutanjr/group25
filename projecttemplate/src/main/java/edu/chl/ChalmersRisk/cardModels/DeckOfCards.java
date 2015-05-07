@@ -92,4 +92,12 @@ public class DeckOfCards {
     public ICard getLast(){
         return deck.getLast();
     }
+
+    public int size(){
+        return deck.size();
+    }
+
+    public int sortedSize(){
+        return sortedDeck.size();
+    }
 }

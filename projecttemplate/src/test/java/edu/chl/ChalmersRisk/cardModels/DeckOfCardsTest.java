@@ -47,6 +47,9 @@ public class DeckOfCardsTest {
         }
 
         assertFalse(inOrder);
+
+        //Test if size has been changed.
+        assertTrue(testDeck.sortedSize()==10);
     }
 
     @Test
