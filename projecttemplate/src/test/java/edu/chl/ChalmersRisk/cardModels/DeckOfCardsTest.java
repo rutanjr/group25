@@ -26,6 +26,9 @@ public class DeckOfCardsTest {
 
         testDeck.shuffle();
 
+        //Test if size of deck is the same as size of unshuffled deck.
+        assertTrue(testDeck.size()==testDeck.sortedSize());
+
         //Test if the first card has been changed.
         //Slight risk of false negative
         String first = testDeck.getFirst().toString();
