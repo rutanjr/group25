@@ -10,12 +10,13 @@ import java.util.Random;
  * Created by Björn Bergqvist on 07/05/15.
  */
 public class DeckOfCards {
-    private LinkedList<ICard> deck;
-    private LinkedList<ICard> sortedDeck;
+    //TODO fix so the lists uses the interface.
+    private LinkedList<CardTest> deck;
+    private LinkedList<CardTest> sortedDeck;
 
     public DeckOfCards(){
-        deck = new LinkedList<ICard>();
-        sortedDeck = new LinkedList<ICard>();
+        deck = new LinkedList<CardTest>();
+        sortedDeck = new LinkedList<CardTest>();
     }
 
     /**
