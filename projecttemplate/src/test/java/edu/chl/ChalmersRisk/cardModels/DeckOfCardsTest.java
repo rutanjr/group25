@@ -24,7 +24,7 @@ public class DeckOfCardsTest {
         testDeck.addCardToBackOfDeck(new CardTest("9"));
 
         testDeck.shuffle();
-        
+
         //Test if the first card has been changed.
         //Slight risk of false negative
         String first = testDeck.getFirst().toString();
