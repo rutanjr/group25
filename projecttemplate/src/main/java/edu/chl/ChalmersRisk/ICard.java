@@ -6,13 +6,11 @@ package edu.chl.ChalmersRisk;
  */
 
 public interface ICard {
-    /*
-    // the title of the card
-    private String title() {}
 
-    public String getTitle() {}
+    // returns the title of the card
+    public String getTitle();
 
     //turns the card, revealing its effect
-    public void turnCard() {}
-    */
+    public void turnCard();
+
 }
