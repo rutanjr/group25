@@ -8,6 +8,8 @@ import java.util.Random;
  */
 public class Dice {
 
+
+    //TODO throw one die per instance. DieCup.
     private Random dieRoll;
     private int[] lastRolls; //"remembers" the last rolls.
 
