@@ -93,10 +93,18 @@ public class DeckOfCards {
         return deck.getLast();
     }
 
+    /**
+     * Get the size of the deck in play.
+     * @return size of the deck in play.
+     */
     public int size(){
         return deck.size();
     }
 
+    /**
+     * Get the size of the whole deck.
+     * @return size of the whole deck.
+     */
     public int sortedSize(){
         return sortedDeck.size();
     }
