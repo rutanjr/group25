@@ -6,7 +6,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
-/**
+/**i
  * Created by viking on 07/05/15.
  */
 public class DeckOfCardsTest {
@@ -27,7 +27,9 @@ public class DeckOfCardsTest {
         testDeck.shuffle();
 
         //Test if size of deck is the same as size of unshuffled deck.
-        assertTrue(testDeck.size()==testDeck.sortedSize());
+        //And if both of them are the correct size.
+        assertTrue(testDeck.size()==testDeck.sortedSize()
+                && testDeck.size()==10);
 
         //Test if the first card has been changed.
         //Slight risk of false negative
