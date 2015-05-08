@@ -10,7 +10,6 @@ import java.util.Random;
  * Created by Björn Bergqvist on 07/05/15.
  */
 public class DeckOfCards {
-    //TODO fix so the lists uses the interface.
     private LinkedList<ICard> deck;
     private LinkedList<ICard> sortedDeck;
 
