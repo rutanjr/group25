@@ -302,12 +302,16 @@ public class ChalmersRisk {
         }
     }
 
-    //TODO create javadoc
+    /**
+     * A method for moving all available troops from one territory to another.
+     * @param fromTerritory the territory to move the troops from.
+     * @param toTerritory the territory to move the troops to.
+     * @return if the move was successful.
+     */
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
         return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
 
-    //TODO Should this return a boolean or throw exceptions?
     /**
      * A method for moving troops from one territory to another.
      * @param fromT the territory to move the troops from.
@@ -341,7 +345,6 @@ public class ChalmersRisk {
 
     }
 
-    //TODO write comments.
     /**
      * A method for finding a path of territories that is owned by the same player
      * between two territories. Based on a depth first algorithm.
@@ -356,6 +359,8 @@ public class ChalmersRisk {
         List<Territory> discovered = new LinkedList<Territory>();
         toTest.push(fromT);
 
+        // This is the search algorithm
+        // it has an extra condition that end it if a path from A to B has been discovered.
         while (!toTest.isEmpty() && !hasPath) {
             Territory search = toTest.pop();
             if (search.equals(toT)) {
