@@ -57,12 +57,7 @@ public class Player {
     }
 
     public boolean isMyTerritory(Territory territory) {
-        if(territories.contains(territory)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return territories.contains(territory);
     }
 
     public int getnmbrOfTerritories() {
