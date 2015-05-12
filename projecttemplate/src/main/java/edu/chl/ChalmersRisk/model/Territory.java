@@ -81,10 +81,18 @@ public class Territory {
         }
     }
 
+    /*
+     * Atempts to create a conection back to the main territory from the newly added neighbor
+     * as to prevent error where A is a neighbor to B, but B isn't a neighbor to A.
+     */
     public void addNeighbor(Territory neighbor) {
+
+        // Adds input territory as neighbor to active territory
         if (!this.getAdjacentTerritories().contains(neighbor)) {
             this.getAdjacentTerritories().add(neighbor);
         }
+
+        // Adds active territory as neighbor to input territory
         if (!neighbor.getAdjacentTerritories().contains(this)) {
             neighbor.getAdjacentTerritories().add(this);
         }
