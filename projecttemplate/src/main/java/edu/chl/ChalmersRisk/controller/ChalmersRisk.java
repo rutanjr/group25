@@ -86,9 +86,7 @@ public class ChalmersRisk implements Controller {
         System.out.println(playerTwo.getName());
 
         // TODO : what if you want a different map? Future thing
-        Maps map = new ChalmersMap();
-        continents = map.getContinents();
-        territories = map.getTerritories();
+        loadMap("Chalmers");
 
         gB = new GameBoard(map,this);
 
@@ -156,11 +154,9 @@ public class ChalmersRisk implements Controller {
     }*/
 
     public void giveTroops(Player player){
-        int lol = 0;
         ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
         for(int i = 0; i< nbrOfTroopsToGive(player) + 2 ; i++){
             troops.add(new Troop(player));
-            lol++;
         }
         player.receiveTroops(troops);
     }
@@ -204,6 +200,9 @@ public class ChalmersRisk implements Controller {
             }else{
                 currentPlayer = playerOne;
             }
+            //set gameBoard text
+            gB.setMessage("");
+            gB.setGameText("Player " + currentPlayer.getName() + "'s turn");
 
 
             //and we should also set the phase to first
@@ -425,12 +424,27 @@ public class ChalmersRisk implements Controller {
     private class NextButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            oldPhase = phase;
-            phase++;
-            phase %= 3;
-            System.out.println("PHASE :" + phase);
-            endTurn();
+            //first of all, see if they can end their turn
+
+            if(canEndTurn()){
+                oldPhase = phase;
+                phase++;
+                phase %= 3;
+                System.out.println("PHASE :" + phase);
+                endTurn();
+            }
         }
+    }
+
+    public boolean canEndTurn(){
+        switch(phase){
+            case 0: if(!currentPlayer.getTroopsToPlce().isEmpty()){
+                gB.setMessage("You can't end your turn yet.\n You still have "+currentPlayer.getTroopsToPlce().size()+ " troops to place!");
+                return false;
+            };
+
+        }
+        return true;
     }
 }
 
