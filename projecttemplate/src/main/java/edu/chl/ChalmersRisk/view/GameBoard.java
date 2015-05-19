@@ -4,6 +4,7 @@ package edu.chl.ChalmersRisk.view;
 import edu.chl.ChalmersRisk.controller.ChalmersRisk;
 import edu.chl.ChalmersRisk.controller.Controller;
 import edu.chl.ChalmersRisk.gui.InformationStrip;
+import edu.chl.ChalmersRisk.gui.TerritoryButton;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.beans.NamedArg;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  */
 public class GameBoard extends BorderPane {
 
-    private Button[] buttons;
+    private TerritoryButton[] buttons;
     private Text message;
     private Controller controller;
     private InformationStrip infoStrip;
@@ -52,12 +53,13 @@ public class GameBoard extends BorderPane {
         GridPane gp = new GridPane();
         gp.setHgap(25);
         gp.setVgap(25);
-        buttons = new Button[map.getTerritories().size()];
+        buttons = new TerritoryButton[map.getTerritories().size()];
 
 
         int i = 0;
         for(Territory t : map.getTerritories()) {
-            buttons[i] = new Button(t.getName() + " : " + t.getTroops());
+            buttons[i] = new TerritoryButton(t);
+            buttons[i].setText(t.getName() + " [ "+t.getTroops()+" ] ");
             gp.add(buttons[i],i,0);
             i++;
         }
@@ -71,7 +73,21 @@ public class GameBoard extends BorderPane {
 
     }
 
-    public Button[] getButtons(){
+    public void update(int phaseNumber){
+
+        //if placing troops phase
+        if(phaseNumber == 1){
+
+            //update text on all the buttons
+            for(int i =0; i<buttons.length;i++){
+                buttons[i].setText(buttons[i].getTerritory().getName() + " [ "+buttons[i].getTerritory().getAmountOfTroops()+" ] ");
+            }
+
+
+        }
+    }
+
+    public TerritoryButton[] getButtons(){
         return buttons;
     }
 
@@ -92,6 +108,10 @@ public class GameBoard extends BorderPane {
 
     public void setController(Controller controller){
         this.controller = controller;
+    }
+
+    public InformationStrip getInfoStrip(){
+        return infoStrip;
     }
 
 
