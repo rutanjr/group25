@@ -18,6 +18,8 @@ public class ChalmersMap implements Maps {
 
         territories.add(new Territory("A",continents.get(0)));
         territories.add(new Territory("B", continents.get(0)));
+        territories.add(new Territory("C", continents.get(0)));
+        territories.add(new Territory("D", continents.get(0)));
 
     }
 

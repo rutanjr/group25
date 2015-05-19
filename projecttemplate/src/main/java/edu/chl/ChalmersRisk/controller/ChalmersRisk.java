@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,7 +33,7 @@ import java.util.Stack;
  *
  * @revisedBy malin thelin
  */
-public class ChalmersRisk {
+public class ChalmersRisk implements Controller {
 
     //all variables for the map
     private Maps map;
@@ -42,16 +43,20 @@ public class ChalmersRisk {
 
     private Player playerOne,playerTwo,currentPlayer;
     private int phase, oldPhase;
-    private ProjectView projectView;
+
+    private boolean gameIsRunning;
+    private Stage primaryStage;
+    private GameBoard gB;
 
 
     private StartScreen startScreen;
 
+
     //final variables defining the last and first phases. Meaning that
     //the last phase should be the one before a player ends their turn, and the first
     //phase is the first phase a player is in when a turn begins.
-    private final int lastPhase = 1;
-    private final int firstPhase = 1;
+    private final int lastPhase = 0;
+    private final int firstPhase = 0;
 
     private Timer gameTimer,phaseTimer;
 
@@ -66,27 +71,64 @@ public class ChalmersRisk {
     }
 
     public void startGame(String[] players, Stage primaryStage) {
+        //set all variables
         playerOne = new Player(players[0]);
         playerTwo = new Player(players[1]);
         currentPlayer = playerOne;
-        phase = 1;
+        phase = 0;
+        gameIsRunning = true;
+        this.primaryStage = primaryStage;
 
-//        gameTimer = new Timer(10, this);
-//        gameTimer.start();
 
+
+        System.out.println("HALLLÅÅÅ");
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
 
-        GameBoard gB = new GameBoard(new ChalmersMap());
+        // TODO : what if you want a different map? Future thing
+        Maps map = new ChalmersMap();
+        continents = map.getContinents();
+        territories = map.getTerritories();
+
+        gB = new GameBoard(map,this);
+
 
         Scene gameBoard = new Scene(gB, Constants.width,Constants.height);
-        Button[] territoryButtons = gB.getButtons();
+
+        gB.setMessage("A new game started between players:\n "+playerOne.getName()+" and "+playerTwo.getName());
+        gB.setGameText("Player " + playerOne.getName() + "'s turn");
 
 
-        for (Button button: territoryButtons){
-            button.setOnAction(new ButtonPressed());
-        }
+        //sätt
+        gB.getInfoStrip().getNextButton().setOnAction(new NextButtonPressed());
+
+
         primaryStage.setScene(gameBoard);
+
+        loopGame();
+    }
+
+
+    public void loopGame(){
+        while(gameIsRunning){
+            setTheScene();
+            placeTroopPhase();
+        }
+    }
+
+    public void placeTroopPhase(){
+        //first give the troops to the player
+        giveTroops(currentPlayer);
+        System.out.println("gave "+currentPlayer.getTroopsToPlce().size()+ " troops to player "+currentPlayer.getName());
+        gB.setController(new PlaceTroopController(currentPlayer, gB));
+    }
+
+    public void setTheScene(){
+        if(phase == 0){
+
+            System.out.println("phase 0");
+            gameIsRunning = false;
+        }
     }
 
 
@@ -162,15 +204,17 @@ public class ChalmersRisk {
             }else{
                 currentPlayer = playerOne;
             }
-            giveTroops(currentPlayer);
-        }
 
-        phase = firstPhase;
+
+            //and we should also set the phase to first
+            phase = firstPhase;
+        }
+        gameIsRunning = true;
+        loopGame();
     }
 
     //for now this method will return a String. However in the future this should be up to change.
     public String checkFreeTerritories(){
-
 
         String result = "";
         int count = 0;
@@ -365,22 +409,27 @@ public class ChalmersRisk {
         return hasPath;
     }
 
-    private class ButtonPressed implements EventHandler {
-        @Override
-        public void handle(Event event) {
-            Button btn = (Button)event.getSource();
-            btn.setTextFill(Paint.valueOf("blue"));
-        }
-    }
 
 
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
             String[] players = new String[2];
-            players[0] = startScreen.getPlayerOne().getPromptText();
-            players[1] = startScreen.getPlayerTwo().getPromptText();
+            players[0] = startScreen.getPlayerOne().getText();
+            players[1] = startScreen.getPlayerTwo().getText();
             startGame(players, startScreen.getPrimaryStage());
+        }
+    }
+
+
+    private class NextButtonPressed implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            oldPhase = phase;
+            phase++;
+            phase %= 3;
+            System.out.println("PHASE :" + phase);
+            endTurn();
         }
     }
 }
