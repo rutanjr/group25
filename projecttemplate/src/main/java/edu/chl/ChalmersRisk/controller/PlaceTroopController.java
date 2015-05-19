@@ -18,13 +18,12 @@ public class PlaceTroopController implements Controller {
 
     private Player player;
     private GameBoard gameBoard;
-    private int count;
 
     public PlaceTroopController(Player player, GameBoard gameBoard){
         this.player = player;
         this.gameBoard = gameBoard;
-        count = 0;
 
+        
         TerritoryButton[] territoryButtons = gameBoard.getButtons();
         for (TerritoryButton tb: territoryButtons){
             tb.setOnAction(new ButtonPressed());
@@ -37,7 +36,7 @@ public class PlaceTroopController implements Controller {
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
-            if(count <= player.getTroopsToPlce().size()){
+            if(!player.getTroopsToPlce().isEmpty()){
                 TerritoryButton btn = (TerritoryButton)event.getSource();
                 //see if the player owns the territory OR if the territory is empty
                 if(btn.getTerritory().getOwner().equals(Constants.EMPTY_PLAYER) || player.isMyTerritory(btn.getTerritory())){
@@ -45,7 +44,6 @@ public class PlaceTroopController implements Controller {
 
                     //the number is representing the phase.
                     gameBoard.update(1);
-                    count ++;
                 }
             }
         }
