@@ -5,6 +5,7 @@ import edu.chl.ChalmersRisk.controller.ChalmersRisk;
 import edu.chl.ChalmersRisk.controller.Controller;
 import edu.chl.ChalmersRisk.gui.InformationStrip;
 import edu.chl.ChalmersRisk.gui.TerritoryButton;
+import edu.chl.ChalmersRisk.gui.TopStrip;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.beans.NamedArg;
@@ -30,6 +31,7 @@ public class GameBoard extends BorderPane {
     private Text message;
     private Controller controller;
     private InformationStrip infoStrip;
+    private TopStrip topInfo;
 
     public GameBoard(){
 
@@ -49,6 +51,12 @@ public class GameBoard extends BorderPane {
         this.setBottom(infoStrip);
 
 
+        //informationStrip at the top
+        topInfo = new TopStrip();
+        this.setTop(topInfo);
+        topInfo.setPrefSize(this.getWidth(),70);
+
+
         //"map"
         GridPane gp = new GridPane();
         gp.setHgap(25);
@@ -66,9 +74,6 @@ public class GameBoard extends BorderPane {
         this.setCenter(gp);
 
 
-        //gameMessage
-        message = new Text();
-        this.setTop(message);
 
 
     }
@@ -103,7 +108,7 @@ public class GameBoard extends BorderPane {
         return message;
     }
     public void setMessage(String text){
-        message.setText(text);
+        topInfo.setGameText(text);
     }
 
     public void setController(Controller controller){

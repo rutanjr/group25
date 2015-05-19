@@ -23,7 +23,7 @@ public class PlaceTroopController implements Controller {
         this.player = player;
         this.gameBoard = gameBoard;
 
-        
+
         TerritoryButton[] territoryButtons = gameBoard.getButtons();
         for (TerritoryButton tb: territoryButtons){
             tb.setOnAction(new ButtonPressed());
