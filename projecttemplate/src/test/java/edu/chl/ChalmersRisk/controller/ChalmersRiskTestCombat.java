@@ -18,7 +18,7 @@ public class ChalmersRiskTestCombat {
     @Test (expected = IllegalArgumentException.class)
     public void testCombatThrowsExceptionWhenTooFewTroops(){
 
-        ChalmersRisk testRisk2 = new ChalmersRisk();
+       /* ChalmersRisk testRisk2 = new ChalmersRisk();
         ArrayList<Territory> territories = new ArrayList<Territory>();
         Continent testContinent = new Continent("test",1,territories);
         Player testPlayer1 = new Player("1");
@@ -33,6 +33,7 @@ public class ChalmersRiskTestCombat {
 
         testRisk2.combat(testTer1,testTer2);
         testRisk2.combat(testTer3,testTer2);
+        */
 
     }
 }
