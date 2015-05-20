@@ -29,6 +29,8 @@ public class PlaceTroopController implements Controller {
             tb.setOnAction(new ButtonPressed());
         }
 
+        gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlce().size());
+
 
     }
 
@@ -42,6 +44,8 @@ public class PlaceTroopController implements Controller {
                 if(btn.getTerritory().getOwner().equals(Constants.EMPTY_PLAYER) || player.isMyTerritory(btn.getTerritory())){
                     player.placeTroops(btn.getTerritory(),1);
 
+
+                    gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlce().size());
 
                     //the number is representing the phase.
                     gameBoard.update(1);
