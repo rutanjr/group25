@@ -88,7 +88,6 @@ public class GameBoard extends BorderPane {
                 buttons[i].setText(buttons[i].getTerritory().getName() + " [ "+buttons[i].getTerritory().getAmountOfTroops()+" ] ");
             }
 
-
         }
     }
 

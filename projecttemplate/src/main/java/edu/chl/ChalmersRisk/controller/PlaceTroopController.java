@@ -45,6 +45,8 @@ public class PlaceTroopController implements Controller {
                     //the number is representing the phase.
                     gameBoard.update(1);
                 }
+            }else{
+                gameBoard.setMessage("You don't have any troops left to place.\nPlease press the next button :)");
             }
         }
     }
