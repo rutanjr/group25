@@ -81,6 +81,7 @@ public class ChalmersRisk implements Controller {
 
 
 
+        //TODO : remove when not needed
         System.out.println("HALLLÅÅÅ");
         System.out.println(playerOne.getName());
         System.out.println(playerTwo.getName());
@@ -119,7 +120,7 @@ public class ChalmersRisk implements Controller {
     public void placeTroopPhase(){
         //first give the troops to the player
         giveTroops(currentPlayer);
-        System.out.println("gave "+currentPlayer.getTroopsToPlce().size()+ " troops to player "+currentPlayer.getName());
+        gB.setMessage(currentPlayer.getName() + " recieved "+currentPlayer.getTroopsToPlce().size() + " number of troops this turn.");
         gB.setController(new PlaceTroopController(currentPlayer, gB));
     }
 
