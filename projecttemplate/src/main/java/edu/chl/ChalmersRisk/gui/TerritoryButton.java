@@ -18,6 +18,14 @@ public class TerritoryButton extends Button {
     public TerritoryButton(Territory territory){
         super();
         this.territory = territory;
+        this.setStyle("-fx-background-color: #FFFFFF;");
+    }
+
+
+    public void paintButton() {
+
+        this.setStyle("-fx-background-color: #" + this.getTerritory().getOwner().getColor()+";");
+
     }
 
 

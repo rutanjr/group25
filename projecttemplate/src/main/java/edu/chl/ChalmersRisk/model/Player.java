@@ -1,5 +1,6 @@
 package edu.chl.ChalmersRisk.model;
 
+
 import java.util.ArrayList;
 
 /**
@@ -13,8 +14,13 @@ public class Player {
     private ArrayList<Troop> placedTroops;
     private ArrayList<Troop> troopsToPlace;
 
-    public Player(String name){
+
+    //teamcolor
+    private String color;
+
+    public Player(String name, String color){
         this.name = name;
+        this.color = color;
         placedTroops = new ArrayList<Troop>();
         territories = new ArrayList<Territory>();
     }
@@ -111,5 +117,9 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public String getColor(){
+        return color;
     }
 }

@@ -72,8 +72,8 @@ public class ChalmersRisk implements Controller {
 
     public void startGame(String[] players, Stage primaryStage) {
         //set all variables
-        playerOne = new Player(players[0]);
-        playerTwo = new Player(players[1]);
+        playerOne = new Player(players[0],"0000ff");
+        playerTwo = new Player(players[1],"ff0000");
         currentPlayer = playerOne;
         phase = 0;
         gameIsRunning = true;
@@ -110,7 +110,9 @@ public class ChalmersRisk implements Controller {
     public void loopGame(){
         while(gameIsRunning){
             setTheScene();
-            placeTroopPhase();
+            if(phase == 0){
+                placeTroopPhase();
+            }
         }
     }
 
@@ -224,6 +226,7 @@ public class ChalmersRisk implements Controller {
             phase = firstPhase;
         }
         gameIsRunning = true;
+        //then continue with the game
         loopGame();
     }
 

@@ -14,9 +14,11 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -86,6 +88,7 @@ public class GameBoard extends BorderPane {
             //update text on all the buttons
             for(int i =0; i<buttons.length;i++){
                 buttons[i].setText(buttons[i].getTerritory().getName() + " [ "+buttons[i].getTerritory().getAmountOfTroops()+" ] ");
+                buttons[i].paintButton();
             }
 
         }
@@ -117,6 +120,8 @@ public class GameBoard extends BorderPane {
     public InformationStrip getInfoStrip(){
         return infoStrip;
     }
+
+
 
 
 }

@@ -14,7 +14,5 @@ public class StartScreenModel {
         continents[2].setName("Malin");
         continents[3].setName("Amrika");
 
-        Player player1 = new Player("Malle");
-        Player player2 = new Player("Balle");
     }
 }
