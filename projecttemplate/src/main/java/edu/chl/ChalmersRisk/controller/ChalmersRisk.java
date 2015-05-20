@@ -187,6 +187,21 @@ public class ChalmersRisk implements Controller {
 
     }
 
+    /**
+     * method to determine whether or not you can actually end your turn. used when a user clicks the nextButton.
+     * @return false if you cant end your turn and true if you can
+     */
+    public boolean canEndTurn(){
+        switch(phase){
+            case 0: if(!currentPlayer.getTroopsToPlce().isEmpty()){
+                gB.setMessage("You can't end your turn yet.\nYou still have "+currentPlayer.getTroopsToPlce().size()+ " troops to place!");
+                return false;
+            };
+
+        }
+        return true;
+    }
+
     //what should happen when a player ends their turn.
     public void endTurn(){
 
@@ -410,6 +425,11 @@ public class ChalmersRisk implements Controller {
 
 
 
+
+    /**
+     * HERE LIETH THE CLASSES FOR BUTTONPRESSES
+     */
+
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -436,16 +456,7 @@ public class ChalmersRisk implements Controller {
         }
     }
 
-    public boolean canEndTurn(){
-        switch(phase){
-            case 0: if(!currentPlayer.getTroopsToPlce().isEmpty()){
-                gB.setMessage("You can't end your turn yet.\n You still have "+currentPlayer.getTroopsToPlce().size()+ " troops to place!");
-                return false;
-            };
 
-        }
-        return true;
-    }
 }
 
 
