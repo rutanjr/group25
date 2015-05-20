@@ -36,6 +36,9 @@ public class TerritoryTroopCard implements ICard {
 
     @Override
     public void turnCard() {
-        //TODO
+
+        targetTerritory.addTroops(bonusTroops);
+
+        //TODO We maybe want to only add troops if current player is controlling said territory
     }
 }

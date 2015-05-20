@@ -3,6 +3,9 @@ package edu.chl.ChalmersRisk.cardModels;
 import edu.chl.ChalmersRisk.ICard;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
+import edu.chl.ChalmersRisk.utilities.Constants;
+
+import java.util.ArrayList;
 
 /**
  * A card that upon being drawn will destroy a territory from a player, making it neutral.
@@ -13,11 +16,9 @@ public class LoseTerritoryCard implements ICard {
 
     private String title, message;
     private Player targetPlayer;
-    private Territory targetTerritory;
 
-    public LoseTerritoryCard(Player targetPlayer, Territory targetTerritory) {
+    public LoseTerritoryCard(Player targetPlayer) {
         this.targetPlayer = targetPlayer;
-        this.targetTerritory = targetTerritory;
 
         //TODO
         this.title = "";
@@ -34,8 +35,20 @@ public class LoseTerritoryCard implements ICard {
         return this.message;
     }
 
+    /**
+     * A method that turns a random Territory neutral, but keeps the troops currently on it
+     */
     @Override
     public void turnCard() {
-        //TODO
+        private ArrayList tempList = targetPlayer.getTerritories();
+        private int tempInt = tempList.size() - 1;
+        private Territory tempTerritory;
+
+        intTemp = (int)(Math.random()*tempInt);
+
+        tempTerritory = (Territory)(tempList.get(tempInt));
+        tempTerritory.setnewOwner(Constants.EMPTY_PLAYER);
+
+        //TODO Check if this works
     }
 }

@@ -1,6 +1,9 @@
 package edu.chl.ChalmersRisk.cardModels;
 
 import edu.chl.ChalmersRisk.ICard;
+import edu.chl.ChalmersRisk.model.Territory;
+
+import java.util.ArrayList;
 
 /**
  * A card that upon being drawn will increase/decrease the number of troops in all territories.
@@ -11,9 +14,11 @@ public class AllChangeTroopCard implements ICard {
 
     private String message, title;
     private int troopChange;
+    private ArrayList allTerritories;
 
-    public AllChangeTroopCard(int troopChange) {
+    public AllChangeTroopCard(ArrayList allTerritories, int troopChange) {
         this.troopChange = troopChange;
+        this.allTerritories = allTerritories;
 
         if (this.troopChange >= 0) {
             this.message = this.troopChange + " troops join each territory.";
@@ -33,6 +38,13 @@ public class AllChangeTroopCard implements ICard {
 
     @Override
     public void turnCard() {
-        //TODO and also check messages and titles for better name
+        for (Territory temp : allTerritories) {
+            if (troopChange < 0) {
+                temp.removeTroops(-troopChange);
+            } else if (troopChange >= 0) {
+                temp.addTroops(troopChange);
+            }
+        }
+        //TODO Check if this is corrent.
     }
 }
