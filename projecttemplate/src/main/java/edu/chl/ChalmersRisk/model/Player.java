@@ -24,6 +24,7 @@ public class Player {
         this.name = name;
         this.color = color;
         placedTroops = new ArrayList<Troop>();
+        troopsToPlace = new ArrayList<Troop>();
         territories = new ArrayList<Territory>();
     }
 
