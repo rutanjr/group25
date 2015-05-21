@@ -1,7 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
-
 /**
  * A card that upon being drawn will force the game to end (score will be calculated and a winner decided)
  *
@@ -26,6 +24,11 @@ public class EndGameCard implements ICard{
     @Override
     public String getMessage() {
         return "Due to unforeseen event, the battle over Chalmers has ended.";
+    }
+
+    @Override
+    public int phaseCheck() {
+        return 0;
     }
 
     @Override

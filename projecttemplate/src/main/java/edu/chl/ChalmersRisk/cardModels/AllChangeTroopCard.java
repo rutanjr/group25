@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 import edu.chl.ChalmersRisk.model.Territory;
 
 import java.util.ArrayList;
@@ -35,6 +34,11 @@ public class AllChangeTroopCard implements ICard {
 
     @Override
     public String getMessage() { return this.message; }
+
+    @Override
+    public int phaseCheck() {
+        return 0;
+    }
 
     @Override
     public void turnCard() {

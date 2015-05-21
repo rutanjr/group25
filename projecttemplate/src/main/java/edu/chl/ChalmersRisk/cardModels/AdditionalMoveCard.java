@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 
 /**
  * A card that upon being drawn will grant the player an additional move phase this turn.
@@ -19,6 +18,11 @@ public class AdditionalMoveCard implements ICard {
     @Override
     public String getMessage() {
         return "Due to assistance from a professor, you are allowed to move your troops an additional time this turn.";
+    }
+
+    @Override
+    public int phaseCheck() {
+        return 0;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 import edu.chl.ChalmersRisk.model.Player;
 
 /**
@@ -31,6 +30,11 @@ public class AdditionalTroopsCard implements ICard {
     @Override
     public String getMessage() {
         return this.message;
+    }
+
+    @Override
+    public int phaseCheck() {
+        return 0;
     }
 
     @Override
