@@ -4,22 +4,14 @@ package edu.chl.ChalmersRisk.controller;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
-import edu.chl.ChalmersRisk.view.ProjectView;
 import edu.chl.ChalmersRisk.view.StartScreen;
-import javafx.application.Application;
-import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.Event;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,7 +52,7 @@ public class ChalmersRisk implements Controller {
 
     private Timer gameTimer,phaseTimer;
 
-    //TODO doCombat() - what should this method take?
+    DiceCup cupOfDice;
 
     public ChalmersRisk(StartScreen startScreen){
 
@@ -68,6 +60,12 @@ public class ChalmersRisk implements Controller {
         this.startScreen = startScreen;
         this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
 
+        this.cupOfDice =  new DiceCup();
+    }
+
+    //This is an empty constructor to used test some methods that don't require a working view.
+    public ChalmersRisk(){
+        this.cupOfDice =  new DiceCup();
     }
 
     public void startGame(String[] players, Stage primaryStage) {
@@ -266,15 +264,17 @@ public class ChalmersRisk implements Controller {
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
+     * @param atkTroops the amount of troops to attack with.
      * @return true if the defender has lost all it troops in the territory.
      */
-    public static boolean combat(Territory attacker, Territory defender){
-        DiceCup diceCup = new DiceCup();
+    public boolean combat(Territory attacker, Territory defender, int atkTroops){
         int[] atkRoll;
         int[] defRoll;
         //Attacker selects a number of dice <= #troops - 1 and 3
 
-        int atkTroops = attacker.getAmountOfTroops() - 1;
+        if(attacker.getOwner().equals(defender.getOwner())){
+            throw new IllegalArgumentException("Both territories are own by the same player.");
+        }
 
         if (atkTroops<1){
             throw new IllegalArgumentException("There are too few troops to attack");
@@ -289,21 +289,21 @@ public class ChalmersRisk implements Controller {
 
         //Creating attacker's die array.
         if(atkTroops>=3){
-            atkRoll = diceCup.rollDice(3);
+            atkRoll = cupOfDice.rollDice(3);
         }
         else if (atkTroops==2){
-            atkRoll = diceCup.rollDice(2);
+            atkRoll = cupOfDice.rollDice(2);
         } else {
-            atkRoll = diceCup.rollDice(1);
+            atkRoll = cupOfDice.rollDice(1);
         }
 
 
         //Creating defender's die array.
         if (defTroops>=2){
-            defRoll = diceCup.rollDice(2);
+            defRoll = cupOfDice.rollDice(2);
             System.out.println(defRoll[0]);
         } else {
-            defRoll = diceCup.rollDice(1);
+            defRoll = cupOfDice.rollDice(1);
         }
 
         while (atkTroops > 0 && defTroops >0){
@@ -347,11 +347,16 @@ public class ChalmersRisk implements Controller {
         }
     }
 
+    /**
+     * A method for moving all available troops from one territory to another.
+     * @param fromTerritory the territory to move the troops from.
+     * @param toTerritory the territory to move the troops to.
+     * @return if the move was successful.
+     */
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
         return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
     }
 
-    //TODO Should this return a boolean or throw exceptions?
     /**
      * A method for moving troops from one territory to another.
      * @param fromT the territory to move the troops from.
@@ -359,7 +364,11 @@ public class ChalmersRisk implements Controller {
      * @param amount the amount of troops.
      * @return if the move was successful.
      */
-    public boolean moveTroops(Territory fromT, Territory toT, int amount){
+    public static boolean moveTroops(Territory fromT, Territory toT, int amount){
+        //Return false if less than 1 troops should be moved.
+        if (amount<1){
+            return false;
+        }
         //TODO add a test to see if owner is equal to the current active player.
         //Tests if the territories are owned by the same player.
         if(fromT.getOwner()!=toT.getOwner()){
@@ -369,9 +378,9 @@ public class ChalmersRisk implements Controller {
 
         //Tests if there is a path between two territories.
         if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
-            //TODO this removes an amount of troops and adds the same amount somewhere else
+
             // should it move the actual troops instead?
-            if (fromT.getAmountOfTroops()>amount){
+            if (fromT.getAmountOfTroops()-1>=amount){
                 fromT.removeTroops(amount);
                 toT.addTroops(amount);
                 return true;
@@ -382,7 +391,6 @@ public class ChalmersRisk implements Controller {
 
     }
 
-    //TODO write comments.
     /**
      * A method for finding a path of territories that is owned by the same player
      * between two territories. Based on a depth first algorithm.
@@ -391,12 +399,14 @@ public class ChalmersRisk implements Controller {
      * @param owner the player who owns of the territories.
      * @return
      */
-    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner) {
+    public static boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner) {
         boolean hasPath = false;
         Stack<Territory> toTest = new Stack<Territory>();
         List<Territory> discovered = new LinkedList<Territory>();
         toTest.push(fromT);
 
+        // This is the search algorithm
+        // it has an extra condition that end it if a path from A to B has been discovered.
         while (!toTest.isEmpty() && !hasPath) {
             Territory search = toTest.pop();
             if (search.equals(toT)) {
