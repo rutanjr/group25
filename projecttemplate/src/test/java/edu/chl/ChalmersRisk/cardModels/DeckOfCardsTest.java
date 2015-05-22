@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertFalse;

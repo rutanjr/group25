@@ -118,7 +118,7 @@ public class ChalmersRisk implements Controller {
     public void placeTroopPhase(){
         //first give the troops to the player
         giveTroops(currentPlayer);
-        gB.setMessage(currentPlayer.getName() + " recieved "+currentPlayer.getTroopsToPlce().size() + " number of troops this turn.");
+        gB.setMessage(currentPlayer.getName() + " recieved "+currentPlayer.getTroopsToPlace().size() + " number of troops this turn.");
         gB.setController(new PlaceTroopController(currentPlayer, gB));
     }
 
@@ -194,8 +194,8 @@ public class ChalmersRisk implements Controller {
      */
     public boolean canEndTurn(){
         switch(phase){
-            case 0: if(!currentPlayer.getTroopsToPlce().isEmpty()){
-                gB.setMessage("You can't end your turn yet.\nYou still have "+currentPlayer.getTroopsToPlce().size()+ " troops to place!");
+            case 0: if(!currentPlayer.getTroopsToPlace().isEmpty()){
+                gB.setMessage("You can't end your turn yet.\nYou still have "+currentPlayer.getTroopsToPlace().size()+ " troops to place!");
                 return false;
             };
 

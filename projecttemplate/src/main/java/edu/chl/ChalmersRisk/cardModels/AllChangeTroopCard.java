@@ -13,9 +13,9 @@ public class AllChangeTroopCard implements ICard {
 
     private String message, title;
     private int troopChange;
-    private ArrayList allTerritories;
+    private ArrayList<Territory> allTerritories;
 
-    public AllChangeTroopCard(ArrayList allTerritories, int troopChange) {
+    public AllChangeTroopCard(ArrayList<Territory> allTerritories, int troopChange) {
         this.troopChange = troopChange;
         this.allTerritories = allTerritories;
 

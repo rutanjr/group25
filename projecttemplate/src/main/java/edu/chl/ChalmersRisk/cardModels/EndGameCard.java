@@ -33,8 +33,10 @@ public class EndGameCard implements ICard{
 
     @Override
     public void turnCard() {
+        /*
         if (getGameTurn() >= this.minTurn) {
             //TODO effect of the card
         }
+        */
     }
 }
