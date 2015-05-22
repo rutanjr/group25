@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 
@@ -32,15 +31,20 @@ public class TerritoryChangeCard implements ICard {
     }
 
     @Override
+    public int phaseCheck() {
+        return 0;
+    }
+
+    @Override
     public void turnCard() {
-        private ArrayList tempListA, tempListB;
-        private int tempRandA, tempRandB;
-        private Territory tempTerrA, tempTerrB;
+        ArrayList tempListA, tempListB;
+        int tempRandA, tempRandB;
+        Territory tempTerrA, tempTerrB;
 
         tempListA = playerA.getTerritories();
         tempListB = playerB.getTerritories();
-        tempRandA = (int)(Math.random()*tempListA.size()-1);
-        tempRandB = (int)(Math.random()*tempListB.size()-1);
+        tempRandA = (int)((Math.random()*tempListA.size()));
+        tempRandB = (int)((Math.random()*tempListB.size()));
 
         tempTerrA = (Territory)tempListA.get(tempRandA);
         tempTerrB = (Territory)tempListB.get(tempRandB);

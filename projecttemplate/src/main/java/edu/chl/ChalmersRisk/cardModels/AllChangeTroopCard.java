@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 import edu.chl.ChalmersRisk.model.Territory;
 
 import java.util.ArrayList;
@@ -14,9 +13,9 @@ public class AllChangeTroopCard implements ICard {
 
     private String message, title;
     private int troopChange;
-    private ArrayList allTerritories;
+    private ArrayList<Territory> allTerritories;
 
-    public AllChangeTroopCard(ArrayList allTerritories, int troopChange) {
+    public AllChangeTroopCard(ArrayList<Territory> allTerritories, int troopChange) {
         this.troopChange = troopChange;
         this.allTerritories = allTerritories;
 
@@ -35,6 +34,11 @@ public class AllChangeTroopCard implements ICard {
 
     @Override
     public String getMessage() { return this.message; }
+
+    @Override
+    public int phaseCheck() {
+        return 0;
+    }
 
     @Override
     public void turnCard() {

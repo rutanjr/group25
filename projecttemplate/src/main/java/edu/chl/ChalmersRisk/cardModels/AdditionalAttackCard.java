@@ -1,6 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 
 /**
  * A card that upon being drawn will grant the player an additional attack phase this turn.
@@ -19,6 +18,11 @@ public class AdditionalAttackCard implements ICard {
     @Override
     public String getMessage() {
         return "Thanks to assistance from the Student Union, you may attack your opponent an additional time this turn.";
+    }
+
+    @Override
+    public int phaseCheck() {
+        return 0;
     }
 
     @Override

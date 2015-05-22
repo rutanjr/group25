@@ -1,4 +1,4 @@
-package edu.chl.ChalmersRisk;
+package edu.chl.ChalmersRisk.cardModels;
 
 /**
  * /* The interface iCard describes the playing card for the board game Risk
@@ -12,6 +12,9 @@ public interface ICard {
 
     //returns the message of the card
     public String getMessage();
+
+    //Returns an Integer that will determine when the effect of the card will occur.
+    public int phaseCheck();
 
     //turns the card, revealing its effect
     public void turnCard();

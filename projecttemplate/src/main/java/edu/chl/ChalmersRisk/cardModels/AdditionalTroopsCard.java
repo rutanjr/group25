@@ -1,7 +1,9 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
 import edu.chl.ChalmersRisk.model.Player;
+import edu.chl.ChalmersRisk.model.Troop;
+
+import java.util.ArrayList;
 
 /**
  * A card that upon being drawn will grant you additional troops to deploy
@@ -34,7 +36,21 @@ public class AdditionalTroopsCard implements ICard {
     }
 
     @Override
+    public int phaseCheck() {
+        return 0;
+    }
+
+    @Override
     public void turnCard() {
-        //TODO effect of the card should be resolved before the player gets to place his troops and increase that amount.
+
+        ArrayList<Troop> listTemp = new ArrayList<Troop>();
+
+        for (int i = 0; i < bonusTroops; i++) {
+            listTemp.add(new Troop(currentPlayer));
+        }
+        listTemp.addAll(currentPlayer.getTroopsToPlace());
+
+        currentPlayer.receiveTroops(listTemp);
+        //TODO TurnCard needs to be called AFTER the initial troops has been recieved ADD PRE/POST CONDITIONS
     }
 }

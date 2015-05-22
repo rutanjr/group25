@@ -1,6 +1,6 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
+
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.utilities.Constants;
@@ -35,20 +35,20 @@ public class LoseTerritoryCard implements ICard {
         return this.message;
     }
 
+    @Override
+    public int phaseCheck() {
+        return 0;
+    }
+
     /**
      * A method that turns a random Territory neutral, but keeps the troops currently on it
      */
     @Override
     public void turnCard() {
-        private ArrayList tempList = targetPlayer.getTerritories();
-        private int tempInt = tempList.size() - 1;
-        private Territory tempTerritory;
 
-        intTemp = (int)(Math.random()*tempInt);
+        int intTemp = targetPlayer.getTerritories().size();
+        intTemp = (int)(Math.random()*intTemp);
+        targetPlayer.removeTerritory(targetPlayer.getTerritories().get(intTemp));
 
-        tempTerritory = (Territory)(tempList.get(tempInt));
-        tempTerritory.setnewOwner(Constants.EMPTY_PLAYER);
-
-        //TODO Check if this works
     }
 }

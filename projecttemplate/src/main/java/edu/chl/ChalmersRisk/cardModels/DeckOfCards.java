@@ -1,7 +1,5 @@
 package edu.chl.ChalmersRisk.cardModels;
 
-import edu.chl.ChalmersRisk.ICard;
-
 import java.util.LinkedList;
 import java.util.Random;
 

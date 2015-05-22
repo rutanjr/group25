@@ -19,19 +19,19 @@ public class ChalmersRiskTest {
 
     @Test
     public void testTerritoriesAreConnected(){
-      /*  ArrayList<Territory> territories = new ArrayList<Territory>();
+        ArrayList<Territory> territories = new ArrayList<Territory>();
         Continent testContinent = new Continent("test",1,territories);
-        Player testPlayer1 = new Player("1");
-        Player testPlayer2 = new Player("2");
+        Player testPlayer1 = new Player("1","red");
+        Player testPlayer2 = new Player("2", "blue");
 
 
         Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
         Territory testTer2 = new Territory("Test1",testContinent,testPlayer1);
 
-        *//* This is a known bug that is being worked on.
+        //* This is a known bug that is being worked on.
         //Test when no territories are connected.
         assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer2, testPlayer1));
-        *//*
+        //*
         ArrayList<Territory> adjTers1 = new ArrayList<Territory>();
         adjTers1.add(testTer2);
         testTer1.addAdjacent(adjTers1);
@@ -80,17 +80,17 @@ public class ChalmersRiskTest {
         testTer5.addAdjacent(adjTers7);
 
         //Test moving to territory that the player doesn't own.
-        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer7, testPlayer1));*/
+        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer7, testPlayer1));
 
     }
 
     @Test
     public void testMoveTroops(){
-      /*  ChalmersRisk testRisk = new ChalmersRisk();
+        ChalmersRisk testRisk = new ChalmersRisk();
         ArrayList<Territory> territories = new ArrayList<Territory>();
         Continent testContinent = new Continent("test",1,territories);
-        Player testPlayer1 = new Player("1");
-        Player testPlayer2 = new Player("2");
+        Player testPlayer1 = new Player("1", "red");
+        Player testPlayer2 = new Player("2", "blue");
 
         Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
         Territory testTer2 = new Territory("Test1",testContinent,testPlayer1);
@@ -119,6 +119,5 @@ public class ChalmersRiskTest {
         testTer1.addTroops(2);
         assertFalse(testRisk.moveTroops(testTer1, testTer2, -3));
 
-    */
     }
 }

@@ -29,7 +29,7 @@ public class PlaceTroopController implements Controller {
             tb.setOnAction(new ButtonPressed());
         }
 
-        gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlce().size());
+        gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlace().size());
 
 
     }
@@ -38,14 +38,14 @@ public class PlaceTroopController implements Controller {
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
-            if(!player.getTroopsToPlce().isEmpty()){
+            if(!player.getTroopsToPlace().isEmpty()){
                 TerritoryButton btn = (TerritoryButton)event.getSource();
                 //see if the player owns the territory OR if the territory is empty
                 if(btn.getTerritory().getOwner().equals(Constants.EMPTY_PLAYER) || player.isMyTerritory(btn.getTerritory())){
                     player.placeTroops(btn.getTerritory(),1);
 
 
-                    gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlce().size());
+                    gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlace().size());
 
                     //the number is representing the phase.
                     gameBoard.update(1);
