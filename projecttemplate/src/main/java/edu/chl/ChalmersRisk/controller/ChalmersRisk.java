@@ -123,8 +123,6 @@ public class ChalmersRisk implements Controller {
 
     public void loopGame(){
 
-
-
         while(gameIsRunning){
             setTheScene();
             if(phase == 0){
@@ -143,9 +141,10 @@ public class ChalmersRisk implements Controller {
     }
 
     public void attackPhase(){
-        System.out.println("MAJAAMAJMA");
+
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
+
         gB.setController(new AttackPhaseController(currentPlayer,gB));
     }
 
@@ -235,41 +234,36 @@ public class ChalmersRisk implements Controller {
         if(areAllTerritoriesTaken()){
             //first of all we need to check if currentPlayer has done all their phases
             if(oldPhase == lastPhase ){
-                //we should change players
-                //this piece of code has to be changed if we in the future want to have more players, and phases
-                //because this looks kindof bad
-                if(currentPlayer.equals(playerOne)){
-                    currentPlayer = playerTwo;
-                }else{
-                    currentPlayer = playerOne;
-                }
-                //set gameBoard text
-                gB.setMessage("");
-                gB.setGameText("Player " + currentPlayer.getName() + "'s turn");
-
-
-                //and we should also set the phase to first
-                phase = firstPhase;
+                changePlayers();
             }
         }else{
 
             //just change players
-            if(currentPlayer.equals(playerOne)){
-                currentPlayer = playerTwo;
-            }else{
-                currentPlayer = playerOne;
-            }
-
-            gB.setMessage("");
-            gB.setGameText("Player " + currentPlayer.getName() + "'s turn");
-
-            phase = firstPhase;
-
+            changePlayers();
         }
 
         gameIsRunning = true;
         //then continue with the game
         loopGame();
+    }
+
+
+    public void canPlayerGoToAttack(){
+        
+    }
+
+    public void changePlayers(){
+        if(currentPlayer.equals(playerOne)){
+            currentPlayer = playerTwo;
+        }else{
+            currentPlayer = playerOne;
+        }
+
+        gB.setMessage("");
+        gB.setGameText("Player " + currentPlayer.getName() + "'s turn");
+
+        phase = firstPhase;
+
     }
 
     //for now this method will return a String. However in the future this should be up to change.
