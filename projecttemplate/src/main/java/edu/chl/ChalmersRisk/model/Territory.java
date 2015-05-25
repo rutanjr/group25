@@ -24,6 +24,10 @@ public class Territory {
 
     // Constructors
 
+    public Territory(String name){
+        this(name, Constants.EMPTY_CONTINENT);
+    }
+
     public Territory(String name, Continent continent) {
         this(name, continent,Constants.EMPTY_PLAYER);
     }

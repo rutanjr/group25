@@ -20,6 +20,10 @@ public class Continent {
 
     // Constructor
 
+    public Continent(String name, int value){
+        this(name,value,new ArrayList<Territory>());
+    }
+
     public Continent(String name, int value, ArrayList<Territory> territories)   {
         this.name = name;
         this.value = value;
