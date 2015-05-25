@@ -1,5 +1,6 @@
 package edu.chl.ChalmersRisk.model;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 /**
@@ -16,10 +17,14 @@ public class ChalmersMap implements Maps {
 
         continents.add(new Continent("Chalmers", 4,territories));
 
-        territories.add(new Territory("A",continents.get(0)));
+        /*territories.add(new Territory("A",continents.get(0)));
         territories.add(new Territory("B", continents.get(0)));
         territories.add(new Territory("C", continents.get(0)));
-        territories.add(new Territory("D", continents.get(0)));
+        territories.add(new Territory("D", continents.get(0)));*/
+        territories.add(new Territory("A",continents.get(0), new Point2D.Double(20,25), "first_territory.png"));
+        territories.add(new Territory("B", continents.get(0), new Point2D.Double(80,40), "first_territory.png"));
+        territories.add(new Territory("C", continents.get(0), new Point2D.Double(120,60), "first_territory.png"));
+        territories.add(new Territory("D", continents.get(0), new Point2D.Double(200,40), "first_territory.png"));
 
     }
 

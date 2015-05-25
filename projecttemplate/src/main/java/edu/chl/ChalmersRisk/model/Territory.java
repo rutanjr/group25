@@ -2,6 +2,7 @@ package edu.chl.ChalmersRisk.model;
 
 import edu.chl.ChalmersRisk.utilities.Constants;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class Territory {
     private Continent continent;
     private ArrayList<Territory> adjacentTerritories = null;
     private ArrayList<Troop> troops = new ArrayList<>();
+    public Point2D.Double pos;
+    public String url;
 
     // Constructors
 
@@ -33,6 +36,15 @@ public class Territory {
         this.continent = continent;
         this.owner = player;
         this.adjacentTerritories = new ArrayList<Territory>();
+    }
+
+    public Territory(String name, Continent continent, Point2D.Double pos, String url) {
+        this.name = name;
+        this.continent = continent;
+        this.owner = Constants.EMPTY_PLAYER;
+        this.adjacentTerritories = new ArrayList<Territory>();
+        this.pos = pos;
+        this.url = url;
     }
 
     public Territory(String name) {
@@ -102,7 +114,6 @@ public class Territory {
         }
     }
 
-
     // Query - Methods
 
     public String getName() {
@@ -130,7 +141,6 @@ public class Territory {
      */
     public List<Troop> getTroops() {return this.troops;}
 
-
     /**
      * @return returns a list with Territories that are adjacent to the current Territory.
      */
@@ -146,9 +156,10 @@ public class Territory {
         return this.getAdjacentTerritories().contains(possibleNeighbor);
     }
 
-
+    //TODO JAVADOC
     public boolean isAvailableTo(Player player){
         return (owner.  equals(Constants.EMPTY_PLAYER) || owner.equals(player));
     }
+
 
 }
