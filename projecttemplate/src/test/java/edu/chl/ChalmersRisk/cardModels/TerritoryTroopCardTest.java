@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertFalse;
 
 /**
  * Created by viking on 21/05/15.
@@ -29,6 +30,13 @@ public class TerritoryTroopCardTest {
 
     @Test
     public void testTurnCard() throws Exception {
+        int troopsBefore = testTer.getAmountOfTroops();
+        testCard.turnCard();
+        int troopsAfter = testTer.getAmountOfTroops();
+
+        assertFalse(troopsAfter==troopsBefore);
+        assertTrue(troopsAfter==troopsBefore+5);
+
 
 
     }
