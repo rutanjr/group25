@@ -60,7 +60,6 @@ public class ChalmersRisk implements Controller {
 
     private Timer gameTimer,phaseTimer;
 
-    //TODO doCombat() - what should this method take?
 
     public ChalmersRisk(StartScreen startScreen){
 
@@ -68,6 +67,10 @@ public class ChalmersRisk implements Controller {
         this.startScreen = startScreen;
         this.startScreen.getStartButton().setOnAction(new StartButtonPressed());
 
+    }
+
+    //This is an empty constructor to used test some methods that don't require a working view.
+    public ChalmersRisk(){
     }
 
     public void startGame(String[] players, Stage primaryStage) {
@@ -153,6 +156,7 @@ public class ChalmersRisk implements Controller {
     }
 
     public void attackPhase(){
+
 
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
@@ -339,15 +343,15 @@ public class ChalmersRisk implements Controller {
      * @param defender the Territory that is being defended.
      * @return true if the defender has lost all it troops in the territory.
      */
-    public static boolean combat(Territory attacker, Territory defender){
+    public static boolean combat(Territory attacker, Territory defender, int atkTroops){
 
-
-        DiceCup diceCup = new DiceCup();
         int[] atkRoll;
         int[] defRoll;
+        DiceCup cupOfDice = new DiceCup();
+
         //Attacker selects a number of dice <= #troops - 1 and 3
 
-        int atkTroops = attacker.getAmountOfTroops() - 1;
+
 
 
         if (atkTroops<1){
@@ -363,21 +367,21 @@ public class ChalmersRisk implements Controller {
 
         //Creating attacker's die array.
         if(atkTroops>=3){
-            atkRoll = diceCup.rollDice(3);
+            atkRoll = cupOfDice.rollDice(3);
         }
         else if (atkTroops==2){
-            atkRoll = diceCup.rollDice(2);
+            atkRoll = cupOfDice.rollDice(2);
         } else {
-            atkRoll = diceCup.rollDice(1);
+            atkRoll = cupOfDice.rollDice(1);
 
         }
 
 
         //Creating defender's die array.
         if (defTroops>=2){
-            defRoll = diceCup.rollDice(2);
+            defRoll = cupOfDice.rollDice(2);
         } else {
-            defRoll = diceCup.rollDice(1);
+            defRoll = cupOfDice.rollDice(1);
         }
 
         System.out.println("ATTACKER RULLADE ::: "+atkRoll[0]);
