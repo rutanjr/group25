@@ -1,6 +1,8 @@
 package edu.chl.ChalmersRisk.model;
 
 
+import edu.chl.ChalmersRisk.utilities.Constants;
+
 import java.util.ArrayList;
 
 /**
@@ -22,6 +24,7 @@ public class Player {
         this.name = name;
         this.color = color;
         placedTroops = new ArrayList<Troop>();
+        troopsToPlace = new ArrayList<Troop>();
         territories = new ArrayList<Territory>();
     }
 
@@ -95,13 +98,13 @@ public class Player {
      *
      * @return ArrayList of troops that needs placing.
      */
-    public ArrayList<Troop> getTroopsToPlce() {
+    public ArrayList<Troop> getTroopsToPlace() {
         return (ArrayList<Troop>) troopsToPlace.clone();
     }
 
     public int amountOfTroops(){
         int count = 0;
-        for(Troop t : getTroopsToPlce()){
+        for(Troop t : getTroopsToPlace()){
             count++;
         }
         return count;
@@ -121,5 +124,14 @@ public class Player {
 
     public String getColor(){
         return color;
+    }
+
+    public void addTerritories(Territory t1) {
+        territories.add(t1);
+    }
+
+    public void removeTerritory(Territory t1) {
+        t1.setnewOwner(Constants.EMPTY_PLAYER);
+        territories.remove(t1);
     }
 }
