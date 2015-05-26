@@ -1,20 +1,16 @@
 package edu.chl.ChalmersRisk.view;
 
-import edu.chl.ChalmersRisk.controller.ChalmersRisk;
 import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Territory;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-import javafx.scene.control.*;
 import java.util.ArrayList;
 
 /**
@@ -24,12 +20,13 @@ import java.util.ArrayList;
  */
 public class StartScreen extends GridPane{
 
-        ArrayList<Territory> territories;
-        ArrayList<Continent> continents;
+        private ArrayList<Territory> territories;
+        private ArrayList<Continent> continents;
 
-        Button startButton;
-        TextField playerOne,playerTwo;
-        Stage primaryStage;
+        private Button startButton;
+        private TextField playerOne,playerTwo;
+        private Stage primaryStage;
+        private Text warningText;
 
         public StartScreen(Stage primaryStage) {
             this.primaryStage = primaryStage;
@@ -46,17 +43,32 @@ public class StartScreen extends GridPane{
             HBox hBox = new HBox(10);
             hBox.setAlignment(Pos.CENTER);
             hBox.getChildren().add(startButton);
-            this.add(hBox,1,3);
+            this.add(hBox, 1, 3);
 
 
-            playerOne = new TextField("First players name");
+            playerOne = new TextField();
+            playerOne.setPromptText("First players name");
             this.add(playerOne, 1, 1);
 
-            playerTwo = new TextField("Second players name");
+            playerTwo = new TextField();
+            playerTwo.setPromptText("Second players name");
             this.add(playerTwo, 1, 2);
 
+            warningText = new Text();
+            this.add(warningText,1,6);
 
 
+        }
+
+
+    /**
+     *
+     *Method to set the warning text. For intstance if you haven't filled in any names for the players
+     * @param message : the message you want to be displayed
+     */
+        public void setWarningText(String message) {
+            warningText.setText(message);
+            warningText.setFill(Paint.valueOf("red"));
         }
 
 
