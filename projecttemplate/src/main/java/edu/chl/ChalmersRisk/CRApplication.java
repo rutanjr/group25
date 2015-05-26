@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk;
 
 import edu.chl.ChalmersRisk.controller.ChalmersRisk;
+import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.StartScreen;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ public class CRApplication extends Application {
         StartScreen startScreen = new StartScreen(primaryStage); //view
         ChalmersRisk chalmersRisk = new ChalmersRisk(startScreen); //controller
 
-        Scene scene = new Scene(startScreen, 500, 500);
+        Scene scene = new Scene(startScreen, Constants.width, Constants.height);
         primaryStage.setScene(scene);
         primaryStage.show();
 

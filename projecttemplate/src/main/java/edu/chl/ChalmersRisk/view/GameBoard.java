@@ -83,7 +83,7 @@ public class GameBoard extends BorderPane {
     public void update(int phaseNumber){
 
         //if placing troops phase
-        if(phaseNumber == 1){
+        if(phaseNumber == 1 || phaseNumber == 2){
 
             //update text on all the buttons
             for(int i =0; i<buttons.length;i++){

@@ -65,6 +65,11 @@ public class Player {
 
     }
 
+
+    public void loseTerritory(Territory territory){
+        territories.remove(territory);
+    }
+
     public boolean isMyTerritory(Territory territory) {
         return territories.contains(territory);
     }
