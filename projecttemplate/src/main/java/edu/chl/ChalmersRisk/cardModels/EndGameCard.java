@@ -10,11 +10,12 @@ public class EndGameCard implements ICard{
     // This card might not be activated if drawn in the early phases of the game, minTurn decides whether this
     // card can be activated activated.
     private int minTurn;
-    private String title;
+    private String title, message;
 
     public EndGameCard(int minTurn) {
         this.minTurn = minTurn;
         this.title = "End Game";
+        this.message = "Due to unforeseen event, the battle over Chalmers has ended.";
     }
     @Override
     public String getTitle() {
@@ -23,7 +24,7 @@ public class EndGameCard implements ICard{
 
     @Override
     public String getMessage() {
-        return "Due to unforeseen event, the battle over Chalmers has ended.";
+        return this.message;
     }
 
     @Override

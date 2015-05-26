@@ -12,12 +12,14 @@ import java.util.ArrayList;
  */
 public class TerritoryChangeCard implements ICard {
 
-    private String title = "Traitors! and new Allies.";
+    private String title, message;
     private Player playerA, playerB;
 
     public TerritoryChangeCard(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
+        this.title  = "Traitors! and new Allies.";
+        this.message = "Surprise midterm exams! Due to panic some soldiers have switched alliances.";
     }
 
     @Override
@@ -27,7 +29,7 @@ public class TerritoryChangeCard implements ICard {
 
     @Override
     public String getMessage() {
-        return "Surprise midterm exams! Due to panic some soldiers have switched alliances.";
+        return this.message;
     }
 
     @Override

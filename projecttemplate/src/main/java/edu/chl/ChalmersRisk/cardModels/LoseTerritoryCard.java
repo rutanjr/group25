@@ -19,10 +19,8 @@ public class LoseTerritoryCard implements ICard {
 
     public LoseTerritoryCard(Player targetPlayer) {
         this.targetPlayer = targetPlayer;
-
-        //TODO
-        this.title = "";
-        this.message = "";
+        this.title = "Ops!";
+        this.message = "An unsanctioned experiment on a territory has gone awry and the territory must be evacuated.";
     }
 
     @Override

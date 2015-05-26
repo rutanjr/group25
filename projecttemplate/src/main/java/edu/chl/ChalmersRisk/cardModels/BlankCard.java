@@ -15,22 +15,14 @@ public class BlankCard implements ICard {
     }
 
     @Override
-    public String getTitle() {
-        return this.title;
-    }
+    public String getTitle() { return this.title; }
 
     @Override
-    public String getMessage() {
-        return this.message;
-    }
+    public String getMessage() { return this.message; }
 
     @Override
-    public int phaseCheck() {
-        return 0;
-    }
+    public int phaseCheck() { return 0; }
 
     @Override
-    public void turnCard() {
-        // This card has no effect.
-    }
+    public void turnCard() { /* This card has no effect. */ }
 }

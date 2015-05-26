@@ -8,7 +8,12 @@ package edu.chl.ChalmersRisk.cardModels;
  */
 public class AdditionalMoveCard implements ICard {
 
-    private String title = "Additional movement phase";
+    private String title, message;
+
+    public AdditionalMoveCard() {
+        this.title = "Additional movement phase";
+        this.message = "Due to assistance from a professor, you are allowed to move your troops an additional time this turn.";
+    }
 
     @Override
     public String getTitle() {
@@ -16,9 +21,7 @@ public class AdditionalMoveCard implements ICard {
     }
 
     @Override
-    public String getMessage() {
-        return "Due to assistance from a professor, you are allowed to move your troops an additional time this turn.";
-    }
+    public String getMessage() { return this.message; }
 
     @Override
     public int phaseCheck() {
