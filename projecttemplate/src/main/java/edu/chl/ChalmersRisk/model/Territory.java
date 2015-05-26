@@ -73,6 +73,8 @@ public class Territory {
     }
 
     public void setnewOwner(Player newOwner) {
+
+        owner.loseTerritory(this);
         this.owner = newOwner;
     }
 
