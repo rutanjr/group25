@@ -337,10 +337,11 @@ public class ChalmersRisk implements Controller {
      * @param atkTroops the amount of troops to attack with.
      * @return true if the defender has lost all it troops in the territory.
      */
-    public static boolean combat(Territory attacker, Territory defender, int atkTroops){
+    public static boolean combat(Territory attacker, Territory defender){
 
         int[] atkRoll;
         int[] defRoll;
+        int atkTroops = attacker.getAmountOfTroops()-1;
         DiceCup cupOfDice = new DiceCup();
 
         //Attacker selects a number of dice <= #troops - 1 and 3
