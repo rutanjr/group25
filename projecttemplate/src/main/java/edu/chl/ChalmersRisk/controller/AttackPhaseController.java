@@ -47,10 +47,15 @@ public class AttackPhaseController implements Controller {
             //first if the player chooses a territory that he owns
             if(btn.getTerritory().getOwner().equals(player)  && btn.getTerritory().getAmountOfTroops() > 1){
                 gameBoard.setMessage("Välj nu ett område att attackera!");
-                canAttack = true;
                 attackFrom = btn.getTerritory();
-            }else if(btn.getTerritory().getAmountOfTroops() <= 1 && btn.getTerritory().getOwner().equals(player)){
+                canAttack = true;
+            }else if(btn.getTerritory().getAmountOfTroops() <= 1 && btn.getTerritory().getOwner().equals(player)){ //
+            // if you pick a territory where you don't have enough troops to attack with
                 gameBoard.setMessage("Du har för få trupper här");
+                attackFrom = btn.getTerritory();
+
+                //you shouldn't be able to attack
+                canAttack = false;
             }
             //if the territory clicked is neither empty nor owned by the player itself : ergo it's owned by another player
             // and if the player can attack
@@ -62,9 +67,9 @@ public class AttackPhaseController implements Controller {
                 if(ChalmersRisk.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
                     player.receiveTroops((ArrayList)attackFrom.getTroops());
-                    
+
                     for(int i = 0; i<attackFrom.getAmountOfTroops();i++){
-                        player.placeTroops(btn.getTerritory(),1);
+                        player.placeTroops(defendingTerritory,1);
                     }
 
 
