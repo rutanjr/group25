@@ -16,6 +16,10 @@ public class AllChangeTroopCard implements ICard {
     private int troopChange;
     private ArrayList<Continent> allContinents;
 
+    /**
+     * @param allContinents, a reference to the list of all continents
+     * @param troopChange, an integer indicating the change in troops of all territories (can be negative or positive).
+     */
     public AllChangeTroopCard(ArrayList<Continent> allContinents, int troopChange) {
         this.troopChange = troopChange;
         this.allContinents = allContinents;
