@@ -75,8 +75,9 @@ public class AttackPhaseController implements Controller {
 
                     attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
                     gameBoard.setMessage("");
-                    canAttack = false;
                 }
+
+                canAttack = attackFrom.getAmountOfTroops()>1;
 
 
                 //but no matter what, we should update

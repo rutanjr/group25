@@ -39,9 +39,6 @@ public class Territory {
         this.adjacentTerritories = new ArrayList<Territory>();
     }
 
-    public Territory(String name) {
-        this.name = name;
-    }
 
 
     // Command - Methods
