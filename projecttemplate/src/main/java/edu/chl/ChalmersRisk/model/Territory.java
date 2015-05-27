@@ -22,8 +22,8 @@ public class Territory {
     private Continent continent;
     private ArrayList<Territory> adjacentTerritories = null;
     private ArrayList<Troop> troops = new ArrayList<>();
-    public Point2D.Double pos;
-    public String url;
+    private Point2D.Double pos;
+    private String url;
 
     // Constructors
 
@@ -162,4 +162,11 @@ public class Territory {
     }
 
 
+    public String getUrl() {
+        return url;
+    }
+
+    public Point2D.Double getPos() {
+        return pos;
+    }
 }
