@@ -7,16 +7,24 @@ package edu.chl.ChalmersRisk.cardModels;
 
 public interface ICard {
 
-    // returns the title of the card
+    /**
+     * @return a String that contains the title of the card.
+     */
     public String getTitle();
 
-    //returns the message of the card
+    /**
+     * @return a String that contains the message that should be displayed to the player.
+     */
     public String getMessage();
 
-    //Returns an Integer that will determine when the effect of the card will occur.
+    /**
+     * @return an Integer value to test in what phase of the players turn the card effect should occur.
+     */
     public int phaseCheck();
 
-    //turns the card, revealing its effect
+    /**
+     *  this method executes the effect of the card
+     */
     public void turnCard();
 
 }

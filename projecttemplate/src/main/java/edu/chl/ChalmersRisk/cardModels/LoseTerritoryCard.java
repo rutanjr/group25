@@ -15,38 +15,63 @@ import java.util.ArrayList;
 public class LoseTerritoryCard implements ICard {
 
     private String title, message;
-    private Player targetPlayer;
+    private Player currentPlayer, playerA, playerB;
 
-    public LoseTerritoryCard(Player targetPlayer) {
-        this.targetPlayer = targetPlayer;
+    /**
+     * A constructor for an event card where the current player loses a territory at random
+     *
+     * @param currentPlayer, a reference to the current player (the player who drew this card).
+     */
+    public LoseTerritoryCard(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
         this.title = "Ops!";
-        this.message = "An unsanctioned experiment on a territory has gone awry and the territory must be evacuated.";
+        this.message = "An unsanctioned experiment in one of Chalmers building has gone awry and there is now," +
+                " something different about the people there...";
+    }
+
+    /**
+     * A constructor for an event card where a random player loses a territory at random
+     *
+     * @param playerA, a reference to one of the two players.
+     * @param playerB, a reference to the other of the two players.
+     */
+    public LoseTerritoryCard(Player playerA, Player playerB) {
+        this.playerA = playerA;
+        this.playerB = playerB;
+        this.title = "Ops!";
+        this.message = "An unsanctioned experiment in one of Chalmers building has gone awry and there is now," +
+                " something different about the people there...";
     }
 
     @Override
-    public String getTitle() {
-        return this.title;
-    }
+    public String getTitle() { return this.title; }
 
     @Override
-    public String getMessage() {
-        return this.message;
-    }
+    public String getMessage() { return this.message; }
 
     @Override
-    public int phaseCheck() {
-        return 0;
-    }
+    public int phaseCheck() { return 0; }
 
     /**
      * A method that turns a random Territory neutral, but keeps the troops currently on it
      */
     @Override
     public void turnCard() {
+        if (currentPlayer == null) { // if the card is created with two players
+            int randInt = (int)(Math.random()*2);
 
-        int intTemp = targetPlayer.getTerritories().size();
+            if (randInt == 0) {
+                currentPlayer = playerA;
+            } else if (randInt == 1) {
+                currentPlayer = playerB;
+            }
+        }
+        cardEffect(currentPlayer);
+    }
+    
+    private void cardEffect(Player targetPlayer) {
+        int intTemp = (currentPlayer.getnmbrOfTerritories() - 1); // -1 so we later can remove objects at their correct possition
         intTemp = (int)(Math.random()*intTemp);
-        targetPlayer.removeTerritory(targetPlayer.getTerritories().get(intTemp));
-
+        currentPlayer.removeTerritory(currentPlayer.getTerritories().get(intTemp));
     }
 }
