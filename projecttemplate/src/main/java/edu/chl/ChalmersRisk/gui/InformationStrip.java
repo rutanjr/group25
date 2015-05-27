@@ -18,7 +18,7 @@ public class InformationStrip extends BorderPane {
         nextButton = new Button("NEXT");
         nextButton.setPrefSize(100,50);
         this.setPadding(new Insets(15, 12, 15, 12));
-        this.setStyle("-fx-background-color: #336699;");
+        this.setStyle("-fx-background-color: #f3a1a7;");
 
         this.setLeft(gameText);
         this.setRight(nextButton);

@@ -27,6 +27,10 @@ public class Territory {
 
     // Constructors
 
+    public Territory(String name){
+        this(name, Constants.EMPTY_CONTINENT);
+    }
+
     public Territory(String name, Continent continent) {
         this(name, continent,Constants.EMPTY_PLAYER);
     }
@@ -85,6 +89,8 @@ public class Territory {
     }
 
     public void setnewOwner(Player newOwner) {
+
+        owner.loseTerritory(this);
         this.owner = newOwner;
     }
 
