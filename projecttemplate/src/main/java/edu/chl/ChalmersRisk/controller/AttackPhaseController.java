@@ -7,6 +7,7 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -26,9 +27,10 @@ public class AttackPhaseController implements Controller {
         this.gameBoard = gameBoard;
         canAttack = false;
 
-        TerritoryView[] TerritoryViews = gameBoard.getButtons();
-        for (TerritoryView tb: TerritoryViews){
-            tb.setOnMouseClicked(new ButtonPressed());
+        TerritoryView[] territoryViews = gameBoard.getButtons();
+        for (TerritoryView tv: territoryViews){
+            //tv.setOnAction(new ButtonPressed());
+            tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
 
     }
@@ -38,7 +40,7 @@ public class AttackPhaseController implements Controller {
         @Override
         public void handle(Event event) {
 
-            TerritoryView btn = (TerritoryView)event.getSource();
+            TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
 
 
             //first see if there are more than one troop on the territory
@@ -73,7 +75,7 @@ public class AttackPhaseController implements Controller {
                     }*/
 
 
-                    ChalmersRisk.moveTroops(attackFrom,defendingTerritory,attackFrom.getAmountOfTroops()-1);
+                    ChalmersRisk.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
 
                     attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
