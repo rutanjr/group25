@@ -18,8 +18,8 @@ public class TerritoryChangeCard implements ICard {
     public TerritoryChangeCard(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.title  = "Traitors! and new Allies.";
-        this.message = "Surprise midterm exams! Due to panic some soldiers have switched alliances.";
+        this.title  = "Traitors! And new Allies.";
+        this.message = "Surprise midterm exams! Due to panic some students have switched alliances.";
     }
 
     @Override
@@ -45,15 +45,16 @@ public class TerritoryChangeCard implements ICard {
 
         tempListA = playerA.getTerritories();
         tempListB = playerB.getTerritories();
-        tempRandA = (int)((Math.random()*tempListA.size()));
-        tempRandB = (int)((Math.random()*tempListB.size()));
+        tempRandA = (int)((Math.random()* (tempListA.size() - 1)));
+        tempRandB = (int)((Math.random()* (tempListB.size() - 1)));
 
         tempTerrA = (Territory)tempListA.get(tempRandA);
         tempTerrB = (Territory)tempListB.get(tempRandB);
 
-        tempTerrA.setnewOwner(playerB);
-        tempTerrB.setnewOwner(playerA);
+        playerA.removeTerritory(tempTerrA);
+        playerB.removeTerritory(tempTerrB);
 
-        //TODO check if this works
+        playerA.addTerritories(tempTerrB);
+        playerB.addTerritories(tempTerrA);
     }
 }
