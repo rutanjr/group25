@@ -23,7 +23,7 @@ public interface ICard {
     public int phaseCheck();
 
     /**
-     *  this method executes the effect of the card
+     *  this method executes the effect of the card.
      */
     public void turnCard();
 

@@ -8,7 +8,7 @@ package edu.chl.ChalmersRisk.cardModels;
 public class EndGameCard implements ICard{
 
     // This card might not be activated if drawn in the early phases of the game, minTurn decides whether this
-    // card can be activated activated.
+    // card can be activated.
     private int minTurn;
     private String title, message;
 
@@ -36,7 +36,7 @@ public class EndGameCard implements ICard{
     public void turnCard() {
         /*
         if (getGameTurn() >= this.minTurn) {
-            //TODO effect of the card
+            //TODO effect of the card, we need a way to get the current turn.
         }
         */
     }
