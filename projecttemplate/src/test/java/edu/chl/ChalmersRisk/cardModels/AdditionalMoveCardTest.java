@@ -5,7 +5,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Created by viking on 25/05/15.
+ * Created by Björn Bergqvist on 25/05/15.
  */
 public class AdditionalMoveCardTest {
     @Test

@@ -12,7 +12,7 @@ import static junit.framework.Assert.assertTrue;
 
 /**
  * Tests LostTerritoryCard.
- * Created by viking on 22/05/15.
+ * Created by Björn Bergqvist on 22/05/15.
  */
 public class LoseTerritoryCardTest {
     @Test

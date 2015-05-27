@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Created by viking on 22/05/15.
+ * Created by Björn Bergvist on 22/05/15.
  */
 public class AllChangeTroopCardTest {
     @Test
