@@ -51,11 +51,6 @@ public class Territory {
         this.url = url;
     }
 
-    public Territory(String name) {
-        this.name = name;
-    }
-
-
     // Command - Methods
 
     /**

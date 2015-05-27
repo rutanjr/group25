@@ -1,6 +1,6 @@
 package edu.chl.ChalmersRisk.controller;
 
-import edu.chl.ChalmersRisk.gui.TerritoryButton;
+import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.utilities.Constants;
@@ -26,9 +26,9 @@ public class AttackPhaseController implements Controller {
         this.gameBoard = gameBoard;
         canAttack = false;
 
-        TerritoryButton[] territoryButtons = gameBoard.getButtons();
-        for (TerritoryButton tb: territoryButtons){
-            tb.setOnAction(new ButtonPressed());
+        TerritoryView[] TerritoryViews = gameBoard.getButtons();
+        for (TerritoryView tb: TerritoryViews){
+            tb.setOnMouseClicked(new ButtonPressed());
         }
 
     }
@@ -38,7 +38,7 @@ public class AttackPhaseController implements Controller {
         @Override
         public void handle(Event event) {
 
-            TerritoryButton btn = (TerritoryButton)event.getSource();
+            TerritoryView btn = (TerritoryView)event.getSource();
 
 
             //first see if there are more than one troop on the territory
