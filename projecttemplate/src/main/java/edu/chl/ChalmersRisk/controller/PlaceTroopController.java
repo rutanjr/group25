@@ -1,14 +1,12 @@
 package edu.chl.ChalmersRisk.controller;
 
-import edu.chl.ChalmersRisk.gui.TerritoryButton;
+import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Paint;
+import javafx.scene.image.ImageView;
 
 /**
  * Created by Malin on 2015-05-12.
@@ -24,9 +22,10 @@ public class PlaceTroopController implements Controller {
         this.gameBoard = gameBoard;
 
 
-        TerritoryButton[] territoryButtons = gameBoard.getButtons();
-        for (TerritoryButton tb: territoryButtons){
-            tb.setOnAction(new ButtonPressed());
+        TerritoryView[] territoryViews = gameBoard.getButtons();
+        for (TerritoryView tv: territoryViews){
+            //tv.setOnAction(new ButtonPressed());
+            tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
 
         gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlace().size());
@@ -39,7 +38,7 @@ public class PlaceTroopController implements Controller {
         @Override
         public void handle(Event event) {
             if(!player.getTroopsToPlace().isEmpty()){
-                TerritoryButton btn = (TerritoryButton)event.getSource();
+                TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
                 //see if the player owns the territory OR if the territory is empty
                 if(btn.getTerritory().getOwner().equals(Constants.EMPTY_PLAYER) || player.isMyTerritory(btn.getTerritory())){
                     player.placeTroops(btn.getTerritory(),1);

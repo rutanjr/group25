@@ -1,27 +1,19 @@
 package edu.chl.ChalmersRisk.view;
 
 
-import edu.chl.ChalmersRisk.controller.ChalmersRisk;
 import edu.chl.ChalmersRisk.controller.Controller;
 import edu.chl.ChalmersRisk.gui.InformationStrip;
-import edu.chl.ChalmersRisk.gui.TerritoryButton;
+import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.gui.TopStrip;
 import edu.chl.ChalmersRisk.model.*;
-import edu.chl.ChalmersRisk.utilities.Constants;
-import javafx.beans.NamedArg;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by rutanjr on 2015-03-31.
@@ -29,7 +21,7 @@ import java.util.ArrayList;
  */
 public class GameBoard extends BorderPane {
 
-    private TerritoryButton[] buttons;
+    private TerritoryView[] buttons;
     private Text message;
     private Controller controller;
     private InformationStrip infoStrip;
@@ -60,17 +52,17 @@ public class GameBoard extends BorderPane {
 
 
         //"map"
-        GridPane gp = new GridPane();
-        gp.setHgap(25);
-        gp.setVgap(25);
-        buttons = new TerritoryButton[map.getTerritories().size()];
+        Pane gp = new Pane();
+        buttons = new TerritoryView[map.getTerritories().size()];
+        //ImageView chalmersFullMap = new ImageView("Chalmers.png");
+        //gp.getChildren().add(chalmersFullMap);
 
 
         int i = 0;
         for(Territory t : map.getTerritories()) {
-            buttons[i] = new TerritoryButton(t);
-            buttons[i].setText(t.getName() + " [ "+t.getTroops()+" ] ");
-            gp.add(buttons[i],i,0);
+            buttons[i] = new TerritoryView(t);
+            //buttons[i].setText(t.getName() + " [ "+t.getTroops()+" ] ");
+            gp.getChildren().add(buttons[i]);
             i++;
         }
         this.setCenter(gp);
@@ -87,14 +79,14 @@ public class GameBoard extends BorderPane {
 
             //update text on all the buttons
             for(int i =0; i<buttons.length;i++){
-                buttons[i].setText(buttons[i].getTerritory().getName() + " [ "+buttons[i].getTerritory().getAmountOfTroops()+" ] ");
+                //buttons[i].setText(buttons[i].getTerritory().getName() + " [ "+buttons[i].getTerritory().getAmountOfTroops()+" ] ");
                 buttons[i].paintButton();
             }
 
         }
     }
 
-    public TerritoryButton[] getButtons(){
+    public TerritoryView[] getButtons(){
         return buttons;
     }
 
