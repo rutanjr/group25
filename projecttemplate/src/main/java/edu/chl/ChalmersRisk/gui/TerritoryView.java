@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk.gui;
 
 import edu.chl.ChalmersRisk.model.Territory;
+import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,7 +23,7 @@ public class TerritoryView extends StackPane {
     private ImageView image;
 
     public TerritoryView(){
-        super();
+        this(Constants.EMPTY_TERRITORY);
     }
 
     public TerritoryView(Territory territory){
@@ -42,7 +43,6 @@ public class TerritoryView extends StackPane {
 
         button.setMouseTransparent(true);
         this.getChildren().add(button);
-
     }
 
 
@@ -50,8 +50,11 @@ public class TerritoryView extends StackPane {
     public void paintButton() {
 
         button.setStyle("-fx-background-color: #" + this.getTerritory().getOwner().getColor() + ";");
+
+
         button.setText("" + this.getTerritory().getAmountOfTroops());
-        button.setTextFill(Color.WHITE);
+
+        button.setTextFill((this.getTerritory().getAmountOfTroops() == 0) ? Color.BLACK : Color.WHITE);
         image.setEffect(new DropShadow(10, Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
 
     }
