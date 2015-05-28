@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk.gui;
 
 import edu.chl.ChalmersRisk.model.Territory;
+import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -43,6 +44,7 @@ public class TerritoryView extends StackPane {
             setMargin(button, new Insets(8,160,8,30));
         }
 
+
         button.setMouseTransparent(true);
         this.getChildren().add(button);
     }
@@ -54,7 +56,7 @@ public class TerritoryView extends StackPane {
         button.setStyle("-fx-background-color: #" + this.getTerritory().getOwner().getColor() + ";");
         button.setText("" + this.getTerritory().getAmountOfTroops());
         button.setTextFill(Color.WHITE);
-        image.setEffect(new DropShadow(10, Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
+        image.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
 
     }
 
