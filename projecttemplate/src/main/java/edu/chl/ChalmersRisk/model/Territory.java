@@ -88,7 +88,8 @@ public class Territory {
     public void setnewOwner(Player newOwner) {
 
         owner.loseTerritory(this);
-        this.owner = newOwner;
+        owner = newOwner;
+        owner.addTerritories(this);
     }
 
     /**
@@ -216,4 +217,6 @@ public class Territory {
         }
         return hasPath;
     }
+
+
 }

@@ -83,16 +83,15 @@ public class ChalmersRisk implements Controller {
         System.out.println(playerTwo.getName());
 
         // TODO : what if you want a different map? Future thing
-        loadMap("Chalmers");
+        //loadMap("Chalmers");
+        loadMap("Test");
 
         gB = new GameBoard(map,this);
 
-
-        Scene gameBoard = new Scene(gB, Constants.width,Constants.height);
+        Scene gameBoard = new Scene(gB, map.getWidth(),Constants.height);
 
         gB.setMessage("A new game started between players:\n " + playerOne.getName() + " and " + playerTwo.getName());
         gB.setGameText("Player " + playerOne.getName() + "'s turn");
-
 
         //sätt
         gB.getInfoStrip().getNextButton().setOnAction(new NextButtonPressed());
@@ -100,9 +99,7 @@ public class ChalmersRisk implements Controller {
 
         primaryStage.setScene(gameBoard);
 
-
         //give initialtroops
-
 
         loopGame();
     }
@@ -119,7 +116,6 @@ public class ChalmersRisk implements Controller {
         //else true
         return true;
     }
-
 
     public void loopGame(){
         setTheScene();
@@ -150,7 +146,6 @@ public class ChalmersRisk implements Controller {
 
     public void attackPhase(){
 
-
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
 
@@ -162,30 +157,6 @@ public class ChalmersRisk implements Controller {
             gameIsRunning = false;
 
     }
-
-
-
-
-  /*  public void startGame(Player one, Player two, JFrame mainFrame){
-
-        //initialize timers
-        gameTimer = new Timer(10,this);
-        phaseTimer = new Timer(10,new PhaseTimeActionEvent());
-
-        gameTimer.start();
-        System.out.println("Nytt spel startat! Mellan spelare " + one.getName() + " och " + two.getName());
-
-        //give currentPlayer their first troops.
-        // TODO : this looks awful. Maybe rethink how a player owns his troops etc?
-        giveTroops(currentPlayer);
-
-
-        //set up the mainframe, adds keylistener to the game
-        mainFrame.setFocusable(true);
-        mainFrame.addKeyListener(this);
-        mainFrame.setVisible(true);
-        mainFrame.setSize(1, 1);
-    }*/
 
     public void giveTroops(Player player){
 
@@ -218,6 +189,8 @@ public class ChalmersRisk implements Controller {
 
         if(name.equals("Chalmers")){
             map = new ChalmersMap();
+        }else if(name.equals("Test")){
+            map = new TestMap();
         }
 
         //this code will always be done last
@@ -331,8 +304,6 @@ public class ChalmersRisk implements Controller {
     }
 
     /**
-<<<<<<< HEAD
-=======
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
@@ -522,7 +493,6 @@ public class ChalmersRisk implements Controller {
 
 
     /**
->>>>>>> 356bb0b77611ceb4c1b82fdd4ba725eb61b483b2
      * HERE LIETH THE CLASSES FOR BUTTONPRESSES
      */
 

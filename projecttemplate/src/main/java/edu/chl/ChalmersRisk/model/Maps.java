@@ -1,5 +1,7 @@
 package edu.chl.ChalmersRisk.model;
 
+import javafx.scene.image.ImageView;
+
 import java.util.ArrayList;
 
 /**
@@ -11,5 +13,9 @@ public interface Maps {
 
     public ArrayList<Territory> getTerritories();
     public ArrayList<Continent> getContinents();
+
+    public double getWidth();
+    public double getHeight();
+    public ImageView getBackground();
 
 }

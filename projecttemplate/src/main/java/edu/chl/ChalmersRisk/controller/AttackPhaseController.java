@@ -1,14 +1,13 @@
 package edu.chl.ChalmersRisk.controller;
 
 import edu.chl.ChalmersRisk.gui.TerritoryView;
+import edu.chl.ChalmersRisk.model.Maps;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
-
-import java.util.ArrayList;
 
 /**
  * Created by Malin on 2015-05-20.
@@ -19,12 +18,14 @@ public class AttackPhaseController implements Controller {
     private GameBoard gameBoard;
     private boolean canAttack;
     private Territory attackFrom;
+    private TerritoryView attackButton;
+    private Maps map;
 
     public AttackPhaseController(Player player, GameBoard gameBoard){
-
         this.player = player;
         this.gameBoard = gameBoard;
         canAttack = false;
+        map = gameBoard.getMap();
 
         TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
         for (TerritoryView tv: territoryViews) {
@@ -47,6 +48,11 @@ public class AttackPhaseController implements Controller {
 
             //first if the player chooses a territory that he owns
             if(btn.getTerritory().getOwner().equals(player)  && btn.getTerritory().getAmountOfTroops() > 1){
+
+                //sets a black border around the button
+                attackButton = btn;
+                attackButton.setFocused();
+
                 gameBoard.setMessage("Välj nu ett område att attackera!");
                 attackFrom = btn.getTerritory();
                 canAttack = true;
@@ -60,28 +66,33 @@ public class AttackPhaseController implements Controller {
             }
             //if the territory clicked is neither empty nor owned by the player itself : ergo it's owned by another player
             // and if the player can attack
-            else if(territoryOwned(btn.getTerritory()) && canAttack){
+            else if(territoryOwnedBySomeoneElse(btn.getTerritory()) && canAttack){
 
                 Territory defendingTerritory = btn.getTerritory();
 
                 //if this returns true it means that the defender territory got empty
                 if(player.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
-                   player.receiveTroops((ArrayList)attackFrom.getTroops());
 
-                    for(int i = 0; i<=attackFrom.getAmountOfTroops();i++){
-                        player.placeTroops(defendingTerritory,1);
+                    defendingTerritory.setnewOwner(player); //set new owner
+                    player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
+
+                    gameBoard.setMessage("");
+
+                    //check if the player won the game
+                    if(playerWon()){
+                        System.out.println("Tjuhooo");
+                        //TODO : some sort of endGame method.. somewhere? ChalmersRisk or here...?
+                        gameBoard.setMessage("GRATTIS DU VANN!!");
+
                     }
 
 
-                    player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
-
-
-                    attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
-                    gameBoard.setMessage("");
                 }
 
                 canAttack = attackFrom.getAmountOfTroops()>1;
+                attackButton.removeFocused();
+
 
 
                 //but no matter what, we should update
@@ -94,8 +105,21 @@ public class AttackPhaseController implements Controller {
 
         }
 
-        public boolean territoryOwned(Territory territory){
+        public boolean territoryOwnedBySomeoneElse(Territory territory){
             return !territory.isAvailableTo(player);
+        }
+
+        public boolean playerWon(){
+
+            for(Territory t: map.getTerritories()){
+                //if there is even one territory which the player does not own..
+                if(!player.isOwnerTo(t)){
+                    return false;
+                }
+            }
+            //however, if we leave the for-loop: return true
+            return true;
+
         }
     }
 
