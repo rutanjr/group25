@@ -24,6 +24,25 @@ public class TestMap implements Maps {
         territories.add(new Territory("Chalmers Villan och Friskis", continents.get(0), new Point2D.Double(115,45), "chalmersvillan.png"));
         territories.add(new Territory("Fysik", continents.get(0), new Point2D.Double(167.5,140), "fysik.png"));
 
+
+
+        //neighbours for Vasa Norra.
+        territories.get(0).addNeighbor(territories.get(1));
+        territories.get(0).addNeighbor(territories.get(2));
+
+        //neighbours for Vasa Södra.
+        territories.get(1).addNeighbor(territories.get(0));
+        territories.get(1).addNeighbor(territories.get(2));
+        territories.get(1).addNeighbor(territories.get(3));
+
+        //neighbours for ChalmersVillan och Friskis
+        territories.get(2).addNeighbor(territories.get(0));
+        territories.get(2).addNeighbor(territories.get(1));
+
+        //Neighbours for Fysik
+        territories.get(3).addNeighbor(territories.get(1));
+
+
     }
 
 
