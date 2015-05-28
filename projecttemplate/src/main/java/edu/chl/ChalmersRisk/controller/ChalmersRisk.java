@@ -83,7 +83,8 @@ public class ChalmersRisk implements Controller {
         System.out.println(playerTwo.getName());
 
         // TODO : what if you want a different map? Future thing
-        loadMap("Chalmers");
+        //loadMap("Chalmers");
+        loadMap("Test");
 
         gB = new GameBoard(map,this);
 
@@ -188,6 +189,8 @@ public class ChalmersRisk implements Controller {
 
         if(name.equals("Chalmers")){
             map = new ChalmersMap();
+        }else if(name.equals("Test")){
+            map = new TestMap();
         }
 
         //this code will always be done last
@@ -301,8 +304,6 @@ public class ChalmersRisk implements Controller {
     }
 
     /**
-<<<<<<< HEAD
-=======
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
@@ -492,7 +493,6 @@ public class ChalmersRisk implements Controller {
 
 
     /**
->>>>>>> 356bb0b77611ceb4c1b82fdd4ba725eb61b483b2
      * HERE LIETH THE CLASSES FOR BUTTONPRESSES
      */
 
