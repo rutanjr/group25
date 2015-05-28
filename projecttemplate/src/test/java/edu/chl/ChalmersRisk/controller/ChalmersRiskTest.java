@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
  */
 public class ChalmersRiskTest {
 
+    /*
     @Test
     public void testTerritoriesAreConnected(){
         ArrayList<Territory> territories = new ArrayList<Territory>();
@@ -120,4 +121,5 @@ public class ChalmersRiskTest {
         assertFalse(testRisk.moveTroops(testTer1, testTer2, -3));
 
     }
+    */
 }
