@@ -36,6 +36,10 @@ public class AdditionalAttackCard implements ICard {
         return 0;
     }
 
+    /**
+     * @pre, either right before or right after the attack phase.
+     * @post, grants the user an additional attack phase.
+     */
     @Override
     public void turnCard() {
         //TODO should be a simple check with phasecheck and a call on the currentPlayer.doAttackPhase()ish method
