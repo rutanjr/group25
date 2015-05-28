@@ -320,7 +320,7 @@ public class ChalmersRisk{
         }
 
         //Tests if there is a path between two territories.
-        if (territoriesAreConnected(fromT,toT,fromT.getOwner())){
+        if (fromT.isConnectedTo(toT)){
             //TODO this removes an amount of troops and adds the same amount somewhere else
             // should it move the actual troops instead?
             if (fromT.getAmountOfTroops()>amount){
@@ -332,50 +332,5 @@ public class ChalmersRisk{
         return false;
         //throw new IllegalArgumentException("There are no path between the territories.");
 
-    }
-
-    //TODO write comments.
-    /**
-     * A method for finding a path of territories that is owned by the same player
-     * between two territories. Based on a depth first algorithm.
-     * @param fromT the territory to start checking.
-     * @param toT the terrtiroy to find.
-     * @param owner the player who owns of the territories.
-     * @return
-     */
-    private boolean territoriesAreConnected(Territory fromT, Territory toT, Player owner){
-        boolean hasPath = false;
-        Stack<Territory> toTest = new Stack<Territory>();
-        List<Territory> discovered = new LinkedList<Territory>();
-        toTest.push(fromT);
-
-        while(!toTest.isEmpty()&&!hasPath){
-            Territory search = toTest.pop();
-            if (search.equals(toT)){
-                hasPath=true;
-                //This could be move to anywhere with a return true statement.
-            }else{
-                discovered.add(search);
-                for (Territory it : search.getAdjacentTerritories()){
-                    if (it.getOwner().equals(owner)){
-                        Boolean isUndiscovered = true;
-
-                        //Loop through the discovered territories to see if it has already been searched.
-                        int i = 0;
-                        while (i < discovered.size() && isUndiscovered) {
-                            if (discovered.get(i).equals(it)){
-                                isUndiscovered=false;
-                            }
-                            i++;
-                        }
-
-                        if (isUndiscovered){
-                            toTest.push(it);
-                        }
-                    }
-                }
-            }
-        }
-        return hasPath;
     }
 }
