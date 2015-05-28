@@ -20,9 +20,6 @@ import java.util.ArrayList;
  */
 public class StartScreen extends GridPane{
 
-        private ArrayList<Territory> territories;
-        private ArrayList<Continent> continents;
-
         private Button startButton;
         private TextField playerOne,playerTwo;
         private Stage primaryStage;
@@ -60,7 +57,6 @@ public class StartScreen extends GridPane{
 
         }
 
-
     /**
      *
      *Method to set the warning text. For intstance if you haven't filled in any names for the players
@@ -71,18 +67,15 @@ public class StartScreen extends GridPane{
             warningText.setFill(Paint.valueOf("red"));
         }
 
-
-
         public Button getStartButton(){
             return startButton;
         }
-
 
         public TextField getPlayerOne(){
             return playerOne;
         }
 
-         public TextField getPlayerTwo(){
+        public TextField getPlayerTwo(){
             return playerTwo;
         }
 

@@ -3,7 +3,6 @@ package edu.chl.ChalmersRisk.controller;
 import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
-import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -27,8 +26,8 @@ public class AttackPhaseController implements Controller {
         this.gameBoard = gameBoard;
         canAttack = false;
 
-        TerritoryView[] territoryViews = gameBoard.getButtons();
-        for (TerritoryView tv: territoryViews){
+        TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
+        for (TerritoryView tv: territoryViews) {
             //tv.setOnAction(new ButtonPressed());
             tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
