@@ -67,17 +67,19 @@ public class AttackPhaseController implements Controller {
                 //if this returns true it means that the defender territory got empty
                 if(player.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
-                   player.receiveTroops((ArrayList)attackFrom.getTroops());
+                   /*player.receiveTroops((ArrayList)attackFrom.getTroops());
 
                     for(int i = 0; i<=attackFrom.getAmountOfTroops();i++){
                         player.placeTroops(defendingTerritory,1);
-                    }
+                    }*/
 
 
+                    System.out.println(player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1)
+                    );
                     player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
 
-                    attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
+                    //attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
                     gameBoard.setMessage("");
                 }
 
