@@ -44,6 +44,7 @@ public class TerritoryView extends StackPane {
             setMargin(button, new Insets(8,160,8,30));
         }
 
+
         button.setMouseTransparent(true);
         this.getChildren().add(button);
     }
@@ -58,8 +59,7 @@ public class TerritoryView extends StackPane {
         button.setText("" + this.getTerritory().getAmountOfTroops());
 
         button.setTextFill((this.getTerritory().getAmountOfTroops() == 0) ? Color.BLACK : Color.WHITE);
-        image.setEffect(new DropShadow(10, Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
-
+        image.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
     }
 
 

@@ -6,6 +6,7 @@ import edu.chl.ChalmersRisk.gui.InformationStrip;
 import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.gui.TopStrip;
 import edu.chl.ChalmersRisk.model.*;
+import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -47,8 +48,7 @@ public class GameBoard extends BorderPane {
         //"map"
         Pane gp = new Pane();
         buttons = new TerritoryView[map.getTerritories().size()];
-        //ImageView chalmersFullMap = new ImageView("Chalmers.png");
-        //gp.getChildren().add(chalmersFullMap);
+        gp.getChildren().add(map.getBackground());
 
         int i = 0;
         for(Territory t : map.getTerritories()) {
@@ -100,8 +100,5 @@ public class GameBoard extends BorderPane {
     public InformationStrip getInfoStrip(){
         return infoStrip;
     }
-
-
-
 
 }

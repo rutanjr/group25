@@ -87,12 +87,10 @@ public class ChalmersRisk implements Controller {
 
         gB = new GameBoard(map,this);
 
-
-        Scene gameBoard = new Scene(gB, Constants.width,Constants.height);
+        Scene gameBoard = new Scene(gB, map.getWidth(),Constants.height);
 
         gB.setMessage("A new game started between players:\n " + playerOne.getName() + " and " + playerTwo.getName());
         gB.setGameText("Player " + playerOne.getName() + "'s turn");
-
 
         //sätt
         gB.getInfoStrip().getNextButton().setOnAction(new NextButtonPressed());
@@ -100,9 +98,7 @@ public class ChalmersRisk implements Controller {
 
         primaryStage.setScene(gameBoard);
 
-
         //give initialtroops
-
 
         loopGame();
     }
@@ -119,7 +115,6 @@ public class ChalmersRisk implements Controller {
         //else true
         return true;
     }
-
 
     public void loopGame(){
         setTheScene();
@@ -150,7 +145,6 @@ public class ChalmersRisk implements Controller {
 
     public void attackPhase(){
 
-
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
 
@@ -162,30 +156,6 @@ public class ChalmersRisk implements Controller {
             gameIsRunning = false;
 
     }
-
-
-
-
-  /*  public void startGame(Player one, Player two, JFrame mainFrame){
-
-        //initialize timers
-        gameTimer = new Timer(10,this);
-        phaseTimer = new Timer(10,new PhaseTimeActionEvent());
-
-        gameTimer.start();
-        System.out.println("Nytt spel startat! Mellan spelare " + one.getName() + " och " + two.getName());
-
-        //give currentPlayer their first troops.
-        // TODO : this looks awful. Maybe rethink how a player owns his troops etc?
-        giveTroops(currentPlayer);
-
-
-        //set up the mainframe, adds keylistener to the game
-        mainFrame.setFocusable(true);
-        mainFrame.addKeyListener(this);
-        mainFrame.setVisible(true);
-        mainFrame.setSize(1, 1);
-    }*/
 
     public void giveTroops(Player player){
 
