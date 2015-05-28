@@ -4,6 +4,7 @@ import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -34,12 +35,14 @@ public class TerritoryView extends StackPane {
         image = new ImageView(territory.getUrl());
         this.getChildren().add(image);
 
+        //a button to represent the text for each territory. Displays the number of troops on the territory.
         button = new Button("0");
         button.setStyle("-fx-font-weight: 25;");
         button.setStyle("-fx-background-color: #FFFFFF;");
 
-
-        System.out.println(image.getImage().getWidth() + "   img: " + image.getImage().impl_getUrl());
+        if(image.getImage().getWidth() > 190) {
+            setMargin(button, new Insets(8,160,8,30));
+        }
 
         button.setMouseTransparent(true);
         this.getChildren().add(button);

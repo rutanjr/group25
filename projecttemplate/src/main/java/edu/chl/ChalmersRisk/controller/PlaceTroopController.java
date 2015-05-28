@@ -21,34 +21,34 @@ public class PlaceTroopController implements Controller {
         this.player = player;
         this.gameBoard = gameBoard;
 
+        //fetches the territorys to be able to set the presses.
+        TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
 
-        TerritoryView[] territoryViews = gameBoard.getButtons();
+        //setting press listeners for each territory.
         for (TerritoryView tv: territoryViews){
-            //tv.setOnAction(new ButtonPressed());
             tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
 
         gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlace().size());
-
-
     }
 
-
+    /**
+     * Class for the button presses, the pressed territories in the game. Placing troops.
+     */
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
             if(!player.getTroopsToPlace().isEmpty()){
+                //Clicks on the image view, we want the TerritoryView here. --> .getParent();
                 TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
+
                 //see if the player owns the territory OR if the territory is empty
                 if(btn.getTerritory().getOwner().equals(Constants.EMPTY_PLAYER) || player.isMyTerritory(btn.getTerritory())){
                     player.placeTroops(btn.getTerritory(),1);
-
-
                     gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlace().size());
 
                     //the number is representing the phase.
                     gameBoard.update(1);
-
                 }
             }else{
                 gameBoard.setMessage("You don't have any troops left to place.\nPlease press the next button :)");
