@@ -113,11 +113,11 @@ public class AttackPhaseController implements Controller {
 
             for(Territory t: map.getTerritories()){
                 //if there is even one territory which the player does not own..
-                System.out.println("Kollar område ::"+t.getName());
-                System.out.println("Den som äger det är :: "+t.getOwner().getName());
-
+                if(!player.isOwnerTo(t)){
+                    return false;
+                }
             }
-
+            //however, if we leave the for-loop: return true
             return true;
 
         }
