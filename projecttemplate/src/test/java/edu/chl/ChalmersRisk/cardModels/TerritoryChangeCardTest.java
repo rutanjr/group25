@@ -11,7 +11,7 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Created by viking on 22/05/15.
+ * Created by Björn Bergqvist on 22/05/15.
  */
 public class TerritoryChangeCardTest {
     @Test

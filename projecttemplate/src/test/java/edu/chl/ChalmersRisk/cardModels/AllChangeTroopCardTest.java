@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Created by viking on 22/05/15.
+ * Created by Björn Bergvist on 22/05/15.
  */
 public class AllChangeTroopCardTest {
     @Test
     public void testTurnCard() throws Exception {
-        ArrayList<Territory> testList = new ArrayList<Territory>();
-        Continent testCont = new Continent("Test Continent.", -1, testList);
+        ArrayList<Territory> testListTer = new ArrayList<Territory>();
+        ArrayList<Continent> testListCont = new ArrayList<Continent>();
+        Continent testCont = new Continent("Test Continent.", -1, testListTer);
         Territory testTer1 = new Territory("Test Territory 1.", testCont);
         Territory testTer2 = new Territory("Test Territory 2.", testCont);
 
@@ -28,13 +29,17 @@ public class AllChangeTroopCardTest {
         testTer1.addTroops(5);
         testTer2.addTroops(5);
 
-        ICard testCard = new AllChangeTroopCard(testList,2);
+        testListTer.add(testTer1);
+        testListTer.add(testTer2);
+        testListCont.add(testCont);
+
+        ICard testCard = new AllChangeTroopCard(testListCont,2);
         testCard.turnCard();
 
         assertTrue(testTer1.getAmountOfTroops()==7);
         assertTrue(testTer2.getAmountOfTroops()==7);
 
-        ICard testCard2 = new AllChangeTroopCard(testList,-3);
+        ICard testCard2 = new AllChangeTroopCard(testListCont,-3);
         testCard2.turnCard();
 
         assertTrue(testTer1.getAmountOfTroops()==4);
