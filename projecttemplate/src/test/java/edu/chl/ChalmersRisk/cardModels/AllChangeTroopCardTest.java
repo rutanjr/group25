@@ -32,7 +32,7 @@ public class AllChangeTroopCardTest {
         testListTer.add(testTer1);
         testListTer.add(testTer2);
         testListCont.add(testCont);
-        
+
         ICard testCard = new AllChangeTroopCard(testListCont,2);
         testCard.turnCard();
 
