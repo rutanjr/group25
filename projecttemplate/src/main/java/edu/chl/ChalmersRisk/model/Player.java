@@ -134,4 +134,53 @@ public class Player {
         t1.setnewOwner(Constants.EMPTY_PLAYER);
         territories.remove(t1);
     }
+
+    /**
+     * A method for moving all available troops from one territory to another.
+     * @param fromTerritory the territory to move the troops from.
+     * @param toTerritory the territory to move the troops to.
+     * @return if the move was successful.
+     */
+    public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
+        return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
+    }
+
+    /**
+     * A method for moving troops from one territory to another.
+     * @param fromTerritory the territory to move the troops from.
+     * @param toTerritory the territory to move the troops to.
+     * @param amount the amount of troops.
+     * @return if the move was successful.
+     */
+    public boolean moveTroops(Territory fromTerritory, Territory toTerritory, int amount){
+        //Return false if less than 1 troops should be moved.
+        if (amount<1){
+            return false;
+        }
+
+        //Test if current player owns the territory.
+        if(this!=fromTerritory.getOwner()){
+            return false;
+        }
+
+        //Tests if the territories are owned by the same player.
+        if(fromTerritory.getOwner()!=toTerritory.getOwner()){
+            //throw new IllegalArgumentException("Territories aren't owned by the same player.");
+            return false;
+        }
+
+        //Tests if there is a path between two territories.
+        if (fromTerritory.isConnectedTo(toTerritory)){
+
+            // should it move the actual troops instead?
+            if (fromTerritory.getAmountOfTroops()-1>=amount){
+                fromTerritory.removeTroops(amount);
+                toTerritory.addTroops(amount);
+                return true;
+            }
+        }
+        return false;
+        //throw new IllegalArgumentException("There are no path between the territories.");
+
+    }
 }
