@@ -1,6 +1,8 @@
 package edu.chl.ChalmersRisk.cardModels;
 
 
+import edu.chl.ChalmersRisk.model.Player;
+
 /**
  * A card that upon being drawn will grant the player an additional move phase this turn.
  *
@@ -9,8 +11,11 @@ package edu.chl.ChalmersRisk.cardModels;
 public class AdditionalMoveCard implements ICard {
 
     private String title, message;
+    private Player currentPlayer;
 
-    public AdditionalMoveCard() {
+    public AdditionalMoveCard(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+
         this.title = "Additional movement phase";
         this.message = "Due to assistance from a professor, you are allowed to move your troops an additional time this turn.";
     }
@@ -30,6 +35,6 @@ public class AdditionalMoveCard implements ICard {
 
     @Override
     public void turnCard() {
-        //TODO
+        //TODO should be a simple check with phasecheck and a call on the currentPlayer.doMovePhase()ish method
     }
 }

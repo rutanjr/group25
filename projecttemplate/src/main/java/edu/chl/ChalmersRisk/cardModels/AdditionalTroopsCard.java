@@ -39,6 +39,13 @@ public class AdditionalTroopsCard implements ICard {
         return 0;
     }
 
+    /**
+     *
+     * @pre, The player must have recieved their intial troops before this method can be called (the troops given to the
+     *       player at the begining of the turn).
+     * @post, The player will have a new ArrayList<Troop> containing a combination of troops recieved from the begining of
+     *        the turn andtroops rewarded by this card.
+     */
     @Override
     public void turnCard() {
 

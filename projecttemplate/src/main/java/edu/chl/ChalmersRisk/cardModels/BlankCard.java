@@ -1,7 +1,8 @@
 package edu.chl.ChalmersRisk.cardModels;
 
 /**
- * A blank card that wont have any effect on the game.
+ * A blank card that wont have any effect on the game. This card doesn't have any effect but will help
+ * with our abstraction of a deck.
  *
  * Created by chrh on 26-May-15.
  */

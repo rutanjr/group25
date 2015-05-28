@@ -1,6 +1,9 @@
 package edu.chl.ChalmersRisk.cardModels;
 
 
+import edu.chl.ChalmersRisk.model.Player;
+import edu.chl.ChalmersRisk.utilities.Constants;
+
 /**
  * A card that upon being drawn will grant the player an additional attack phase this turn.
  *
@@ -8,7 +11,15 @@ package edu.chl.ChalmersRisk.cardModels;
  */
 public class AdditionalAttackCard implements ICard {
 
-    private String title = "Additional attack phase";
+    private String title, message;
+    private Player currentPlayer;
+
+    public AdditionalAttackCard(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+        this.title = "Additional attack phase";
+        this.message = "Thanks to assistance from the Student Union, you may attack your " +
+                "opponent an additional time this turn.";
+    }
 
     @Override
     public String getTitle() {
@@ -17,7 +28,7 @@ public class AdditionalAttackCard implements ICard {
 
     @Override
     public String getMessage() {
-        return "Thanks to assistance from the Student Union, you may attack your opponent an additional time this turn.";
+        return this.message;
     }
 
     @Override
@@ -27,6 +38,6 @@ public class AdditionalAttackCard implements ICard {
 
     @Override
     public void turnCard() {
-        //TODO
+        //TODO should be a simple check with phasecheck and a call on the currentPlayer.doAttackPhase()ish method
     }
 }
