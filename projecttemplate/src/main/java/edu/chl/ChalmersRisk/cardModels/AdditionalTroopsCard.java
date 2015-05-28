@@ -12,9 +12,8 @@ import java.util.ArrayList;
  */
 public class AdditionalTroopsCard implements ICard {
 
-    private String title;
+    private String title, message;
     private int bonusTroops;
-    private String message;
     private Player currentPlayer;
 
     public AdditionalTroopsCard(Player currentPlayer, int bonusTroops ) {

@@ -1,12 +1,10 @@
 package edu.chl.ChalmersRisk.cardModels;
 
+import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 
 /**
  * A card that upon being drawn will add troops to a specific territory.
- *
- * TODO this adds to any territory, maybe modify to give to the territory only if its controlled by the current player.
- *
  * Created by chrh on 2015-05-19.
  */
 public class TerritoryTroopCard implements ICard {
@@ -19,6 +17,14 @@ public class TerritoryTroopCard implements ICard {
         this.targetTerritory = targetTerritory;
         this.bonusTroops = bonusTroops;
         this.title = "Reinforcements";
+        this.message = "More reinforcements has arrived and territory " + targetTerritory.getName() +
+                " will receive " + bonusTroops + " additional troops";
+    }
+
+    public TerritoryTroopCard(Player currentPlayer, int bonusTroops) {
+        int i = (int)(Math.random() * currentPlayer.getTerritories().size());
+        this.targetTerritory = currentPlayer.getTerritories().get(i);
+        this.bonusTroops = bonusTroops;
         this.message = "More reinforcements has arrived and territory " + targetTerritory.getName() +
                 " will receive " + bonusTroops + " additional troops";
     }
@@ -43,6 +49,5 @@ public class TerritoryTroopCard implements ICard {
 
         targetTerritory.addTroops(bonusTroops);
 
-        //TODO We maybe want to only add troops if current player is controlling said territory
     }
 }

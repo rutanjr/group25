@@ -1,5 +1,6 @@
 package edu.chl.ChalmersRisk.cardModels;
 
+import edu.chl.ChalmersRisk.model.Continent;
 import edu.chl.ChalmersRisk.model.Territory;
 
 import java.util.ArrayList;
@@ -13,11 +14,15 @@ public class AllChangeTroopCard implements ICard {
 
     private String message, title;
     private int troopChange;
-    private ArrayList<Territory> allTerritories;
+    private ArrayList<Continent> allContinents;
 
-    public AllChangeTroopCard(ArrayList<Territory> allTerritories, int troopChange) {
+    /**
+     * @param allContinents, a reference to the list of all continents
+     * @param troopChange, an integer indicating the change in troops of all territories (can be negative or positive).
+     */
+    public AllChangeTroopCard(ArrayList<Continent> allContinents, int troopChange) {
         this.troopChange = troopChange;
-        this.allTerritories = allTerritories;
+        this.allContinents = allContinents;
 
         if (this.troopChange >= 0) {
             this.message = this.troopChange + " troops join each territory.";
@@ -42,13 +47,14 @@ public class AllChangeTroopCard implements ICard {
 
     @Override
     public void turnCard() {
-        for (Territory temp : allTerritories) {
-            if (troopChange < 0) {
-                temp.removeTroops(-troopChange);
-            } else if (troopChange >= 0) {
-                temp.addTroops(troopChange);
+        for (Continent temp : allContinents) {  // loops through the list of continents
+            for (int i = 0; i < temp.getTerritories().size(); i++) {    // loops through list of territories
+                if (troopChange < 0) {
+                    temp.getTerritories().get(i).removeTroops(-troopChange);
+                } else if (troopChange >= 0) {
+                    temp.getTerritories().get(i).addTroops(troopChange);
+                }
             }
         }
-        //TODO Check if this is corrent.
     }
 }
