@@ -66,7 +66,7 @@ public class AttackPhaseController implements Controller {
                 Territory defendingTerritory = btn.getTerritory();
 
                 //if this returns true it means that the defender territory got empty
-                if(ChalmersRisk.combat(attackFrom,defendingTerritory)){
+                if(player.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
 /*                    player.receiveTroops((ArrayList)attackFrom.getTroops());
 

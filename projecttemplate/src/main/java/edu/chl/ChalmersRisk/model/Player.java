@@ -20,12 +20,16 @@ public class Player {
     //teamcolor
     private String color;
 
+    //A cup of dice to use when resolving combat.
+    private DiceCup cupOfDice;
+
     public Player(String name, String color){
         this.name = name;
         this.color = color;
         placedTroops = new ArrayList<Troop>();
         troopsToPlace = new ArrayList<Troop>();
         territories = new ArrayList<Territory>();
+        cupOfDice = new DiceCup();
     }
 
     /**
@@ -182,5 +186,103 @@ public class Player {
         return false;
         //throw new IllegalArgumentException("There are no path between the territories.");
 
+    }
+
+    /**
+     * A method for resolving combat. Uses all troops available in territory.
+     * @param attacker the Territory that the attacking troops comes from.
+     * @param defender the Territory that is being defended.
+     * @return true if the defender has lost all it troops in the territory.
+     */
+    public boolean combat(Territory attacker, Territory defender){
+        return combat(attacker, defender, attacker.getAmountOfTroops() - 1);
+    }
+
+    /**
+     * A method for resolving combat.
+     * @param attacker the Territory that the attacking troops comes from.
+     * @param defender the Territory that is being defended.
+     * @param atkTroops the amount of troops to attack with.
+     * @return true if the defender has lost all it troops in the territory.
+     */
+    public boolean combat(Territory attacker, Territory defender, int atkTroops)
+            throws IllegalArgumentException{
+        int[] atkRoll;
+        int[] defRoll;
+        //Attacker selects a number of dice <= #troops - 1 and 3
+
+        if(attacker.getOwner().equals(defender.getOwner())){
+            throw new IllegalArgumentException("Both territories are own by the same player.");
+        }
+
+        if (atkTroops<1){
+            throw new IllegalArgumentException("There are too few troops to attack");
+        }
+
+        if (atkTroops >3) atkTroops = 3;
+
+        //Defender gets two die if #troops <= 2, #troops = 1 gives 1 die.
+
+        int defTroops = defender.getAmountOfTroops();
+        if (defTroops>2) defTroops = 2;
+
+        //Creating attacker's die array.
+        if(atkTroops>=3){
+            atkRoll = cupOfDice.rollDice(3);
+        }
+        else if (atkTroops==2){
+            atkRoll = cupOfDice.rollDice(2);
+        } else {
+            atkRoll = cupOfDice.rollDice(1);
+        }
+
+
+        //Creating defender's die array.
+        if (defTroops>=2){
+            defRoll = cupOfDice.rollDice(2);
+            System.out.println(defRoll[0]);
+        } else {
+            defRoll = cupOfDice.rollDice(1);
+        }
+
+        while (atkTroops > 0 && defTroops >0){
+            int atkHighest = 0;
+            for (int i=0;i<atkTroops;i++){
+                if (atkRoll[i]>atkRoll[atkHighest]){
+
+                    atkHighest = i;
+                }
+            }
+
+            int defHighest = 0;
+            for (int i=0;i<defTroops;i++){
+                if (defRoll[i]>defRoll[defHighest]){
+                    defHighest = i;
+                }
+            }
+
+            //if the attacker's die is higher than the defender's then defender loses a troop
+            //else attacker loses a troop
+            if (atkRoll[atkHighest] > defRoll[defHighest]){
+                //Defender lose a troop;
+                defender.removeTroops(1);
+            }else{
+                //Attacker lose a troop;
+                attacker.removeTroops(1);
+            }
+
+            //Remove die roll from pool.
+            atkRoll[atkHighest] = 0;
+            defRoll[defHighest] = 0;
+
+            atkTroops--;
+            defTroops--;
+        }
+
+        if (defender.getAmountOfTroops()<1){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
