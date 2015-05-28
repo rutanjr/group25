@@ -334,7 +334,6 @@ public class ChalmersRisk implements Controller {
      * A method for resolving combat.
      * @param attacker the Territory that the attacking troops comes from.
      * @param defender the Territory that is being defended.
-     * @param atkTroops the amount of troops to attack with.
      * @return true if the defender has lost all it troops in the territory.
      */
     public static boolean combat(Territory attacker, Territory defender){
