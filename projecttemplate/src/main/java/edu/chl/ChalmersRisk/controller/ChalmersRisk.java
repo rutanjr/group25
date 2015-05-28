@@ -298,39 +298,4 @@ public class ChalmersRisk{
             return false;
         }
     }
-
-    public boolean moveTroops(Territory fromTerritory, Territory toTerritory){
-        return moveTroops(fromTerritory,toTerritory,fromTerritory.getAmountOfTroops()-1);
-    }
-
-    //TODO Should this return a boolean or throw exceptions?
-    /**
-     * A method for moving troops from one territory to another.
-     * @param fromT the territory to move the troops from.
-     * @param toT the territory to move the troops to.
-     * @param amount the amount of troops.
-     * @return if the move was successful.
-     */
-    public boolean moveTroops(Territory fromT, Territory toT, int amount){
-        //TODO add a test to see if owner is equal to the current active player.
-        //Tests if the territories are owned by the same player.
-        if(fromT.getOwner()!=toT.getOwner()){
-            //throw new IllegalArgumentException("Territories aren't owned by the same player.");
-            return false;
-        }
-
-        //Tests if there is a path between two territories.
-        if (fromT.isConnectedTo(toT)){
-            //TODO this removes an amount of troops and adds the same amount somewhere else
-            // should it move the actual troops instead?
-            if (fromT.getAmountOfTroops()>amount){
-                fromT.removeTroops(amount);
-                toT.addTroops(amount);
-                return true;
-            }
-        }
-        return false;
-        //throw new IllegalArgumentException("There are no path between the territories.");
-
-    }
 }
