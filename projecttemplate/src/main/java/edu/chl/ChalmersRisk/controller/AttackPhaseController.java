@@ -19,6 +19,7 @@ public class AttackPhaseController implements Controller {
     private GameBoard gameBoard;
     private boolean canAttack;
     private Territory attackFrom;
+    private TerritoryView attackButton;
 
     public AttackPhaseController(Player player, GameBoard gameBoard){
 
@@ -47,6 +48,11 @@ public class AttackPhaseController implements Controller {
 
             //first if the player chooses a territory that he owns
             if(btn.getTerritory().getOwner().equals(player)  && btn.getTerritory().getAmountOfTroops() > 1){
+
+                //sets a black border around the button
+                attackButton = btn;
+                attackButton.setFocused();
+
                 gameBoard.setMessage("Välj nu ett område att attackera!");
                 attackFrom = btn.getTerritory();
                 canAttack = true;
@@ -76,6 +82,8 @@ public class AttackPhaseController implements Controller {
 
                     System.out.println(player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1)
                     );
+
+
                     player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
 
@@ -84,6 +92,8 @@ public class AttackPhaseController implements Controller {
                 }
 
                 canAttack = attackFrom.getAmountOfTroops()>1;
+                attackButton.removeFocused();
+
 
 
                 //but no matter what, we should update
