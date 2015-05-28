@@ -75,7 +75,7 @@ public class AttackPhaseController implements Controller {
                     }*/
 
 
-                    ChalmersRisk.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
+                    player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
 
                     attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
