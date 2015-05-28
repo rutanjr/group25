@@ -28,35 +28,27 @@ public class GameBoard extends BorderPane {
     private TopStrip topInfo;
 
     public GameBoard(){
-
-
         this.setTop(new Button("YOLO"));
         System.out.println("hallå");
-
-
     }
 
     public GameBoard(Maps map,Controller controller) {
         this.controller = controller;
 
-
         //informationstrip at the bottom.
         infoStrip = new InformationStrip();
         this.setBottom(infoStrip);
-
 
         //informationStrip at the top
         topInfo = new TopStrip();
         this.setTop(topInfo);
         topInfo.setPrefSize(this.getWidth(),70);
 
-
         //"map"
         Pane gp = new Pane();
         buttons = new TerritoryView[map.getTerritories().size()];
         //ImageView chalmersFullMap = new ImageView("Chalmers.png");
         //gp.getChildren().add(chalmersFullMap);
-
 
         int i = 0;
         for(Territory t : map.getTerritories()) {
@@ -66,10 +58,6 @@ public class GameBoard extends BorderPane {
             i++;
         }
         this.setCenter(gp);
-
-
-
-
     }
 
     public void update(int phaseNumber){
@@ -79,14 +67,13 @@ public class GameBoard extends BorderPane {
 
             //update text on all the buttons
             for(int i =0; i<buttons.length;i++){
-                //buttons[i].setText(buttons[i].getTerritory().getName() + " [ "+buttons[i].getTerritory().getAmountOfTroops()+" ] ");
                 buttons[i].paintButton();
             }
 
         }
     }
 
-    public TerritoryView[] getButtons(){
+    public TerritoryView[] getTerritoryViews(){
         return buttons;
     }
 
@@ -101,6 +88,7 @@ public class GameBoard extends BorderPane {
     public Text getMessage(){
         return message;
     }
+
     public void setMessage(String text){
         topInfo.setGameText(text);
     }

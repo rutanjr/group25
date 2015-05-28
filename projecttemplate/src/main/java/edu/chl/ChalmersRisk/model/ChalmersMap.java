@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 public class ChalmersMap implements Maps {
 
-
     //defining how many total continents and territories
     private final ArrayList<Continent> continents = new ArrayList<Continent>();
     private final ArrayList<Territory> territories = new ArrayList<Territory>();
@@ -18,10 +17,6 @@ public class ChalmersMap implements Maps {
 
         continents.add(new Continent("Chalmers", 4,territories));
 
-        /*territories.add(new Territory("A",continents.get(0)));
-        territories.add(new Territory("B", continents.get(0)));
-        territories.add(new Territory("C", continents.get(0)));
-        territories.add(new Territory("D", continents.get(0)));*/
         territories.add(new Territory("Vasa norra",continents.get(0), new Point2D.Double(31.5,87.5), "vasa.png")); //correct place
         territories.add(new Territory("Vasa södra", continents.get(0), new Point2D.Double(127.5,87.5), "vasa2.png"));
         territories.add(new Territory("Chalmers Villan och Friskis", continents.get(0), new Point2D.Double(115,45), "chalmersvillan.png"));
@@ -36,10 +31,7 @@ public class ChalmersMap implements Maps {
         territories.add(new Territory("Arkitektur och V & V", continents.get(0), new Point2D.Double(533.5 ,198), "VA2.png"));
         territories.add(new Territory("Kårhuset", continents.get(0), new Point2D.Double(278 ,240), "karhuset.png"));
 
-
-
     }
-
 
     @Override
     public ArrayList<Territory> getTerritories() {
