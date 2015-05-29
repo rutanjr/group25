@@ -24,8 +24,8 @@ public class TerritoryChangeCardTest {
         Player testPlayer1 = new Player("name1","red");
         Player testPlayer2 = new Player("name2","blue");
 
-        testTer1.setnewOwner(testPlayer1);
-        testTer2.setnewOwner(testPlayer2);
+        testPlayer1.addTerritory(testTer1);
+        testPlayer2.addTerritory(testTer2);
 
         TerritoryChangeCard testCard = new TerritoryChangeCard(testPlayer1, testPlayer2);
         testCard.turnCard();
