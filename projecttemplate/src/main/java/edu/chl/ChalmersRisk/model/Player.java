@@ -219,6 +219,17 @@ public class Player {
             throw new IllegalArgumentException("There are too few troops to attack");
         }
 
+        boolean adjacent = false;
+        for (Territory it : attacker.getAdjacentTerritories()) {
+            if (it==defender){
+                adjacent = true;
+            }
+        }
+
+        if (!adjacent){
+            throw new IllegalArgumentException("Territories aren't adjacent.");
+        }
+
         if (atkTroops >3) atkTroops = 3;
 
         //Defender gets two die if #troops <= 2, #troops = 1 gives 1 die.
