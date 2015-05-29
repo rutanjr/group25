@@ -35,7 +35,6 @@ public class AdditionalMoveCard implements ICard {
 
     /**
      * @pre, either right before or right after the move phase.
-     * @post, grants the user an additional move phase.
      */
     @Override
     public void turnCard() {

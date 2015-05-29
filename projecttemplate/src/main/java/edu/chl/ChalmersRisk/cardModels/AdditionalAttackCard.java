@@ -38,7 +38,6 @@ public class AdditionalAttackCard implements ICard {
 
     /**
      * @pre, either right before or right after the attack phase.
-     * @post, grants the user an additional attack phase.
      */
     @Override
     public void turnCard() {

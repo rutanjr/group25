@@ -54,7 +54,7 @@ public class TerritoryChangeCard implements ICard {
         playerA.removeTerritory(tempTerrA);
         playerB.removeTerritory(tempTerrB);
 
-        playerA.addTerritories(tempTerrB);
-        playerB.addTerritories(tempTerrA);
+        playerA.addTerritory(tempTerrB);
+        playerB.addTerritory(tempTerrA);
     }
 }

@@ -67,9 +67,11 @@ public class Territory {
         }
     }
 
-    public void setnewOwner(Player newOwner) {
-        this.owner = newOwner;
-    }
+    /**
+     * This method is called by the addTerritory method in player, which also adds the territory to
+     * that players arrayList.
+     */
+    public void setnewOwner(Player newOwner) { this.owner = newOwner; }
 
     /**
      * Adds an arraylist as adjacent territories.

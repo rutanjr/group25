@@ -21,7 +21,8 @@ public class LoseTerritoryCardTest {
         Continent testCont = new Continent("Test Continent.", -1, testList);
         Territory testTer = new Territory("Test Territory 1.", testCont);
         Player testPlayer = new Player("Test Name","red");
-        testTer.setnewOwner(testPlayer);
+        testPlayer.addTerritory(testTer);
+
 
         ICard testCard = new LoseTerritoryCard(testPlayer);
         testCard.turnCard();
