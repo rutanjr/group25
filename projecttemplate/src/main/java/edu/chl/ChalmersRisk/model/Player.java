@@ -58,7 +58,9 @@ public class Player {
                 troopsToPlace.get(0).placeMe(territory);
                 System.out.println("Placing troop!");
                 if(!territory.getOwner().equals(this)){
-                    territories.add(territory);
+                    if(!territories.contains(territory)){
+                        territories.add(territory);
+                    }
                     territory.setnewOwner(this);
                 }
             }
@@ -70,9 +72,6 @@ public class Player {
     }
 
 
-    public void loseTerritory(Territory territory){
-        territories.remove(territory);
-    }
 
     public boolean isMyTerritory(Territory territory) {
         return territories.contains(territory);
@@ -135,7 +134,6 @@ public class Player {
     }
 
     public void removeTerritory(Territory t1) {
-        t1.setnewOwner(Constants.EMPTY_PLAYER);
         territories.remove(t1);
     }
 
