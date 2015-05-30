@@ -29,7 +29,7 @@ public class EndGameCard implements ICard{
 
     @Override
     public int phaseCheck() {
-        return 0;
+        return 4;
     }
 
     @Override

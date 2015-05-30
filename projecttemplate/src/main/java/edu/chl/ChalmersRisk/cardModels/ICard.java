@@ -19,6 +19,13 @@ public interface ICard {
 
     /**
      * @return an Integer value to test in what phase of the players turn the card effect should occur.
+     *          0 = The cards effect should be triggered at the beginning of his/her turn before any other
+     *          actions have been taken.
+     *          1 = The cards effect should be triggered after the player has received his/her troops but
+     *          before the have been deployed.
+     *          2 = The cards effect should be triggered right before the Attack phase.
+     *          3 = The cards effect should be triggered right before the Move phase.
+     *          4 = The cards effect should be triggered when the player chooses to end his/her turn
      */
     public int phaseCheck();
 

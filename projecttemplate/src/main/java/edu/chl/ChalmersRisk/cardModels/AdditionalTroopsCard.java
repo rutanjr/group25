@@ -36,7 +36,7 @@ public class AdditionalTroopsCard implements ICard {
 
     @Override
     public int phaseCheck() {
-        return 0;
+        return 1;
     }
 
     /**

@@ -30,7 +30,7 @@ public class AdditionalMoveCard implements ICard {
 
     @Override
     public int phaseCheck() {
-        return 0;
+        return 3;
     }
 
     /**

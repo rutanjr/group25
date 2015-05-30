@@ -33,7 +33,7 @@ public class AdditionalAttackCard implements ICard {
 
     @Override
     public int phaseCheck() {
-        return 0;
+        return 2;
     }
 
     /**
