@@ -72,11 +72,11 @@ public class Player {
     }
 
 
-
     public boolean isMyTerritory(Territory territory) {
         return territories.contains(territory);
     }
 
+    
     public int getnmbrOfTerritories() {
         return territories.size();
     }
@@ -298,7 +298,4 @@ public class Player {
     }
 
 
-    public boolean isOwnerTo(Territory territory){
-        return territories.contains(territory);
-    }
 }

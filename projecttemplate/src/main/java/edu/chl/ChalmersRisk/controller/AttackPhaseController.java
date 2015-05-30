@@ -74,10 +74,15 @@ public class AttackPhaseController implements Controller {
                 if(player.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
 
+                    Player prevOwner = defendingTerritory.getOwner();
+                    prevOwner.getTerritories().remove(defendingTerritory);
                     defendingTerritory.setnewOwner(player); //set new owner
                     player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
                     gameBoard.setMessage("");
+
+
+                    btn.paintButton();
 
                     //check if the player won the game
                     if(playerWon()){
@@ -113,7 +118,7 @@ public class AttackPhaseController implements Controller {
 
             for(Territory t: map.getTerritories()){
                 //if there is even one territory which the player does not own..
-                if(!player.isOwnerTo(t)){
+                if(!player.isMyTerritory(t)){
                     return false;
                 }
             }
