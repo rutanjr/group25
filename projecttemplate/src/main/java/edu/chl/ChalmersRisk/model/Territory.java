@@ -24,6 +24,10 @@ public class Territory {
 
     // Constructors
 
+    public Territory(String name){
+        this(name, Constants.EMPTY_CONTINENT);
+    }
+
     public Territory(String name, Continent continent) {
         this(name, continent,Constants.EMPTY_PLAYER);
     }
@@ -33,6 +37,15 @@ public class Territory {
         this.continent = continent;
         this.owner = player;
         this.adjacentTerritories = new ArrayList<Territory>();
+    }
+
+    public Territory(String name, Continent continent, Point2D.Double pos, String url) {
+        this.name = name;
+        this.continent = continent;
+        this.owner = Constants.EMPTY_PLAYER;
+        this.adjacentTerritories = new ArrayList<Territory>();
+        this.pos = pos;
+        this.url = url;
     }
 
     // Command - Methods
@@ -71,7 +84,11 @@ public class Territory {
      * This method is called by the addTerritory method in player, which also adds the territory to
      * that players arrayList.
      */
-    public void setnewOwner(Player newOwner) { this.owner = newOwner; }
+    public void setnewOwner(Player newOwner) {
+
+        owner.loseTerritory(this);
+        this.owner = newOwner;
+    }
 
     /**
      * Adds an arraylist as adjacent territories.
