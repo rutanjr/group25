@@ -72,7 +72,9 @@ public class AttackPhaseController implements Controller {
                 if(player.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
 
-                    defendingTerritory.setnewOwner(player); //set new owner
+                  //  defendingTerritory.setnewOwner(player); //set new owner
+
+                    player.addTerritories(defendingTerritory);
                     player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
                     gameBoard.setMessage("");

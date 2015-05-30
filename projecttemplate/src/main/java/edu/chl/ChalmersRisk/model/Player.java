@@ -58,10 +58,7 @@ public class Player {
                 troopsToPlace.get(0).placeMe(territory);
                 System.out.println("Placing troop!");
                 if(!territory.getOwner().equals(this)){
-                    if(!territories.contains(territory)){
-                        territories.add(territory);
-                    }
-                    territory.setnewOwner(this);
+                    addTerritories(territory);
                 }
             }
             placedTroops.add(troopsToPlace.get(0));
@@ -130,7 +127,11 @@ public class Player {
     }
 
     public void addTerritories(Territory t1) {
-        territories.add(t1);
+
+        if(!territories.contains(t1)){
+            territories.add(t1);
+        }
+        t1.setnewOwner(this);
     }
 
     public void removeTerritory(Territory t1) {
