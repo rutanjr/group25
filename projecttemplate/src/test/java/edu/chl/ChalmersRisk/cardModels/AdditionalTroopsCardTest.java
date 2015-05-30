@@ -19,7 +19,6 @@ public class AdditionalTroopsCardTest {
         testCard.turnCard();
 
         assertFalse(troopsBefore==testPlayer.getTroopsToPlace().size());
-        assertTrue(troopsBefore==testPlayer.getTroopsToPlace().size()+5);
-
+        assertTrue(troopsBefore==testPlayer.getTroopsToPlace().size()-5);
     }
 }
