@@ -157,13 +157,11 @@ public class Player {
     public boolean moveTroops(Territory fromTerritory, Territory toTerritory, int amount){
         //Return false if less than 1 troops should be moved.
         if (amount<1){
-            System.out.println("FEL 1 :: trupper var för få");
             return false;
         }
 
         //Test if current player owns the territory.
         if(this!=fromTerritory.getOwner()){
-            System.out.println("FEL 2 :: player äger inte detta område");
             return false;
         }
 

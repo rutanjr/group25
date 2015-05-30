@@ -49,22 +49,22 @@ public class MoveTroopController implements Controller {
 
                 amtOfTroops ++;
                 moveFrom = btn;
-                gameBoard.setGameText("You want to move troops from "+moveFrom.getTerritory().getName()+"\n Troops to be moved: "+amtOfTroops);
+                gameBoard.setMessage("You want to move troops from " + moveFrom.getTerritory().getName() + "\n Troops to be moved: " + amtOfTroops);
 
-            }else if(amtOfTroops > 0 && btn.equals(moveFrom)){  // if we have picked a territory to move from
+            }else if(amtOfTroops > 0 && btn.equals(moveFrom) && amtOfTroops < moveFrom.getTerritory().getAmountOfTroops()-1){  // if we have picked a territory to move from
 
                 amtOfTroops ++;
-
-                gameBoard.setGameText("You want to move troops from "+moveFrom.getTerritory().getName()+"\n Troops to be moved: "+amtOfTroops);
+                gameBoard.setMessage("You want to move troops from " + moveFrom.getTerritory().getName() + "\n Troops to be moved: " + amtOfTroops);
 
             }else if(amtOfTroops > 0 && btn.getTerritory().getOwner().equals(player) && !btn.equals(moveFrom) ){ //if we pick a territory to move to
 
-                player.moveTroops(moveFrom.getTerritory(),btn.getTerritory(),amtOfTroops);
+                if(player.moveTroops(moveFrom.getTerritory(),btn.getTerritory(),amtOfTroops)){ // the move was possible
+                    gameBoard.setMessage("Your turn is over!");
+                    //reset
+                    amtOfTroops = 0;
+                }
 
-                //reset
-                amtOfTroops = 0;
 
-                gameBoard.setGameText("Your turn is over!");
 
             }
 

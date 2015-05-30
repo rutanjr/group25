@@ -86,14 +86,7 @@ public class Territory {
     }
 
     public void setnewOwner(Player newOwner) {
-        for(Territory t : owner.getTerritories()){
-            System.out.println("Område = "+ t.getName());
-        }
         owner.removeTerritory(this);
-        for(Territory t : owner.getTerritories()){
-            System.out.println("Nya Områden == "+ t.getName());
-        }
-
         owner = newOwner;
     }
 
