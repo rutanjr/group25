@@ -33,7 +33,7 @@ public class Player {
      * @param received ArrayList of troops
      */
     public void receiveTroops (ArrayList<Troop> received){
-        troopsToPlace = received;
+        this.troopsToPlace = received;
     }
 
     /**
@@ -126,12 +126,24 @@ public class Player {
         return color;
     }
 
-    public void addTerritories(Territory t1) {
+    /**
+     * @param t1, a territory that will have its owner changed and added into this players list of territories.
+     */
+    public void addTerritory(Territory t1) {
+        t1.setnewOwner(this);
         territories.add(t1);
     }
 
+    /**
+     * @param t1, a territory that will have its owner changed to an empty player and removed from the territory list.
+     */
     public void removeTerritory(Territory t1) {
         t1.setnewOwner(Constants.EMPTY_PLAYER);
         territories.remove(t1);
     }
+
+    /**
+     * @return, the ArrayList of troops to deploy
+     */
+    public ArrayList<Troop> getTroopsToPlaceArray() { return this.troopsToPlace; }
 }

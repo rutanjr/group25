@@ -12,9 +12,8 @@ import java.util.ArrayList;
  */
 public class AdditionalTroopsCard implements ICard {
 
-    private String title;
+    private String title, message;
     private int bonusTroops;
-    private String message;
     private Player currentPlayer;
 
     public AdditionalTroopsCard(Player currentPlayer, int bonusTroops ) {
@@ -37,9 +36,16 @@ public class AdditionalTroopsCard implements ICard {
 
     @Override
     public int phaseCheck() {
-        return 0;
+        return 1;
     }
 
+    /**
+     *
+     * @pre, The player must have recieved their intial troops before this method can be called (the troops given to the
+     *       player at the begining of the turn).
+     * @post, The player will have a new ArrayList<Troop> containing a combination of troops recieved from the begining of
+     *        the turn andtroops rewarded by this card.
+     */
     @Override
     public void turnCard() {
 
