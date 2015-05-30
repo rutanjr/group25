@@ -11,7 +11,7 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Created by viking on 22/05/15.
+ * Created by Björn Bergqvist on 22/05/15.
  */
 public class TerritoryChangeCardTest {
     @Test
@@ -24,8 +24,8 @@ public class TerritoryChangeCardTest {
         Player testPlayer1 = new Player("name1","red");
         Player testPlayer2 = new Player("name2","blue");
 
-        testTer1.setnewOwner(testPlayer1);
-        testTer2.setnewOwner(testPlayer2);
+        testPlayer1.addTerritory(testTer1);
+        testPlayer2.addTerritory(testTer2);
 
         TerritoryChangeCard testCard = new TerritoryChangeCard(testPlayer1, testPlayer2);
         testCard.turnCard();

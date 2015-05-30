@@ -23,7 +23,7 @@ import java.util.Stack;
  * Created by rutanjr on 2015-03-31.
  * A class to be the main controller of the game, controls the board and then actions performed in the game.
  *
- * @revisedBy malin thelin
+ * @revisedBy malin thelin, Björn Bergqvist
  */
 public class ChalmersRisk implements Controller {
 

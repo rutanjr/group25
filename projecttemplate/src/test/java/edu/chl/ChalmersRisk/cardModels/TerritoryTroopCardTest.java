@@ -10,7 +10,7 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertFalse;
 
 /**
- * Created by viking on 21/05/15.
+ * Created by Björn Bergqvist on 21/05/15.
  */
 public class TerritoryTroopCardTest {
     ArrayList<Territory> testList = new ArrayList<Territory>();

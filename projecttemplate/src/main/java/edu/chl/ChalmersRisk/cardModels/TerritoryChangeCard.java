@@ -12,12 +12,14 @@ import java.util.ArrayList;
  */
 public class TerritoryChangeCard implements ICard {
 
-    private String title = "Traitors! and new Allies.";
+    private String title, message;
     private Player playerA, playerB;
 
     public TerritoryChangeCard(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
+        this.title  = "Traitors! And new Allies.";
+        this.message = "Surprise midterm exams! Due to panic some students have switched alliances.";
     }
 
     @Override
@@ -27,7 +29,7 @@ public class TerritoryChangeCard implements ICard {
 
     @Override
     public String getMessage() {
-        return "Surprise midterm exams! Due to panic some soldiers have switched alliances.";
+        return this.message;
     }
 
     @Override
@@ -43,15 +45,16 @@ public class TerritoryChangeCard implements ICard {
 
         tempListA = playerA.getTerritories();
         tempListB = playerB.getTerritories();
-        tempRandA = (int)((Math.random()*tempListA.size()));
-        tempRandB = (int)((Math.random()*tempListB.size()));
+        tempRandA = (int)((Math.random()* (tempListA.size() - 1)));
+        tempRandB = (int)((Math.random()* (tempListB.size() - 1)));
 
         tempTerrA = (Territory)tempListA.get(tempRandA);
         tempTerrB = (Territory)tempListB.get(tempRandB);
 
-        tempTerrA.setnewOwner(playerB);
-        tempTerrB.setnewOwner(playerA);
+        playerA.removeTerritory(tempTerrA);
+        playerB.removeTerritory(tempTerrB);
 
-        //TODO check if this works
+        playerA.addTerritory(tempTerrB);
+        playerB.addTerritory(tempTerrA);
     }
 }

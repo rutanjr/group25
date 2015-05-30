@@ -37,7 +37,7 @@ public class Player {
      * @param received ArrayList of troops
      */
     public void receiveTroops (ArrayList<Troop> received){
-        troopsToPlace = received;
+        this.troopsToPlace = received;
     }
 
     /**
@@ -126,19 +126,28 @@ public class Player {
         return color;
     }
 
+
+    /**
+     * @param t1, a territory that will have its owner changed and added into this players list of territories.
+     */
     public void addTerritories(Territory t1) {
 
-        if(!territories.contains(t1)){
+        if (!territories.contains(t1)) {
             territories.add(t1);
         }
         t1.setnewOwner(this);
     }
 
+
+    /**
+     * @param t1, a territory that will have its owner changed to an empty player and removed from the territory list.
+     */
     public void removeTerritory(Territory t1) {
         territories.remove(t1);
     }
 
     /**
+<<<<<<< HEAD
      * A method for moving all available troops from one territory to another.
      * @param fromTerritory the territory to move the troops from.
      * @param toTerritory the territory to move the troops to.
@@ -297,4 +306,8 @@ public class Player {
     }
 
 
+    /**
+     * @return, the ArrayList of troops to deploy
+     */
+    public ArrayList<Troop> getTroopsToPlaceArray() { return this.troopsToPlace; }
 }

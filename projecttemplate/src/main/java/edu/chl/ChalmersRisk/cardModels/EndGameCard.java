@@ -8,13 +8,14 @@ package edu.chl.ChalmersRisk.cardModels;
 public class EndGameCard implements ICard{
 
     // This card might not be activated if drawn in the early phases of the game, minTurn decides whether this
-    // card can be activated activated.
+    // card can be activated.
     private int minTurn;
-    private String title;
+    private String title, message;
 
     public EndGameCard(int minTurn) {
         this.minTurn = minTurn;
         this.title = "End Game";
+        this.message = "Due to unforeseen event, the battle over Chalmers has ended.";
     }
     @Override
     public String getTitle() {
@@ -23,19 +24,19 @@ public class EndGameCard implements ICard{
 
     @Override
     public String getMessage() {
-        return "Due to unforeseen event, the battle over Chalmers has ended.";
+        return this.message;
     }
 
     @Override
     public int phaseCheck() {
-        return 0;
+        return 4;
     }
 
     @Override
     public void turnCard() {
         /*
         if (getGameTurn() >= this.minTurn) {
-            //TODO effect of the card
+            //TODO effect of the card, we need a way to get the current turn.
         }
         */
     }
