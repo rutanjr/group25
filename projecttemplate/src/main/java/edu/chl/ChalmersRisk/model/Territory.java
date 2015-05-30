@@ -4,7 +4,9 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by rutanjr on 2015-03-31.
@@ -88,9 +90,8 @@ public class Territory {
      * that players arrayList.
      */
     public void setnewOwner(Player newOwner) {
-
-        owner.loseTerritory(this);
-        this.owner = newOwner;
+        owner.removeTerritory(this);
+        owner = newOwner;
     }
 
     /**
@@ -174,4 +175,50 @@ public class Territory {
     public Point2D.Double getPos() {
         return pos;
     }
+
+    /**
+     * A method for finding a path of territories that is owned by the same player
+     * between two territories. Based on a depth first algorithm.
+     * @param toTerritory the territory to find.
+     * @return
+     */
+    public boolean isConnectedTo(Territory toTerritory) {
+        boolean hasPath = false;
+        Stack<Territory> toTest = new Stack<Territory>();
+        List<Territory> discovered = new LinkedList<Territory>();
+        toTest.push(this);
+
+        // This is the search algorithm
+        // it has an extra condition that end it if a path from A to B has been discovered.
+        while (!toTest.isEmpty() && !hasPath) {
+            Territory search = toTest.pop();
+            if (search.equals(toTerritory)) {
+                hasPath = true;
+                //This could be move to anywhere with a return true statement.
+            } else {
+                discovered.add(search);
+                for (Territory it : search.getAdjacentTerritories()) {
+                    if (it.getOwner().equals(owner)) {
+                        Boolean isUndiscovered = true;
+
+                        //Loop through the discovered territories to see if it has already been searched.
+                        int i = 0;
+                        while (i < discovered.size() && isUndiscovered) {
+                            if (discovered.get(i).equals(it)) {
+                                isUndiscovered = false;
+                            }
+                            i++;
+                        }
+
+                        if (isUndiscovered) {
+                            toTest.push(it);
+                        }
+                    }
+                }
+            }
+        }
+        return hasPath;
+    }
+
+
 }

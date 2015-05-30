@@ -7,8 +7,10 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -24,7 +26,7 @@ public class TerritoryView extends StackPane {
     private ImageView image;
 
     public TerritoryView(){
-        super();
+        this(Constants.EMPTY_TERRITORY);
     }
 
     public TerritoryView(Territory territory){
@@ -54,10 +56,20 @@ public class TerritoryView extends StackPane {
     public void paintButton() {
 
         button.setStyle("-fx-background-color: #" + this.getTerritory().getOwner().getColor() + ";");
-        button.setText("" + this.getTerritory().getAmountOfTroops());
-        button.setTextFill(Color.WHITE);
-        image.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
 
+
+        button.setText("" + this.getTerritory().getAmountOfTroops());
+
+        button.setTextFill((this.getTerritory().getAmountOfTroops() == 0) ? Color.BLACK : Color.WHITE);
+        image.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
+    }
+
+    public void setFocused(){
+        button.setEffect(Constants.createDropShadow(Color.BLACK,1.0));
+    }
+
+    public void removeFocused(){
+        button.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor()),0));
     }
 
 

@@ -44,6 +44,7 @@ public class PlaceTroopController implements Controller {
 
                 //see if the player owns the territory OR if the territory is empty
                 if(btn.getTerritory().getOwner().equals(Constants.EMPTY_PLAYER) || player.isMyTerritory(btn.getTerritory())){
+
                     player.placeTroops(btn.getTerritory(),1);
                     gameBoard.setGameText("Player "+player.getName()+"'s turn\nTroops to place:"+player.getTroopsToPlace().size());
 

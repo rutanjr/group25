@@ -27,6 +27,7 @@ public class GameBoard extends BorderPane {
     private Controller controller;
     private InformationStrip infoStrip;
     private TopStrip topInfo;
+    private Maps map;
 
     public GameBoard(){
         this.setTop(new Button("YOLO"));
@@ -46,6 +47,7 @@ public class GameBoard extends BorderPane {
         topInfo.setPrefSize(this.getWidth(),70);
 
         //"map"
+        this.map = map;
         Pane gp = new Pane();
         buttons = new TerritoryView[map.getTerritories().size()];
         gp.getChildren().add(map.getBackground());
@@ -99,6 +101,10 @@ public class GameBoard extends BorderPane {
 
     public InformationStrip getInfoStrip(){
         return infoStrip;
+    }
+
+    public Maps getMap(){
+        return map;
     }
 
 }

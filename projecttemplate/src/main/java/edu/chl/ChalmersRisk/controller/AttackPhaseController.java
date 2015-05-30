@@ -1,13 +1,13 @@
 package edu.chl.ChalmersRisk.controller;
 
 import edu.chl.ChalmersRisk.gui.TerritoryView;
+import edu.chl.ChalmersRisk.model.Maps;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-
-import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 /**
  * Created by Malin on 2015-05-20.
@@ -18,16 +18,19 @@ public class AttackPhaseController implements Controller {
     private GameBoard gameBoard;
     private boolean canAttack;
     private Territory attackFrom;
+    private TerritoryView attackButton;
+    private Maps map;
 
     public AttackPhaseController(Player player, GameBoard gameBoard){
-
         this.player = player;
         this.gameBoard = gameBoard;
         canAttack = false;
+        map = gameBoard.getMap();
 
-        TerritoryView[] TerritoryViews = gameBoard.getTerritoryViews();
-        for (TerritoryView tb: TerritoryViews){
-            tb.setOnMouseClicked(new ButtonPressed());
+        TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
+        for (TerritoryView tv: territoryViews) {
+            //tv.setOnAction(new ButtonPressed());
+            tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
 
     }
@@ -37,14 +40,17 @@ public class AttackPhaseController implements Controller {
         @Override
         public void handle(Event event) {
 
-            TerritoryView btn = (TerritoryView)event.getSource();
+            TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
 
-
-            //first see if there are more than one troop on the territory
 
 
             //first if the player chooses a territory that he owns
             if(btn.getTerritory().getOwner().equals(player)  && btn.getTerritory().getAmountOfTroops() > 1){
+
+                //sets a black border around the button
+                attackButton = btn;
+                attackButton.setFocused();
+
                 gameBoard.setMessage("Välj nu ett område att attackera!");
                 attackFrom = btn.getTerritory();
                 canAttack = true;
@@ -58,27 +64,34 @@ public class AttackPhaseController implements Controller {
             }
             //if the territory clicked is neither empty nor owned by the player itself : ergo it's owned by another player
             // and if the player can attack
-            else if(territoryOwned(btn.getTerritory()) && canAttack){
+            else if(territoryOwnedBySomeoneElse(btn.getTerritory()) && canAttack){
 
                 Territory defendingTerritory = btn.getTerritory();
 
                 //if this returns true it means that the defender territory got empty
-                if(ChalmersRisk.combat(attackFrom,defendingTerritory)){
+                if(player.combat(attackFrom,defendingTerritory)){
                     //and if it got empty we should move the attacker players
-/*                    player.receiveTroops((ArrayList)attackFrom.getTroops());
 
-                    for(int i = 0; i<attackFrom.getAmountOfTroops();i++){
-                        player.placeTroops(defendingTerritory,1);
-                    }*/
+                  //  defendingTerritory.setnewOwner(player); //set new owner
 
+                    player.addTerritories(defendingTerritory);
+                    player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
-                    ChalmersRisk.moveTroops(attackFrom,defendingTerritory,attackFrom.getAmountOfTroops()-1);
-
-
-                    attackFrom.removeTroops(attackFrom.getAmountOfTroops() - 1);
                     gameBoard.setMessage("");
-                    canAttack = false;
+
+                    //check if the player won the game
+                    if(playerWon()){
+                        //TODO : some sort of endGame method.. somewhere? ChalmersRisk or here...?
+                        gameBoard.setMessage("GRATTIS DU VANN!!");
+
+                    }
+
+
                 }
+
+                canAttack = attackFrom.getAmountOfTroops()>1;
+                attackButton.removeFocused();
+
 
 
                 //but no matter what, we should update
@@ -91,8 +104,21 @@ public class AttackPhaseController implements Controller {
 
         }
 
-        public boolean territoryOwned(Territory territory){
+        public boolean territoryOwnedBySomeoneElse(Territory territory){
             return !territory.isAvailableTo(player);
+        }
+
+        public boolean playerWon(){
+
+            for(Territory t: map.getTerritories()){
+                //if there is even one territory which the player does not own..
+                if(!player.isMyTerritory(t)){
+                    return false;
+                }
+            }
+            //however, if we leave the for-loop: return true
+            return true;
+
         }
     }
 
