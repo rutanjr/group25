@@ -12,6 +12,24 @@ import static junit.framework.Assert.assertTrue;
  */
 public class TerritoryTest {
     @Test
+    public void testAddNeighbor() throws Exception {
+        ArrayList<Territory> territories = new ArrayList<Territory>();
+        Continent testContinent = new Continent("test",1,territories);
+        Player testPlayer1 = new Player("1","red");
+        Player testPlayer2 = new Player("2", "blue");
+
+
+        Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
+        Territory testTer2 = new Territory("Test1",testContinent,testPlayer1);
+
+
+        testTer1.addNeighbor(testTer2);
+
+        assertTrue(testTer1.getAdjacentTerritories().get(0) == testTer2);
+        assertTrue(testTer2.getAdjacentTerritories().get(0) == testTer1);
+    }
+
+    @Test
     public void testIsConnectedTo() throws Exception {
         ArrayList<Territory> territories = new ArrayList<Territory>();
         Continent testContinent = new Continent("test",1,territories);
