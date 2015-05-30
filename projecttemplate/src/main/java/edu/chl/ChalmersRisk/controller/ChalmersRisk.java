@@ -47,7 +47,7 @@ public class ChalmersRisk implements Controller {
     //final variables defining the last and first phases. Meaning that
     //the last phase should be the one before a player ends their turn, and the first
     //phase is the first phase a player is in when a turn begins.
-    private final int lastPhase = 1;
+    private final int lastPhase = 2;
     private final int firstPhase = 0;
 
     private Timer gameTimer,phaseTimer;
@@ -123,6 +123,8 @@ public class ChalmersRisk implements Controller {
             placeTroopPhase();
         }else if(phase == 1){
             attackPhase();
+        }else if(phase == 2){
+            moveTroopsPhase();
         }
 
     }
@@ -151,6 +153,14 @@ public class ChalmersRisk implements Controller {
 
         gB.setController(new AttackPhaseController(currentPlayer, gB));
     }
+
+    public void moveTroopsPhase(){
+        gB.setGameText("MOVE TROOP PHASE");
+        gB.setController(new MoveTroopController(currentPlayer,gB));
+    }
+
+
+
 
     public void setTheScene(){
             System.out.println("phase 0");
@@ -218,20 +228,16 @@ public class ChalmersRisk implements Controller {
     //what should happen when a player ends their turn.
     public void endTurn(){
 
-        //first first of all we have to see if there are still empty territories.
-        if(areAllTerritoriesTaken() && canPlayerGoToAttack()){
-            System.out.println("Vi hamnar här :(");
-            //first of all we need to check if currentPlayer has done all their phases
-            if(oldPhase == lastPhase ){
-                changePlayers();
-            }
+        //trivial, if we were at the last phase, we should change players.
+        if(oldPhase == lastPhase ){
+            changePlayers();
+        } else if(areAllTerritoriesTaken() || canPlayerGoToAttack()){
+            //we may only come to the attackPhase if we can go to attack and all the territories are taken.
         }else{
-            System.out.println("yay, vi hamnar här!!");
             //just change players
             changePlayers();
         }
 
-        gameIsRunning = true;
         //then continue with the game
         loopGame();
     }
@@ -272,28 +278,7 @@ public class ChalmersRisk implements Controller {
 
     }
 
-    //for now this method will return a String. However in the future this should be up to change.
-    public String checkFreeTerritories(){
 
-        String result = "";
-        int count = 0;
-
-        //ArrayList<Territory> availableTerritories = new ArrayList<Territory>(); this is probably unnecessary
-        for(Territory t : territories){
-            if(t.isAvailableTo(currentPlayer)){
-                //availableTerritories.add(t);
-                result += t.getName()+ ", ";
-                count ++;
-            }
-        }
-
-        if(count == 0){
-            return "NO TERRITORIES";
-        }else{
-            return result;
-        }
-
-    }
 
     public ArrayList<Territory> getTerritories() {
         return territories;
@@ -351,10 +336,6 @@ public class ChalmersRisk implements Controller {
         } else {
             defRoll = cupOfDice.rollDice(1);
         }
-
-        System.out.println("ATTACKER RULLADE ::: "+atkRoll[0]);
-
-        System.out.println("DEFENDER RULLADE ::: "+ defRoll[0]);
 
 
 
@@ -525,6 +506,7 @@ public class ChalmersRisk implements Controller {
 
                 oldPhase = phase;
                 if(initialPhase()){
+                    //when it's the initialphase the players shouldn't get out of phase 0
                 }else{
                     phase++;
                     phase %= 3;

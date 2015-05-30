@@ -43,8 +43,6 @@ public class AttackPhaseController implements Controller {
             TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
 
 
-            //first see if there are more than one troop on the territory
-
 
             //first if the player chooses a territory that he owns
             if(btn.getTerritory().getOwner().equals(player)  && btn.getTerritory().getAmountOfTroops() > 1){
@@ -81,7 +79,6 @@ public class AttackPhaseController implements Controller {
 
                     //check if the player won the game
                     if(playerWon()){
-                        System.out.println("Tjuhooo");
                         //TODO : some sort of endGame method.. somewhere? ChalmersRisk or here...?
                         gameBoard.setMessage("GRATTIS DU VANN!!");
 
