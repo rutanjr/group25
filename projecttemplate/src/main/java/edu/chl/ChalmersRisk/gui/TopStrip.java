@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 /**
@@ -11,13 +12,16 @@ import javafx.scene.text.Text;
  */
 public class TopStrip extends BorderPane{
 
-    Text gameText;
+    private Text gameText;
+
 
     public TopStrip(){
         gameText = new Text("A new game has started");
         this.setPadding(new Insets(15, 12, 15, 12));
         this.setStyle("-fx-background-color: #fba6b0;");
 
+        DefenderDiceArea defenderDiceArea = new DefenderDiceArea(2);
+        this.setRight(defenderDiceArea);
         this.setLeft(gameText);
 
 
