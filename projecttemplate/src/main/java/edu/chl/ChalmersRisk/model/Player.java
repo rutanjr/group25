@@ -225,7 +225,7 @@ public class Player {
         }
 
         if (!adjacent){
-            throw new IllegalArgumentException("Territories aren't adjacent.");
+            return false;
         }
 
         if (atkTroops >3) atkTroops = 3;

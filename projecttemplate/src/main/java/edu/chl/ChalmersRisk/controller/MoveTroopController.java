@@ -45,7 +45,7 @@ public class MoveTroopController implements Controller {
             TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
 
             //first let the player pick a territory
-            if(btn.getTerritory().getOwner().equals(player) && btn.getTerritory().getAmountOfTroops()>1 && amtOfTroops == 0){
+            if(btn.getTerritory().getOwner().equals(player) && btn.getTerritory().getAmountOfTroops() > 1 && amtOfTroops == 0){
 
                 amtOfTroops ++;
                 moveFrom = btn;
