@@ -1,8 +1,6 @@
 package edu.chl.ChalmersRisk.model;
 
 
-import edu.chl.ChalmersRisk.utilities.Constants;
-
 import java.util.ArrayList;
 
 /**
@@ -58,7 +56,7 @@ public class Player {
                 troopsToPlace.get(0).placeMe(territory);
                 System.out.println("Placing troop!");
                 if(!territory.getOwner().equals(this)){
-                    addTerritories(territory);
+                    addTerritory(territory);
                 }
             }
             placedTroops.add(troopsToPlace.get(0));
@@ -130,7 +128,7 @@ public class Player {
     /**
      * @param t1, a territory that will have its owner changed and added into this players list of territories.
      */
-    public void addTerritories(Territory t1) {
+    public void addTerritory(Territory t1) {
 
         if (!territories.contains(t1)) {
             territories.add(t1);
@@ -147,7 +145,6 @@ public class Player {
     }
 
     /**
-<<<<<<< HEAD
      * A method for moving all available troops from one territory to another.
      * @param fromTerritory the territory to move the troops from.
      * @param toTerritory the territory to move the troops to.

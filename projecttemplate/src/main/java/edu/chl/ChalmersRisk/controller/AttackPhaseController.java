@@ -74,7 +74,7 @@ public class AttackPhaseController implements Controller {
 
                   //  defendingTerritory.setnewOwner(player); //set new owner
 
-                    player.addTerritories(defendingTerritory);
+                    player.addTerritory(defendingTerritory);
                     player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
 
                     gameBoard.setMessage("");
