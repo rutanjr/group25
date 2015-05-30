@@ -22,6 +22,9 @@ public class Player {
 
     //A cup of dice to use when resolving combat.
     private DiceCup cupOfDice;
+    private int [] attackRolls;
+    private int [] defenderRolls;
+
 
     public Player(String name, String color){
         this.name = name;
@@ -259,10 +262,15 @@ public class Player {
         //Creating defender's die array.
         if (defTroops>=2){
             defRoll = cupOfDice.rollDice(2);
-            System.out.println(defRoll[0]);
         } else {
             defRoll = cupOfDice.rollDice(1);
         }
+
+
+        //now we have both attackrolls and defenderrolls
+        attackRolls = atkRoll;
+        defenderRolls = defRoll;
+
 
         while (atkTroops > 0 && defTroops >0){
             int atkHighest = 0;
@@ -310,4 +318,14 @@ public class Player {
      * @return, the ArrayList of troops to deploy
      */
     public ArrayList<Troop> getTroopsToPlaceArray() { return this.troopsToPlace; }
+
+
+    public int [] getAttackRolls(){
+        return attackRolls;
+    }
+
+    public int [] getDefenderRolls(){
+        return defenderRolls;
+    }
+
 }
