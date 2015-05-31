@@ -115,6 +115,9 @@ public class ChalmersRisk implements Controller {
         return true;
     }
 
+    /**
+     * This is the gameloop that handles all the phases. Keeps the game running.
+     */
     public void loopGame(){
         setTheScene();
         if(phase == 0){
@@ -127,7 +130,7 @@ public class ChalmersRisk implements Controller {
         }else if(phase == 2){
             moveTroopsPhase();
             if (eventCard.phaseCheck() == 3) {
-                moveTroopsPhase()
+                moveTroopsPhase();
             } //TODO ugly fast solution for the additionalMoveCard
         }
 
