@@ -125,6 +125,7 @@ public class ChalmersRisk implements Controller {
                 if (deck.size() < 1) {
                     deck.resetDeck();
                 }
+                deck.addCardToBackOfDeck(eventCard);
                 eventCard = deck.pullCard();
                 mayDrawCard = false;
             }
@@ -143,9 +144,6 @@ public class ChalmersRisk implements Controller {
             attackPhase();
         }else if(phase == 2){
             moveTroopsPhase();
-            if (eventCard.phaseCheck() == 3) {
-                moveTroopsPhase();
-            } //TODO ugly fast solution for the additionalMoveCard
         }
 
     }
@@ -406,12 +404,12 @@ public class ChalmersRisk implements Controller {
     private void createDeck() {
         deck  = new DeckOfCards();
         for (int i = 0 ; i < 300 ; i++) {
-            deck.addCardToDeck(new BlankCard());
+            //deck.addCardToDeck(new BlankCard());
         }
-        for (int i = 0 ; i < 2 ; i++) {
-            //deck.addCardToDeck(new AdditionalMoveCard(this.currentPlayer));
-            //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); //OK
-            //deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1)); //OK
+        for (int i = 0 ; i < 1 ; i++) {
+
+            //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); ------------ probably OK
+            //deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1)); -------------OK
             //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
             //deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
             //deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
