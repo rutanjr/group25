@@ -9,6 +9,7 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.CardView;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.StartScreen;
+import edu.chl.ChalmersRisk.view.WinView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -30,6 +31,7 @@ public class ChalmersRisk implements Controller {
     private Maps map;
     private ArrayList<Continent> continents;
     private ArrayList<Territory> territories;
+    private Stage stage;
 
 
     private Player playerOne,playerTwo,currentPlayer = Constants.EMPTY_PLAYER;
@@ -40,6 +42,7 @@ public class ChalmersRisk implements Controller {
     private DeckOfCards deck;
     private ICard eventCard = Constants.EMPTY_CARD;
     public static boolean mayDrawCard = false;
+
 
     private StartScreen startScreen;
 
@@ -63,7 +66,8 @@ public class ChalmersRisk implements Controller {
     }
 
     /**
-     * Starts the game and sets all the components and initializes objects in the game.
+     * Starts the game, sets players names and calls forth the gameboards graphical components to be
+     * created (startNewGame).
      * @param players the names of the players of the game.
      * @param primaryStage the mainframe where all that will contain all graphical components.
      */
@@ -76,16 +80,19 @@ public class ChalmersRisk implements Controller {
         currentPlayer = playerOne;
         phase = 0;
 
-        Stage stage = primaryStage;
+        stage = primaryStage;
+        startNewGame();
+    }
 
+    /**
+     * Starts a new game. Sets the graphical components to start the game.
+     */
+    public void startNewGame() {
 
-
-        // TODO : what if you want a different map? Future thing
-        loadMap("Chalmers");
-        //loadMap("Test");
+        //loadMap("Chalmers");
+        loadMap("Test");
 
         gB = new GameBoard(map,this);
-
         Scene gameBoard = new Scene(gB, map.getWidth(),Constants.height);
 
         gB.setMessage("A new game started between players:\n " + playerOne.getName() + " and " + playerTwo.getName());
@@ -101,8 +108,8 @@ public class ChalmersRisk implements Controller {
         createDeck();
 
         loopGame();
-    }
 
+    }
 
     /**
      * Checks if all territories are taken, if one or more territory is still owned by the "EMPTY_PLAYER"
@@ -172,9 +179,6 @@ public class ChalmersRisk implements Controller {
     }
 
 
-
-
-
     /**
      * The method to makes sure that the player may only placeTroops in the placeTroops phase.
      * Sets the gameBoard controller to PlaceTroopController.
@@ -198,7 +202,7 @@ public class ChalmersRisk implements Controller {
     private void attackPhase(){
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
-        gB.setController(new AttackPhaseController(currentPlayer, gB));
+        gB.setController(new AttackPhaseController(currentPlayer, gB, this));
     }
 
 
@@ -238,8 +242,6 @@ public class ChalmersRisk implements Controller {
         }
         player.receiveTroops(troops);
     }
-
-
 
 
     /**
@@ -297,8 +299,6 @@ public class ChalmersRisk implements Controller {
     }
 
 
-
-
     /**
      * This method checks which phase to go to when the next button is pressed. This method makes sure
      * the game doesn't enter any unneccesary state, like moveTroops phase when the current player
@@ -347,9 +347,6 @@ public class ChalmersRisk implements Controller {
         return false;
 
     }
-
-
-
 
 
     public ArrayList<Continent> getContinents() {
@@ -464,5 +461,17 @@ public class ChalmersRisk implements Controller {
         }
 
         deck.resetDeck();
+    }
+
+    public boolean playerWon(){
+
+        for(Territory t: map.getTerritories()){
+            //if there is even one territory which the player does not own..
+            if(!currentPlayer.isMyTerritory(t)){
+                return false;
+            }
+        }
+        //however, if we leave the for-loop: return true
+        return true;
     }
 }
