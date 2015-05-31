@@ -47,7 +47,6 @@ public class TopStrip extends BorderPane{
 
     }
 
-
     public Text getGameText(){
         return gameText;
     }
