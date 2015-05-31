@@ -70,8 +70,8 @@ public class AttackPhaseController implements Controller {
 
                 //if this returns true it means that the defender territory got empty
                 if(player.combat(attackFrom,defendingTerritory)){
-                    //and if it got empty we should move the attacker players
 
+                    //and if it got empty we should move the attacker players
                   //  defendingTerritory.setnewOwner(player); //set new owner
 
                     player.addTerritories(defendingTerritory);
@@ -85,9 +85,10 @@ public class AttackPhaseController implements Controller {
                         gameBoard.setMessage("GRATTIS DU VANN!!");
 
                     }
-
-
                 }
+
+                gameBoard.setDiceArea(player.getAttackRolls(),true);
+                gameBoard.setDiceArea(player.getDefenderRolls(),false);
 
 
 
