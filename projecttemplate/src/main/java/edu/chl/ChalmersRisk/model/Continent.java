@@ -14,7 +14,7 @@ import java.util.List;
 public class Continent {
 
     private String name;
-    private int value; // this is used if we intend to have different Continents giving a different amount of bonus troops
+    private final int value; // this is used if we intend to have different Continents giving a different amount of bonus troops
     private ArrayList<Territory> territories = new ArrayList<Territory>();
     private Player owner = Constants.EMPTY_PLAYER;
 

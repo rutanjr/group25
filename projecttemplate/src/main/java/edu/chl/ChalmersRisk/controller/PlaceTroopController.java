@@ -14,8 +14,8 @@ import javafx.scene.image.ImageView;
 public class PlaceTroopController implements Controller {
 
 
-    private Player player;
-    private GameBoard gameBoard;
+    private final Player player;
+    private final GameBoard gameBoard;
 
     public PlaceTroopController(Player player, GameBoard gameBoard){
         this.player = player;

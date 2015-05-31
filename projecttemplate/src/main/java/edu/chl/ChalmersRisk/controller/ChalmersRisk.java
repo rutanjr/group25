@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk.controller;
 
 
+import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
@@ -36,8 +37,6 @@ public class ChalmersRisk implements Controller {
     private Player playerOne,playerTwo,currentPlayer;
     private int phase, oldPhase;
 
-    private boolean gameIsRunning;
-    private Stage primaryStage;
     private GameBoard gB;
 
 
@@ -50,7 +49,6 @@ public class ChalmersRisk implements Controller {
     private final int lastPhase = 2;
     private final int firstPhase = 0;
 
-    private Timer gameTimer,phaseTimer;
 
 
     public ChalmersRisk(StartScreen startScreen){
@@ -66,21 +64,15 @@ public class ChalmersRisk implements Controller {
     public ChalmersRisk(){
     }
 
-    public void startGame(String[] players, Stage primaryStage) {
+    private void startGame(String[] players, Stage primaryStage) {
         //set all variables
         playerOne = new Player(players[0],"0000ff");
         playerTwo = new Player(players[1],"ff0000");
         currentPlayer = playerOne;
         phase = 0;
-        gameIsRunning = true;
-        this.primaryStage = primaryStage;
 
+        Stage stage = primaryStage;
 
-
-        //TODO : remove when not needed
-        System.out.println("HALLLÅÅÅ");
-        System.out.println(playerOne.getName());
-        System.out.println(playerTwo.getName());
 
         // TODO : what if you want a different map? Future thing
         //loadMap("Chalmers");
@@ -97,14 +89,14 @@ public class ChalmersRisk implements Controller {
         gB.getInfoStrip().getNextButton().setOnAction(new NextButtonPressed());
 
 
-        primaryStage.setScene(gameBoard);
+        stage.setScene(gameBoard);
 
         //give initialtroops
 
         loopGame();
     }
 
-    public boolean areAllTerritoriesTaken(){
+    private boolean areAllTerritoriesTaken(){
 
         //go through all the territories
         for(Territory t : map.getTerritories()){
@@ -117,7 +109,7 @@ public class ChalmersRisk implements Controller {
         return true;
     }
 
-    public void loopGame(){
+    private void loopGame(){
         setTheScene();
         if(phase == 0){
             placeTroopPhase();
@@ -129,24 +121,20 @@ public class ChalmersRisk implements Controller {
 
     }
 
-    public boolean initialPhase(){
+    private boolean initialPhase(){
 
         //players have to alternate between themselves, placing one troop until there are atleast Constant.begTroops troops
-        if(playerOne.getPlacedTroops().size() + playerTwo.getPlacedTroops().size() >= Constants.begTroops){
-            return false;
-        }else{
-            return true;
-        }
+        return !(playerOne.getPlacedTroops().size() + playerTwo.getPlacedTroops().size() >= Constants.begTroops);
     }
 
-    public void placeTroopPhase(){
+    private void placeTroopPhase(){
         //first give the troops to the player
         giveTroops(currentPlayer);
         gB.setMessage(currentPlayer.getName() + " recieved "+currentPlayer.getTroopsToPlace().size() + " number of troops this turn.");
         gB.setController(new PlaceTroopController(currentPlayer, gB));
     }
 
-    public void attackPhase(){
+    private void attackPhase(){
 
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
@@ -154,7 +142,7 @@ public class ChalmersRisk implements Controller {
         gB.setController(new AttackPhaseController(currentPlayer, gB));
     }
 
-    public void moveTroopsPhase(){
+    private void moveTroopsPhase(){
         gB.setGameText("MOVE TROOP PHASE");
         gB.setController(new MoveTroopController(currentPlayer,gB));
     }
@@ -162,13 +150,15 @@ public class ChalmersRisk implements Controller {
 
 
 
-    public void setTheScene(){
-            System.out.println("phase 0");
-            gameIsRunning = false;
+    private void setTheScene(){
+        //remove all effects on the buttons
+        for(TerritoryView t: gB.getTerritoryViews()) {
+            t.removeFocused();
+        }
 
     }
 
-    public void giveTroops(Player player){
+    private void giveTroops(Player player){
 
         ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
 
@@ -182,7 +172,7 @@ public class ChalmersRisk implements Controller {
         player.receiveTroops(troops);
     }
 
-    public int nbrOfTroopsToGive(Player player) {
+    private int nbrOfTroopsToGive(Player player) {
         int total = player.getnmbrOfTerritories();
         //for all continents in continents see if player is an owner
         for(Continent c : continents){
@@ -195,7 +185,7 @@ public class ChalmersRisk implements Controller {
     }
 
     //in case we want to use different maps
-    public void loadMap(String name){
+    private void loadMap(String name){
 
         if(name.equals("Chalmers")){
             map = new ChalmersMap();
@@ -214,19 +204,19 @@ public class ChalmersRisk implements Controller {
      * method to determine whether or not you can actually end your turn. used when a user clicks the nextButton.
      * @return false if you cant end your turn and true if you can
      */
-    public boolean canEndTurn(){
+    private boolean canEndTurn(){
         switch(phase){
             case 0: if(!currentPlayer.getTroopsToPlace().isEmpty()){
                 gB.setMessage("You can't end your turn yet.\nYou still have "+currentPlayer.getTroopsToPlace().size()+ " troops to place!");
                 return false;
-            };
+            }
 
         }
         return true;
     }
 
     //what should happen when a player ends their turn.
-    public void endTurn(){
+    private void endTurn(){
 
         //trivial, if we were at the last phase, we should change players.
         if(oldPhase == lastPhase ){
@@ -249,7 +239,7 @@ public class ChalmersRisk implements Controller {
      * attack.
      * @return true if the player can attack, false if they cannot.
      */
-    public boolean canPlayerGoToAttack(){
+    private boolean canPlayerGoToAttack(){
         //if phase is 1 => attackphase
         if(phase == 1){
             for(Territory t: currentPlayer.getTerritories()){
@@ -264,7 +254,7 @@ public class ChalmersRisk implements Controller {
 
     }
 
-    public void changePlayers(){
+    private void changePlayers(){
         if(currentPlayer.equals(playerOne)){
             currentPlayer = playerTwo;
         }else{
@@ -482,7 +472,7 @@ public class ChalmersRisk implements Controller {
         public void handle(ActionEvent event) {
 
 
-            if(startScreen.getPlayerOne().getText().toString().equals("") || startScreen.getPlayerTwo().getText().toString().equals("")){
+            if(startScreen.getPlayerOne().getText().equals("") || startScreen.getPlayerTwo().getText().equals("")){
                 startScreen.setWarningText("Please enter names of the players");
             }else{
                 String[] players = new String[2];

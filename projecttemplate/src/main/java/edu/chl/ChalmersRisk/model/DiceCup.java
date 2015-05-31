@@ -4,7 +4,7 @@ package edu.chl.ChalmersRisk.model;
  * Created by rutanjr on 2015-05-07.
  */
 public class DiceCup {
-    private Die die;
+    private final Die die;
 
     public DiceCup() {
         die = new Die();

@@ -11,17 +11,17 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    private String name;
+    private final String name;
     private ArrayList<Territory> territories;
     private ArrayList<Troop> placedTroops;
     private ArrayList<Troop> troopsToPlace;
 
 
     //teamcolor
-    private String color;
+    private final String color;
 
     //A cup of dice to use when resolving combat.
-    private DiceCup cupOfDice;
+    private final DiceCup cupOfDice;
     private int [] attackRolls;
     private int [] defenderRolls;
 
@@ -307,11 +307,7 @@ public class Player {
             defTroops--;
         }
 
-        if (defender.getAmountOfTroops()<1){
-            return true;
-        } else {
-            return false;
-        }
+        return defender.getAmountOfTroops()<1;
     }
 
 
