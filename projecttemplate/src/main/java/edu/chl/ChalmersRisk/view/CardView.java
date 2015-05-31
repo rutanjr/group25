@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
  */
 public class CardView {
     public static void display(ICard card){
-        if (!card.getTitle().equals("EMPTY_CARD")) {
+        if (!card.getTitle().equals("EMPTY_CARD") && !card.getTitle().equals("No effect")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initStyle(StageStyle.UTILITY);
             alert.setTitle(card.getTitle());
