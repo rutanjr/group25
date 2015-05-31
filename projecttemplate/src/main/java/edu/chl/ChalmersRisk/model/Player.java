@@ -267,9 +267,10 @@ public class Player {
         }
 
 
-        //now we have both attackrolls and defenderrolls
-        attackRolls = atkRoll;
-        defenderRolls = defRoll;
+        //now we have both attackrolls and defenderrolls, cloned because later both atkRoll and defRoll is changed.
+        attackRolls = atkRoll.clone();
+        defenderRolls = defRoll.clone();
+
 
 
         while (atkTroops > 0 && defTroops >0){
