@@ -9,7 +9,7 @@ import java.util.Random;
 public class Die {
 
 
-    //TODO throw one die per instance. DieCup.
+
     private static Random dieRoll;
 
     public Die() {
@@ -18,6 +18,10 @@ public class Die {
         }
     }
 
+    /**
+     * Throws a die and returns the result as an integer.
+     * @return die roll 1-6.
+     */
     public int rollDie() {
         return  dieRoll.nextInt(6)+1;
     }

@@ -11,7 +11,7 @@ import java.util.Stack;
 /**
  * Created by rutanjr on 2015-03-31.
  * A class to represent each territory. Certain territories together is a continent. All territories belongs to a continent.
- *
+ * @revisedBy Björn Bergqvist
  * @revisedBy Robin Jansson
  * @revisedBy Malin Thelin
  */
@@ -103,8 +103,8 @@ public class Territory {
         }
     }
 
-    /*
-     * Atempts to create a conection back to the main territory from the newly added neighbor
+    /**
+     * Atempts to create a connection back to the main territory from the newly added neighbor
      * as to prevent error where A is a neighbor to B, but B isn't a neighbor to A.
      */
     public void addNeighbor(Territory neighbor) {
@@ -162,15 +162,27 @@ public class Territory {
         return this.getAdjacentTerritories().contains(possibleNeighbor);
     }
 
-    //TODO JAVADOC
+    /**
+     * Checks whether the territory is available to place troops on.
+     * @param player to check availability for
+     * @return if its available or not
+     */
     public boolean isAvailableTo(Player player){
-        return (owner.  equals(Constants.EMPTY_PLAYER) || owner.equals(player));
+        return (owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player));
     }
 
+    /**
+     * Gets the url to the image for this territory.
+     * @return url string to the image.
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * The position where the territory view should be placed in a map.
+     * @return
+     */
     public Point2D.Double getPos() {
         return pos;
     }

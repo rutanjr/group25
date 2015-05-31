@@ -2,6 +2,7 @@ package edu.chl.ChalmersRisk.utilities;
 
 /**
  * Created by Malin on 2015-05-31.
+ * Our implimentation of bubblesort in this application strictly handles integers.
  */
 public class BubbleSort {
 
