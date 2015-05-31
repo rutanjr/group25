@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk.controller;
 
 
+import edu.chl.ChalmersRisk.cardModels.BlankCard;
 import edu.chl.ChalmersRisk.cardModels.ICard;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
@@ -37,7 +38,7 @@ public class ChalmersRisk implements Controller {
     private Stage primaryStage;
     private GameBoard gB;
 
-    private ICard eventCard; // TODO uninitialized event card
+    private ICard eventCard = new BlankCard(); // TODO uninitialized event card
 
     private StartScreen startScreen;
 
