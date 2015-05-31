@@ -9,6 +9,7 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.CardView;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.StartScreen;
+import edu.chl.ChalmersRisk.view.WinView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -40,11 +41,10 @@ public class ChalmersRisk implements Controller {
 
     private DeckOfCards deck;
     private ICard eventCard = Constants.EMPTY_CARD;
-    public static boolean aMayDrawCard = false;
-    public static boolean bMayDrawCard = false;
-
-    public static Player cardWinnerA = Constants.EMPTY_PLAYER;
-    public static Player cardWinnerB = Constants.EMPTY_PLAYER;
+    public static boolean aMayDrawCard;
+    public static boolean bMayDrawCard;
+    public static Player cardWinnerA;
+    public static Player cardWinnerB;
 
     private StartScreen startScreen;
 
@@ -104,8 +104,13 @@ public class ChalmersRisk implements Controller {
 
         stage.setScene(gameBoard);
 
-        // initilizes the deck
+        // initilizes the deck and draw mechanich variables
         createDeck();
+        aMayDrawCard = false;
+        bMayDrawCard = false;
+        cardWinnerA = Constants.EMPTY_PLAYER;
+        cardWinnerB = Constants.EMPTY_PLAYER;
+
 
         loopGame();
 
@@ -165,6 +170,12 @@ public class ChalmersRisk implements Controller {
                 } else {
                     gB.update(1);
                 }
+                if(playerWon()){ // checks if a player won due to an event card -------------------------------------
+                    gB.setMessage("Congratulations you won!!!");
+                    new WinView();
+                    startNewGame();
+
+                }
             }
 
             placeTroopPhase();
@@ -174,6 +185,12 @@ public class ChalmersRisk implements Controller {
             moveTroopsPhase();
         }
 
+        if(playerWon()){ // checks if a player won due to an event card -------------------------------------
+            gB.setMessage("Congratulations you won!!!");
+            new WinView();
+            startNewGame();
+
+        }
     }
 
     /**
@@ -458,7 +475,11 @@ public class ChalmersRisk implements Controller {
 
             //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); //------------ probably OK
             //deck.addCardToDeck(new AllChangeTroopCard(this.continents, 1)); //-------------OK
-            //deck.addCardToDeck(new LoseTerritoryCard(this.playerOne, this.playerTwo)); //-------------OK
+
+            // Wierd results when a player loses his last territory
+            //deck.addCardToDeck(new LoseTerritoryCard(this.playerOne, this.playerTwo)); // NOT OK
+
+
             //deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo)); //-------- OK
 
             //deck.addCardToDeck(new TerritoryTroopCard(this.playerOne, this.playerTwo, 3));
