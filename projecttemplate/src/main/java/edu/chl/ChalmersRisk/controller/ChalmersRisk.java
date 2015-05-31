@@ -122,6 +122,9 @@ public class ChalmersRisk implements Controller {
         if(phase == 0){
             // checks if the player is allowed to draw an event card
             if (mayDrawCard) {
+                if (deck.size() < 1) {
+                    deck.resetDeck();
+                }
                 eventCard = deck.pullCard();
                 mayDrawCard = false;
             }
@@ -403,11 +406,11 @@ public class ChalmersRisk implements Controller {
     private void createDeck() {
         deck  = new DeckOfCards();
         for (int i = 0 ; i < 10 ; i++) {
-            deck.addCardToDeck(new BlankCard());
+            //deck.addCardToDeck(new BlankCard());
         }
         for (int i = 0 ; i < 2 ; i++) {
             //deck.addCardToDeck(new AdditionalMoveCard(this.currentPlayer));
-            //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2));
+            deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); //OK
             //deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1)); //OK
             //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
             //deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
