@@ -1,6 +1,8 @@
 package edu.chl.ChalmersRisk.controller;
 
 
+import edu.chl.ChalmersRisk.gui.TerritoryView;
+
 import edu.chl.ChalmersRisk.cardModels.*;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
@@ -33,7 +35,6 @@ public class ChalmersRisk implements Controller {
     private Player playerOne,playerTwo,currentPlayer = Constants.EMPTY_PLAYER;
     private int phase, oldPhase;
 
-    private Stage primaryStage;
     private GameBoard gB;
 
     private DeckOfCards deck;
@@ -47,6 +48,7 @@ public class ChalmersRisk implements Controller {
     //phase is the first phase a player is in when a turn begins.
     private final int lastPhase = 2;
     private final int firstPhase = 0;
+
 
     public ChalmersRisk(StartScreen startScreen){
 
@@ -65,13 +67,17 @@ public class ChalmersRisk implements Controller {
      * @param players the names of the players of the game.
      * @param primaryStage the mainframe where all that will contain all graphical components.
      */
-    public void startGame(String[] players, Stage primaryStage) {
+
+    private void startGame(String[] players, Stage primaryStage) {
+
         //set all variables
         playerOne = new Player(players[0],"0000ff");
         playerTwo = new Player(players[1],"ff0000");
         currentPlayer = playerOne;
         phase = 0;
-        this.primaryStage = primaryStage;
+
+        Stage stage = primaryStage;
+
 
 
         // TODO : what if you want a different map? Future thing
@@ -88,7 +94,8 @@ public class ChalmersRisk implements Controller {
         //sätt
         gB.getInfoStrip().getNextButton().setOnAction(new NextButtonPressed());
 
-        primaryStage.setScene(gameBoard);
+        stage.setScene(gameBoard);
+
 
         // initilizes the deck
         createDeck();
@@ -102,7 +109,7 @@ public class ChalmersRisk implements Controller {
      * there are still territorys that are free to claim by placing troops here.
      * @return true if all are claimed, false if they are not.
      */
-    public boolean areAllTerritoriesTaken(){
+    private boolean areAllTerritoriesTaken(){
 
         //go through all the territories
         for(Territory t : map.getTerritories()){
@@ -115,10 +122,12 @@ public class ChalmersRisk implements Controller {
         return true;
     }
 
+
     /**
      * This is the gameloop that handles all the phases. Keeps the game running.
      */
-    public void loopGame(){
+    private void loopGame(){
+        setTheScene();
         if(phase == 0){
             // checks if the player is allowed to draw an event card
             if (mayDrawCard) {
@@ -156,21 +165,21 @@ public class ChalmersRisk implements Controller {
      * aren't met the game cannot get of of the initialphase where players may only place one troops at a time per turn.
      * @return Whether the game is still in the initial phase of the game where the players get to claim territories. True if its i, false otherwise.
      */
-    public boolean initialPhase(){
+    private boolean initialPhase(){
 
         //players have to alternate between themselves, placing one troop until there are atleast Constant.begTroops troops
-        if(playerOne.getPlacedTroops().size() + playerTwo.getPlacedTroops().size() >= Constants.begTroops && areAllTerritoriesTaken()){
-            return false;
-        }else{
-            return true;
-        }
+        return !(playerOne.getPlacedTroops().size() + playerTwo.getPlacedTroops().size() >= Constants.begTroops);
     }
+
+
+
+
 
     /**
      * The method to makes sure that the player may only placeTroops in the placeTroops phase.
      * Sets the gameBoard controller to PlaceTroopController.
      */
-    public void placeTroopPhase(){
+    private void placeTroopPhase(){
         //first give the troops to the player
         giveTroops(currentPlayer);
         gB.setMessage(currentPlayer.getName() + " recieved "+currentPlayer.getTroopsToPlace().size() + " number of troops this turn.");
@@ -180,31 +189,45 @@ public class ChalmersRisk implements Controller {
         gB.setController(new PlaceTroopController(currentPlayer, gB));
     }
 
+
+
     /**
      * The method to makes sure that the player may only attack during the attack phase.
      * Sets the gameBoard controller to AttackPhaseController.
      */
-    public void attackPhase(){
+    private void attackPhase(){
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
         gB.setController(new AttackPhaseController(currentPlayer, gB));
     }
 
+
     /**
      * The method to makes sure that the player may only move troops in the moveTroops phase.
      * Sets the gameBoard controller to MoveTroopController.
      */
-    public void moveTroopsPhase(){
+
+    private void moveTroopsPhase(){
         gB.setGameText("MOVE TROOP PHASE");
         gB.setController(new MoveTroopController(currentPlayer, gB));
     }
 
-    /**
+
+    private void setTheScene(){
+        //remove all effects on the buttons
+        for(TerritoryView t: gB.getTerritoryViews()) {
+            t.removeFocused();
+        }
+
+    }
+
+     /**
      * Gives a player the correct amount of troops this turn. Varies dependent on how many territories
      * the player controls aswell as whether the player controls entire continents.
      * @param player to be given troops.
      */
-    public void giveTroops(Player player){
+     private void giveTroops(Player player){
+
         ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
         if(initialPhase()){
             troops.add(new Troop(player));
@@ -216,12 +239,15 @@ public class ChalmersRisk implements Controller {
         player.receiveTroops(troops);
     }
 
+
+
+
     /**
      * Calculates how many troops the player should get this turn.
      * @param player the player that should receive troops.
      * @return amount of troops to get this turn.
      */
-    public int nbrOfTroopsToGive(Player player) {
+    private int nbrOfTroopsToGive(Player player) {
         int total = player.getnmbrOfTerritories();
         //for all continents in continents see if player is an owner
         for(Continent c : continents){
@@ -232,12 +258,15 @@ public class ChalmersRisk implements Controller {
         return total;
     }
 
+
+    //in case we want to use different maps
+
     /**
      * This method was implemented due to the fact that we might want to add options of loading a map.
      * This is in case we wanted to extend the model.
      * @param name of the map to load.
      */
-    public void loadMap(String name){
+    private void loadMap(String name){
 
         if(name.equals("Chalmers")){
             map = new ChalmersMap();
@@ -256,24 +285,26 @@ public class ChalmersRisk implements Controller {
      * method to determine whether or not you can actually end your turn. used when a user clicks the nextButton.
      * @return false if you cant end your turn and true if you can
      */
-    public boolean canEndTurn(){
+    private boolean canEndTurn(){
         switch(phase){
             case 0: if(!currentPlayer.getTroopsToPlace().isEmpty()){
                 gB.setMessage("You can't end your turn yet.\nYou still have "+currentPlayer.getTroopsToPlace().size()+ " troops to place!");
                 return false;
-            };
+            }
 
         }
         return true;
     }
 
 
+
+
     /**
-     * This method checks which phase to go to when net button is pressed. This method makes sure
+     * This method checks which phase to go to when the next button is pressed. This method makes sure
      * the game doesn't enter any unneccesary state, like moveTroops phase when the current player
      * doesn't have any troops available to move.
      */
-    public void endTurn(){
+    private void endTurn(){
 
         if (!eventCard.getTitle().equals(Constants.EMPTY_CARD.getTitle())) { //to avoid placing EMPTY_CARD back in the deck
             deck.addCardToBackOfDeck(eventCard);
@@ -302,7 +333,7 @@ public class ChalmersRisk implements Controller {
      * attack.
      * @return true if the player can attack, false if they cannot.
      */
-    public boolean canPlayerGoToAttack(){
+    private boolean canPlayerGoToAttack(){
         //if phase is 1 => attackphase
         if(phase == 1){
             for(Territory t: currentPlayer.getTerritories()){
@@ -315,6 +346,14 @@ public class ChalmersRisk implements Controller {
         }
         return false;
 
+    }
+
+
+
+
+
+    public ArrayList<Continent> getContinents() {
+        return continents;
     }
 
     /**
@@ -338,7 +377,7 @@ public class ChalmersRisk implements Controller {
      * A method to make sure this twoplayer game runs smoothly and the players turn works properly.
      * If current player is first, this method changes current player to player two.
      */
-    public void changePlayers(){
+    private void changePlayers(){
         if(currentPlayer.equals(playerOne)){
             currentPlayer = playerTwo;
         }else{
@@ -351,6 +390,7 @@ public class ChalmersRisk implements Controller {
         phase = firstPhase;
 
     }
+
 
     public ArrayList<Territory> getTerritories() {
         return territories;
@@ -365,7 +405,9 @@ public class ChalmersRisk implements Controller {
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            if(startScreen.getPlayerOne().getText().toString().equals("") || startScreen.getPlayerTwo().getText().toString().equals("")){
+
+            if(startScreen.getPlayerOne().getText().equals("") || startScreen.getPlayerTwo().getText().equals("")){
+
                 startScreen.setWarningText("Please enter names of the players");
             }else{
                 String[] players = new String[2];

@@ -21,8 +21,10 @@ public class Constants {
     public static final int height = 500;
     public static final Continent EMPTY_CONTINENT = new Continent("EMPTY",0);
     public static final Territory EMPTY_TERRITORY = new Territory("EMPTY");
-    public static final int begTroops = 3;
+    public static final int begTroops = 13;
     public static final ICard EMPTY_CARD = new BlankCard("EMPTY_CARD");
+
+
 
     public static DropShadow createDropShadow(Color color,double spread) {
         DropShadow ds = new DropShadow(10, color);
