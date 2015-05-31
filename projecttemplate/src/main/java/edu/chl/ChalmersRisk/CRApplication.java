@@ -18,12 +18,11 @@ public class CRApplication extends Application {
 
         primaryStage.setTitle("ChalmersRisk");
 
-
         StartScreen startScreen = new StartScreen(primaryStage); //view
         ChalmersRisk chalmersRisk = new ChalmersRisk(startScreen); //controller
 
         Scene scene = new Scene(startScreen, Constants.width, Constants.height);
-        primaryStage.setMinHeight(Constants.height+39);
+        primaryStage.setMinHeight(Constants.height + 39);
         primaryStage.setMaxHeight(Constants.height+39);
         primaryStage.setMaxWidth(Constants.width);
         primaryStage.setMinWidth(Constants.width);

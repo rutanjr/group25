@@ -13,9 +13,6 @@ public class WinView {
         alert.setTitle("You win!");
         alert.setHeaderText(null);
         alert.setContentText("You just on the game! Congratilations!");
-
-
         alert.showAndWait();
     }
-
 }

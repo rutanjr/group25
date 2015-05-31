@@ -7,13 +7,11 @@ import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.CardView;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.StartScreen;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 
@@ -75,6 +73,7 @@ public class ChalmersRisk implements Controller {
         phase = 0;
         this.primaryStage = primaryStage;
 
+
         // TODO : what if you want a different map? Future thing
         loadMap("Chalmers");
         //loadMap("Test");
@@ -96,6 +95,7 @@ public class ChalmersRisk implements Controller {
 
         loopGame();
     }
+
 
     /**
      * Checks if all territories are taken, if one or more territory is still owned by the "EMPTY_PLAYER"

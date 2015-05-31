@@ -16,6 +16,7 @@ public class ChalmersMap implements Maps {
     private final ArrayList<Territory> territories = new ArrayList<Territory>();
     private final ImageView background;
 
+
     public ChalmersMap(){
 
         continents.add(new Continent("Vasa och Gibraltar norra", 2));
