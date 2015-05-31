@@ -67,7 +67,6 @@ public class ChalmersRisk implements Controller {
     }
 
     /**
-<<<<<<< Updated upstream
      * Starts the game, sets players names and calls forth the gameboards graphical components to be
      * created (startNewGame).
      * @param players the names of the players of the game.
@@ -101,7 +100,7 @@ public class ChalmersRisk implements Controller {
         loadMap("Test");
 
 
-        gB = new GameBoard(map,this);
+        gB = new GameBoard(map);
         Scene gameBoard = new Scene(gB, map.getWidth(),Constants.height);
 
         gB.setMessage("A new game started between players:\n " + playerOne.getName() + " and " + playerTwo.getName());
@@ -209,7 +208,7 @@ public class ChalmersRisk implements Controller {
         if (eventCard.phaseCheck() == 1) { // if the event card that affect placable troops is drawn
             eventCard.turnCard();
         }
-        gB.setController(new PlaceTroopController(currentPlayer, gB));
+        new PlaceTroopController(currentPlayer, gB);
     }
 
     /**
@@ -220,7 +219,7 @@ public class ChalmersRisk implements Controller {
     private void attackPhase(){
         gB.setGameText("ATTACK PHASE");
         gB.setMessage("Välj ett territory att attackera ifrån");
-        gB.setController(new AttackPhaseController(currentPlayer, gB, this));
+        new AttackPhaseController(currentPlayer, gB, this);
     }
 
     /**
@@ -229,7 +228,7 @@ public class ChalmersRisk implements Controller {
      */
     private void moveTroopsPhase(){
         gB.setGameText("MOVE TROOP PHASE");
-        gB.setController(new MoveTroopController(currentPlayer,gB));
+        new MoveTroopController(currentPlayer,gB);
     }
 
     /**
