@@ -34,21 +34,25 @@ public class DiceView extends BorderPane {
                 image = new ImageView("one.png");
                 break;
             case 2:
-                image = new ImageView("one.png");
+                image = new ImageView("two.png");
                 break;
             case 3:
-                image = new ImageView("one.png");
+                image = new ImageView("three.png");
                 break;
             case 4:
-                image = new ImageView("one.png");
+                image = new ImageView("four.png");
                 break;
             case 5:
-                image = new ImageView("one.png");
+                image = new ImageView("five.png");
                 break;
             case 6:
-                image = new ImageView("one.png");
+                image = new ImageView("six.png");
                 break;
         }
+
+        image.setFitHeight(45);
+        image.setFitWidth(45);
+        this.setCenter(image);
 
     }
 
