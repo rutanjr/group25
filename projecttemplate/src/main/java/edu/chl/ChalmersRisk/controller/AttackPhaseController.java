@@ -55,7 +55,7 @@ public class AttackPhaseController implements Controller {
                 attackFrom = btn.getTerritory();
                 canAttack = true;
             }else if(btn.getTerritory().getAmountOfTroops() <= 1 && btn.getTerritory().getOwner().equals(player)){ //
-            // if you pick a territory where you don't have enough troops to attack with
+                // if you pick a territory where you don't have enough troops to attack with
                 gameBoard.setMessage("Du har för få trupper här");
                 attackFrom = btn.getTerritory();
 
@@ -72,7 +72,7 @@ public class AttackPhaseController implements Controller {
                 if(player.combat(attackFrom,defendingTerritory)){
 
                     //and if it got empty we should move the attacker players
-                  //  defendingTerritory.setnewOwner(player); //set new owner
+                    //  defendingTerritory.setnewOwner(player); //set new owner
 
                     player.addTerritories(defendingTerritory);
                     player.moveTroops(attackFrom, defendingTerritory, attackFrom.getAmountOfTroops() - 1);
@@ -89,7 +89,6 @@ public class AttackPhaseController implements Controller {
 
                 gameBoard.setDiceArea(player.getAttackRolls(),true);
                 gameBoard.setDiceArea(player.getDefenderRolls(),false);
-
 
 
                 canAttack = attackFrom.getAmountOfTroops()>1;

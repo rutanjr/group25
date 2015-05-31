@@ -14,8 +14,8 @@ import javafx.scene.image.ImageView;
 public class MoveTroopController implements Controller {
 
 
-    private Player player;
-    private GameBoard gameBoard;
+    private final Player player;
+    private final GameBoard gameBoard;
     private TerritoryView moveFrom;
     private int amtOfTroops;
 
