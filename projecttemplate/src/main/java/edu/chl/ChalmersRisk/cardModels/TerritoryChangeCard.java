@@ -15,6 +15,11 @@ public class TerritoryChangeCard implements ICard {
     private String title, message;
     private Player playerA, playerB;
 
+    /**
+     *
+     * @param playerA, a reference to one of the players.
+     * @param playerB, a reference to the other player.
+     */
     public TerritoryChangeCard(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;

@@ -1,7 +1,6 @@
 package edu.chl.ChalmersRisk.view;
 
 
-import edu.chl.ChalmersRisk.controller.Controller;
 import edu.chl.ChalmersRisk.gui.InformationStrip;
 import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.gui.TopStrip;
@@ -107,12 +106,18 @@ public class GameBoard extends BorderPane {
         topInfo.setGameText(text);
     }
 
-   
-
+    /**
+     * Gives this reference to the informationstrip.
+     * @return InfoStrip of the board.
+     */
     public InformationStrip getInfoStrip(){
         return infoStrip;
     }
 
+    /**
+     * returns the instance of the map
+     * @return map.
+     */
     public Maps getMap(){
         return map;
     }

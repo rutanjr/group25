@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Malin on 2015-05-28.
+ * Only a class for the testing. It's a smaller version of the ChalmersMap.
  */
 public class TestMap implements Maps {
 

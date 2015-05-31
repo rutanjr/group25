@@ -15,7 +15,11 @@ public class TerritoryTroopCard implements ICard {
     private int bonusTroops;
     private Player currentPlayer = Constants.EMPTY_PLAYER, playerA, playerB;
 
-
+    /**
+     *
+     * @param targetTerritory, the specific territory targetet with bonus troops
+     * @param bonusTroops, the amount of extra troops
+     */
     public TerritoryTroopCard(Territory targetTerritory, int bonusTroops) {
         this.targetTerritory = targetTerritory;
         this.bonusTroops = bonusTroops;
@@ -24,6 +28,13 @@ public class TerritoryTroopCard implements ICard {
                 " will receive " + bonusTroops + " additional troops";
     }
 
+    /**
+     * Bonus troops will in this case be awarded to a random territory owned by a random player.
+     *
+     * @param playerA, a reference to a player
+     * @param playerB, a reference to the other player
+     * @param bonusTroops, the amount of bonus troops
+     */
     public TerritoryTroopCard(Player playerA, Player playerB, int bonusTroops) {
         this.currentPlayer = playerA;
         this.playerA = playerA;
@@ -60,6 +71,9 @@ public class TerritoryTroopCard implements ICard {
 
     }
 
+    /**
+     * A method that randomizes the players to give a random player the effect of the card.
+     */
     private void randPlayer() {
         int randInt = (int)(Math.random()*2);
 

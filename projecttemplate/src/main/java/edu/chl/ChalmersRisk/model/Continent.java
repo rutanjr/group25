@@ -31,16 +31,28 @@ public class Continent {
         this.territories = territories;
     }
 
-    // Query - Methods
+    /**
+     * @return name of the continent.
+     */
     public String getName() { return this.name; }
 
+    /**
+     * If a player controls the entire continent at the start of it's turn that player gets bonus
+     * troops according to the value of the continent.
+     * @return value of the continent
+     */
     public int getValue()   { return this.value; }
 
+    /**
+     *
+     * @return ArrayList of territories located in this continent.
+     */
     public List<Territory> getTerritories() { return territories; }
 
+    /**
+     * @return player that owns the continent if its controlled by only one player.
+     */
     public Player getOwner() { return this.owner; }
-
-    // Comand - Methods
 
     public void setName(String name){
         this.name = name;

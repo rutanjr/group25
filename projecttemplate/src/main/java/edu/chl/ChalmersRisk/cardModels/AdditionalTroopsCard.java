@@ -17,6 +17,11 @@ public class AdditionalTroopsCard implements ICard {
     private int bonusTroops;
     private Player currentPlayer;
 
+    /**
+     *
+     * @param currentPlayer, player being rewarded with bonus troops.
+     * @param bonusTroops, the amount of bonus troops.
+     */
     public AdditionalTroopsCard(Player currentPlayer, int bonusTroops ) {
         this.currentPlayer = currentPlayer;
         this.title = "Additional Troops";
@@ -25,6 +30,7 @@ public class AdditionalTroopsCard implements ICard {
         this.message = "Congratulations, thanks to your previous conquest " +
                 "your army has been blessed with many new recruits " + this.bonusTroops + " new soldiers join your ranks.";
     }
+
     @Override
     public String getTitle() {
         return this.title;

@@ -16,6 +16,9 @@ public class AdditionalMoveCard implements ICard {
     private String title, message;
     private Player currentPlayer;
 
+    /**
+     * @param currentPlayer, the player being awarded by an additional movment phase.
+     */
     public AdditionalMoveCard(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
 
@@ -41,6 +44,5 @@ public class AdditionalMoveCard implements ICard {
      */
     @Override
     public void turnCard() {
-        //TODO should be a simple check with phasecheck and a call on the currentPlayer.doMovePhase()ish method
     }
 }

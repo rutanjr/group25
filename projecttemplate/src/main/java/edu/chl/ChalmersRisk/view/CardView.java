@@ -1,7 +1,6 @@
 package edu.chl.ChalmersRisk.view;
 
 import edu.chl.ChalmersRisk.cardModels.ICard;
-import edu.chl.ChalmersRisk.utilities.Constants;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
 

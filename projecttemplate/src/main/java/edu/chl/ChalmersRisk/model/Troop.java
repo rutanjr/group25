@@ -11,7 +11,6 @@ package edu.chl.ChalmersRisk.model;
 public class Troop {
     private final Player owner;
     private boolean placed;
-    //TODO territory reference
     private Territory territory;
 
 
@@ -21,13 +20,20 @@ public class Troop {
     }
 
 
-    //if a troop is not placed, it has to be placed before a player can finish their turn.
+    /**
+     * Checks if the troop is placed or not. If the player has unplaced troops he cannot move on to
+     * the attack phase from the place troops phase.
+     * @return whether the troop is placed
+     */
     public boolean isPlaced(){
         return placed;
     }
 
 
-    //used by Player method placeTroop to tell the troop that it is placed.
+    /**
+     * Places the troop.
+     * @param territory to place troop on.
+     */
     public void placeMe(Territory territory){
         this.territory = territory;
         this.territory.addTroops(1);

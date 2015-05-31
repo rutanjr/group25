@@ -2,7 +2,6 @@ package edu.chl.ChalmersRisk.cardModels;
 
 
 import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.utilities.Constants;
 
 /**
  * INACTIVE
@@ -17,6 +16,9 @@ public class AdditionalAttackCard implements ICard {
     private String title, message;
     private Player currentPlayer;
 
+    /**
+     * @param currentPlayer, the player being awarded with an additional attack phase.
+     */
     public AdditionalAttackCard(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
         this.title = "Additional attack phase";

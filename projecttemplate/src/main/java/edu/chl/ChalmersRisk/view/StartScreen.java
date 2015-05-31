@@ -1,11 +1,9 @@
 package edu.chl.ChalmersRisk.view;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -13,7 +11,7 @@ import javafx.stage.Stage;
 
 /**
  * Created by Malin on 2015-04-17.
- *
+ * @revisedBy rutanjr, Oskar Rutqvist
  *StartScreen for the game. Can be further developed in numerous ways.
  */
 public class StartScreen extends GridPane{
@@ -58,7 +56,7 @@ public class StartScreen extends GridPane{
 
     /**
      *
-     *Method to set the warning text. For intstance if you haven't filled in any names for the players
+     * Method to set the warning text. For intstance if you haven't filled in any names for the players
      * @param message : the message you want to be displayed
      */
     public void setWarningText(String message) {
