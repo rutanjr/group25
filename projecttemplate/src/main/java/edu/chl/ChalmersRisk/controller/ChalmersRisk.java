@@ -349,9 +349,6 @@ public class ChalmersRisk implements Controller {
         return territories;
     }
 
-    public ArrayList<Continent> getContinents() {
-        return continents;
-    }
 
     /**
      * This is a class for the eventhandling of startbutton pressed. It's the button on the startscreen
