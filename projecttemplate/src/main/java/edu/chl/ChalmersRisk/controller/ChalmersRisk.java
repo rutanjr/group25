@@ -326,6 +326,7 @@ public class ChalmersRisk implements Controller {
         }
         if(oldPhase == lastPhase ){
             changePlayers();
+            gB.getInfoStrip().getNextButton().setText("NEXT");
         } else if(areAllTerritoriesTaken() && canPlayerGoToAttack()){
             //we may only come to the attackPhase if we can go to attack and all the territories are taken.
         } else if(canPlayerMoveTroops()) {
@@ -440,7 +441,6 @@ public class ChalmersRisk implements Controller {
             //first of all, see if they can end their turn
 
             if(canEndTurn()){
-
                 oldPhase = phase;
                 if(initialPhase()){
                     //when it's the initialphase the players shouldn't get out of phase 0

@@ -27,15 +27,16 @@ public class MoveTroopController implements Controller {
 
         TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
         for (TerritoryView tv: territoryViews) {
-            //tv.setOnAction(new ButtonPressed());
             tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
+
+        gameBoard.getInfoStrip().getNextButton().setText("END TURN");
     }
 
 
 
     /**
-     * Class for the button presses, the pressed territories in the game. Moving troops.
+     * Class for the pressed territories in the game. Moves troops.
      */
     private class ButtonPressed implements EventHandler {
         @Override

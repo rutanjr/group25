@@ -164,7 +164,7 @@ public class Territory {
 
     //TODO JAVADOC
     public boolean isAvailableTo(Player player){
-        return (owner.  equals(Constants.EMPTY_PLAYER) || owner.equals(player));
+        return (owner.equals(Constants.EMPTY_PLAYER) || owner.equals(player));
     }
 
     public String getUrl() {
