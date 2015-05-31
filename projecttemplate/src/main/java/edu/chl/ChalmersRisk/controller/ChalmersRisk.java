@@ -405,12 +405,12 @@ public class ChalmersRisk implements Controller {
      */
     private void createDeck() {
         deck  = new DeckOfCards();
-        for (int i = 0 ; i < 10 ; i++) {
-            //deck.addCardToDeck(new BlankCard());
+        for (int i = 0 ; i < 300 ; i++) {
+            deck.addCardToDeck(new BlankCard());
         }
         for (int i = 0 ; i < 2 ; i++) {
             //deck.addCardToDeck(new AdditionalMoveCard(this.currentPlayer));
-            deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); //OK
+            //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); //OK
             //deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1)); //OK
             //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
             //deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
