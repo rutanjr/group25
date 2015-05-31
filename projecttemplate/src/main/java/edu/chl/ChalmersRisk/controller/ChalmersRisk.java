@@ -181,14 +181,10 @@ public class ChalmersRisk implements Controller {
      * aren't met the game cannot get of of the initialphase where players may only place one troops at a time per turn.
      * @return Whether the game is still in the initial phase of the game where the players get to claim territories. True if its i, false otherwise.
      */
-    public boolean initialPhase(){
+    private boolean initialPhase(){
 
         //players have to alternate between themselves, placing one troop until there are atleast Constant.begTroops troops
-        if(playerOne.getPlacedTroops().size() + playerTwo.getPlacedTroops().size() >= Constants.begTroops && areAllTerritoriesTaken()){
-            return false;
-        }else{
-            return true;
-        }
+        return !(playerOne.getPlacedTroops().size() + playerTwo.getPlacedTroops().size() >= Constants.begTroops && areAllTerritoriesTaken());
     }
 
     /**
@@ -221,25 +217,27 @@ public class ChalmersRisk implements Controller {
      * The method to makes sure that the player may only move troops in the moveTroops phase.
      * Sets the gameBoard controller to MoveTroopController.
      */
-    public void moveTroopsPhase(){
+    private void moveTroopsPhase(){
         gB.setGameText("MOVE TROOP PHASE");
         gB.setController(new MoveTroopController(currentPlayer,gB));
     }
 
-    //TODO what dos this do?
-    public void setTheScene(){
+    /**
+     * This method "cleans" up the scene, in this case the GameBoard after every phase.
+     *
+     */
+    private void setTheScene(){
         for (TerritoryView t: gB.getTerritoryViews())
             t.removeFocused();
     }
 
     /**
->>>>>>> Stashed changes
      * Gives a player the correct amount of troops this turn. Varies dependent on how many territories
      * the player controls aswell as whether the player controls entire continents.
      * @param player to be given troops.
      */
 
-    public void giveTroops(Player player){
+    private void giveTroops(Player player){
         ArrayList<Troop> troops = new ArrayList<>(nbrOfTroopsToGive(player) + 2);
         if(initialPhase()){
             troops.add(new Troop(player));
@@ -274,7 +272,7 @@ public class ChalmersRisk implements Controller {
      * @param name of the map to load.
      */
 
-    public void loadMap(String name){
+    private void loadMap(String name){
 
         if(name.equals("Chalmers")){
             map = new ChalmersMap();
@@ -291,6 +289,7 @@ public class ChalmersRisk implements Controller {
 
     /**
      * method to determine whether or not you can actually end your turn. used when a user clicks the nextButton.
+     * Made for if in the future one might want to add restrictions on the other phases.
      * @return false if you cant end your turn and true if you can
      */
     private boolean canEndTurn(){
@@ -306,7 +305,6 @@ public class ChalmersRisk implements Controller {
 
 
     /**
-<<<<<<< Updated upstream
      * This method checks which phase to go to when the next button is pressed. This method makes sure
      * the game doesn't enter any unneccesary state, like moveTroops phase when the current player
      * doesn't have any troops available to move.
@@ -362,7 +360,7 @@ public class ChalmersRisk implements Controller {
      * Simple check to see if the current player can move troops or not, if not then we skip this phase.
      * @return true if moves are possible for the current player and false otherwise.
      */
-    public boolean canPlayerMoveTroops() {
+    private boolean canPlayerMoveTroops() {
         if(phase == 2){
             for(Territory t: currentPlayer.getTerritories()){
                 if(t.getAmountOfTroops() > 1){
