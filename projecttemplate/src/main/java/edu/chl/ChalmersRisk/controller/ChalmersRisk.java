@@ -1,8 +1,7 @@
 package edu.chl.ChalmersRisk.controller;
 
 
-import edu.chl.ChalmersRisk.cardModels.BlankCard;
-import edu.chl.ChalmersRisk.cardModels.ICard;
+import edu.chl.ChalmersRisk.cardModels.*;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
@@ -31,14 +30,16 @@ public class ChalmersRisk implements Controller {
     private ArrayList<Territory> territories;
 
 
-    private Player playerOne,playerTwo,currentPlayer;
+    private Player playerOne,playerTwo,currentPlayer = Constants.EMPTY_PLAYER;
     private int phase, oldPhase;
 
     private boolean gameIsRunning;
     private Stage primaryStage;
     private GameBoard gB;
 
+    private DeckOfCards deck;
     private ICard eventCard = new BlankCard(); // TODO uninitialized event card
+
 
     private StartScreen startScreen;
 
@@ -90,6 +91,9 @@ public class ChalmersRisk implements Controller {
 
 
         primaryStage.setScene(gameBoard);
+
+        // initilizes the deck
+        createDeck();
 
         //give initialtroops
 
@@ -344,6 +348,29 @@ public class ChalmersRisk implements Controller {
                 endTurn();
             }
         }
+    }
+
+    /**
+     * A method that creates and shuffles the deck.
+     */
+    private void createDeck() {
+        deck  = new DeckOfCards();
+        for (int i = 0 ; i < 10 ; i++) {
+            deck.addCardToDeck(new BlankCard());
+        }
+        for (int i = 0 ; i < 2 ; i++) {
+            deck.addCardToDeck(new AdditionalMoveCard(this.currentPlayer));
+            deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2));
+            deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1));
+            deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
+            deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo));
+            deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
+            deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));
+            deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(0), 3 ));
+            deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(1).getTerritories().get(0), 3 ));
+        }
+
+        deck.shuffle();
     }
 }
 
