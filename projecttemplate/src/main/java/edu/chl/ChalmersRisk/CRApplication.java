@@ -23,6 +23,10 @@ public class CRApplication extends Application {
         ChalmersRisk chalmersRisk = new ChalmersRisk(startScreen); //controller
 
         Scene scene = new Scene(startScreen, Constants.width, Constants.height);
+        primaryStage.setMinHeight(Constants.height+39);
+        primaryStage.setMaxHeight(Constants.height+39);
+        primaryStage.setMaxWidth(Constants.width);
+        primaryStage.setMinWidth(Constants.width);
         primaryStage.setScene(scene);
         primaryStage.show();
 

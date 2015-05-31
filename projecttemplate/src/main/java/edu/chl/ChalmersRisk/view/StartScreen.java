@@ -1,10 +1,12 @@
 package edu.chl.ChalmersRisk.view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -30,21 +32,23 @@ public class StartScreen extends GridPane{
             this.setHgap(10);
             this.setVgap(10);
             this.setPadding(new javafx.geometry.Insets(25,25,25,25));
-
-            startButton = new Button("Start game");
-            HBox hBox = new HBox(10);
-            hBox.setAlignment(Pos.CENTER);
-            hBox.getChildren().add(startButton);
-            this.add(hBox, 1, 3);
+            this.setStyle("-fx-background-color: #102745;");
 
 
             playerOne = new TextField();
+            playerOne.setStyle("-fx-background-color: #526D93; -fx-text-fill: #D1E4FF; -fx-prompt-text-fill: #D1E4FF");
             playerOne.setPromptText("First players name");
             this.add(playerOne, 1, 1);
 
             playerTwo = new TextField();
+            playerTwo.setStyle("-fx-background-color: #526D93; -fx-text-fill: #D1E4FF; -fx-prompt-text-fill: #D1E4FF");
             playerTwo.setPromptText("Second players name");
             this.add(playerTwo, 1, 2);
+
+            startButton = new Button("Start game");
+            startButton.setTextFill(Color.valueOf("#D1E4FF"));
+            startButton.setStyle("-fx-background-color: #526D93;");
+            this.add(startButton, 1, 3);
 
             warningText = new Text();
             this.add(warningText,1,6);
