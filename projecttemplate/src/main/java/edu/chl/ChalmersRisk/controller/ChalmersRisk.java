@@ -122,6 +122,9 @@ public class ChalmersRisk implements Controller {
     public void loopGame(){
         setTheScene();
         if(phase == 0){
+            if (eventCard.phaseCheck() == 0) {
+                eventCard.turnCard();
+            }
             placeTroopPhase();
         }else if(phase == 1){
             attackPhase();
@@ -151,6 +154,9 @@ public class ChalmersRisk implements Controller {
         //first give the troops to the player
         giveTroops(currentPlayer);
         gB.setMessage(currentPlayer.getName() + " recieved "+currentPlayer.getTroopsToPlace().size() + " number of troops this turn.");
+        if (eventCard.phaseCheck() == 1) { // if the event card that affect placable troops is drawn
+            eventCard.turnCard();
+        }
         gB.setController(new PlaceTroopController(currentPlayer, gB));
     }
 
