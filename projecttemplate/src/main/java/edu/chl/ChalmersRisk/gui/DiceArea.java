@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 public class DiceArea extends Pane {
 
 
-    private DiceView [] dice;
+    private final DiceView [] dice;
 
 
     public DiceArea(int size, String string){

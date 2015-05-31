@@ -19,7 +19,7 @@ public class DiceView extends BorderPane {
 
         super();
 
-        image = new ImageView("one.png");
+        image = new ImageView("noll.png");
         image.setFitHeight(45);
         image.setFitWidth(45);
 
@@ -30,6 +30,8 @@ public class DiceView extends BorderPane {
 
     public void setPicture(int number){
         switch(number){
+            case 0:
+                image = new ImageView("noll.png");
             case 1:
                 image = new ImageView("one.png");
                 break;
@@ -55,5 +57,6 @@ public class DiceView extends BorderPane {
         this.setCenter(image);
 
     }
+
 
 }
