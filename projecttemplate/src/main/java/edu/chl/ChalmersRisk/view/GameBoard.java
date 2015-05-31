@@ -27,7 +27,6 @@ public class GameBoard extends BorderPane {
 
     public GameBoard(){
         this.setTop(new Button("YOLO"));
-        System.out.println("hallå");
     }
 
     public GameBoard(Maps map,Controller controller) {
