@@ -92,6 +92,7 @@ public class AttackPhaseController implements Controller {
 
 
                 canAttack = attackFrom.getAmountOfTroops()>1;
+
                 attackButton.removeFocused();
 
 

@@ -59,7 +59,6 @@ public class Player {
         while (!troopsToPlace.isEmpty() && nrOfPlaced < number) {
             if(!troopsToPlace.get(0).isPlaced()) {
                 troopsToPlace.get(0).placeMe(territory);
-                System.out.println("Placing troop!");
                 if(!territory.getOwner().equals(this)){
                     addTerritories(territory);
                 }
@@ -250,20 +249,20 @@ public class Player {
 
         //Creating attacker's die array.
         if(atkTroops>=3){
-            atkRoll = cupOfDice.rollDice(3);
+            atkRoll = cupOfDice.rollDice(3,true);
         }
         else if (atkTroops==2){
-            atkRoll = cupOfDice.rollDice(2);
+            atkRoll = cupOfDice.rollDice(2,true);
         } else {
-            atkRoll = cupOfDice.rollDice(1);
+            atkRoll = cupOfDice.rollDice(1,true);
         }
 
 
         //Creating defender's die array.
         if (defTroops>=2){
-            defRoll = cupOfDice.rollDice(2);
+            defRoll = cupOfDice.rollDice(2,false);
         } else {
-            defRoll = cupOfDice.rollDice(1);
+            defRoll = cupOfDice.rollDice(1,false);
         }
 
 

@@ -40,6 +40,8 @@ public class DiceArea extends Pane {
 
         for(int i = 0 ; i <rolls.length;i++){
             dice[i].setPicture(rolls[i]);
+
+            System.out.println("ROLLS ::: "+rolls[i]);
         }
     }
 

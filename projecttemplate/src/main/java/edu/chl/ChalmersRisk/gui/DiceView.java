@@ -32,6 +32,7 @@ public class DiceView extends BorderPane {
         switch(number){
             case 0:
                 image = new ImageView("noll.png");
+                break;
             case 1:
                 image = new ImageView("one.png");
                 break;
