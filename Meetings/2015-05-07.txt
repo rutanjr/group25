@@ -1,0 +1,31 @@
+Meeting Agenda
+
+  Date: 2015 - 05 - 07
+  Facilitator: Robin Jansson
+  Participants: Oskar Rutqvist, Björn Bergqvist
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+During this meeting we need to discuss the feedback we got from our supervised meeting.
+
+2. Reports (15 min) from previous meeting
+
+An updated version of the RAD is now available in Github (version 3).
+
+3. Discussion items (35 min) 
+
+Björn suggested that we should begin to implement a card feature (see the rules of Risk), since Oskar and Malin has taken upon them to work with the graphics of the application.
+
+We should begin working on the SDD on Monday.
+
+4. Outcomes and assignments (5 min) 
+
+The group needs to continue working, implementing more use cases and review the feedback our supervisor gave on our code.
+
+5. Wrap up
+
+Mon 2015 - 05 - 10, 13:15
+
+
+

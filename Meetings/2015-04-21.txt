@@ -1,0 +1,40 @@
+Meeting Agenda
+
+  Date: 2015-04-21
+  Facilitator: Malin Thelin	
+  Participants: Oskar Rutqvist, Robin Jansson, Björn Bergkvist
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+  - Come up with what we want to show on thursday, and start programming towards that goal.
+
+2. Reports (15 min) from previous meeting
+  -  A sequence diagram 
+- Preliminary GUI was made
+
+3. Discussion items (35 min) 
+
+- Something to build the GUI in
+- Territories : Robin
+- Battle : 
+- Place troops: First priority  <- What do we need ? Player, Troops, Territories, 
+- Go to next player
+- Hardcoding, text based
+
+- UML, further development? 
+
+4. Outcomes and assignments (5 min) 
+
+  - We decide to start coding on the first iteration. We will divide the work as we go. 
+  - Update Waffle
+  - Robin will code the Territories class.
+
+5. Wrap up
+
+  - UML
+  - Perhaps a short meeting tomorrow 22/4. Otherwise next meeting on thursday 23/4.
+
+
+
+
+

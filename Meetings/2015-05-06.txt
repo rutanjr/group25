@@ -1,0 +1,31 @@
+Meeting Agenda
+
+  Date: 6/5 2015
+  Facilitator: Björn Bergqvist
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+  - libgdx
+- github is down
+
+2. Reports (15 min) from previous meeting
+
+- RAD might not be updated in master for the supervised meeting tomorrow.
+- UML/SDD is something we are going to work with this afternoon. 
+
+3. Discussion items (35 min) 
+
+Libgdx Malin and Oskar are going to work with it. There is a good tutorial that Oskar knows of. 
+
+GitHub error is on their end, so all we can do is to wait.
+
+
+4. Outcomes and assignments (5 min) 
+
+Malin and Oskar work with Libgdx
+All are going to work with the SDD and UML.
+
+5. Wrap up
+
+Next meeting after the supervised meeting tomorrow.

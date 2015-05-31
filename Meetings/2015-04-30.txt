@@ -1,0 +1,41 @@
+Meeting Agenda
+
+  Date: 2015-04-30
+  Facilitator: Malin Thelin
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist, Björn Bergqvist
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+- UML, SDD
+- Some bugs
+- JavaFX
+
+2. Reports (15 min) from previous meeting
+
+
+We have discussed with Christer about how to handle the different phases, and have come up with a few new ideas.
+We updated the RAD.
+
+3. Discussion items (35 min) 
+
+- SDD, do the UML in Lucid Chart. 
+- Fix Territory and it’s setAdjacent methods.
+- Java FX works a little differently than swing, so we have to work a little to make it into MVC.
+- Björn has started on some JUnit testing, but we should all start looking at how it works etc.
+
+4. Outcomes and assignments (5 min) 
+
+ - Everyone should sit with UML and SDD
+-  Keep working with JavaFX - develop the GUI more
+- Robin will fix some bugs in territories and look at the RAD.
+- JUnit testing, everyone should  check it out
+
+5. Wrap up
+
+- Next meeting: 04-05-2015 at 13:00
+
+
+
+
+
