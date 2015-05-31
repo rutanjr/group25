@@ -36,9 +36,6 @@ public class LoseTerritoryCard implements ICard {
     @Override
     public int phaseCheck() { return 0; }
 
-    /**
-     * Initiates the effect of the card.
-     */
     @Override
     public void turnCard() {
 
@@ -52,6 +49,9 @@ public class LoseTerritoryCard implements ICard {
         currentPlayer.getTerritories().get(intTemp).setnewOwner(Constants.EMPTY_PLAYER);
     }
 
+    /**
+     * A method that randomizes the players to give a random player the effect of the card.
+     */
     private void randPlayer() {
         int randInt = (int)(Math.random()*2);
 

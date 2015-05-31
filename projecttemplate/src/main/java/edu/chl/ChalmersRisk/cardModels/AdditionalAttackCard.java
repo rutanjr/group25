@@ -16,6 +16,9 @@ public class AdditionalAttackCard implements ICard {
     private String title, message;
     private Player currentPlayer;
 
+    /**
+     * @param currentPlayer, the player being awarded with an additional attack phase.
+     */
     public AdditionalAttackCard(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
         this.title = "Additional attack phase";
