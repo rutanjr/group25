@@ -33,7 +33,6 @@ public class GameBoard extends BorderPane {
     public GameBoard(Maps map,Controller controller) {
         this.controller = controller;
 
-
         //informationstrip at the bottom.
         infoStrip = new InformationStrip();
         this.setBottom(infoStrip);

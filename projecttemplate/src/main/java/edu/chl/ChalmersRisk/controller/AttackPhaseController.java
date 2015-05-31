@@ -22,12 +22,14 @@ public class AttackPhaseController implements Controller {
     private Territory attackFrom;
     private TerritoryView attackButton;
     private Maps map;
+    ChalmersRisk chalmersRisk;
 
-    public AttackPhaseController(Player player, GameBoard gameBoard){
+    public AttackPhaseController(Player player, GameBoard gameBoard, ChalmersRisk chalmersRisk){
         this.player = player;
         this.gameBoard = gameBoard;
         canAttack = false;
         map = gameBoard.getMap();
+        this.chalmersRisk = chalmersRisk;
 
         TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
         for (TerritoryView tv: territoryViews) {
@@ -83,10 +85,9 @@ public class AttackPhaseController implements Controller {
 
                     //check if the player won the game
                     if(playerWon()){
-                        //TODO : some sort of endGame method.. somewhere? ChalmersRisk or here...?
-                        new WinView();
                         gameBoard.setMessage("GRATTIS DU VANN!!");
-
+                        new WinView();
+                        chalmersRisk.startNewGame();
                     }
                 }
 
@@ -114,6 +115,10 @@ public class AttackPhaseController implements Controller {
             return !territory.isAvailableTo(player);
         }
 
+        /**
+         * Checks of this player holds all territories and therefore wins the game.
+         * @return true if the player wins.
+         */
         public boolean playerWon(){
 
             for(Territory t: map.getTerritories()){
@@ -124,7 +129,6 @@ public class AttackPhaseController implements Controller {
             }
             //however, if we leave the for-loop: return true
             return true;
-
         }
     }
 
