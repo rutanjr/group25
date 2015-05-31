@@ -1,6 +1,7 @@
 package edu.chl.ChalmersRisk.controller;
 
 
+import edu.chl.ChalmersRisk.cardModels.ICard;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
@@ -40,6 +41,7 @@ public class ChalmersRisk implements Controller {
     private Stage primaryStage;
     private GameBoard gB;
 
+    private ICard eventCard; // TODO uninitialized event card
 
     private StartScreen startScreen;
 
@@ -123,8 +125,14 @@ public class ChalmersRisk implements Controller {
             placeTroopPhase();
         }else if(phase == 1){
             attackPhase();
+            if (eventCard.phaseCheck() == 2) {
+                attackPhase();
+            } //TODO ugly fast solution for the additionalAttackCard
         }else if(phase == 2){
             moveTroopsPhase();
+            if (eventCard.phaseCheck() == 3) {
+                moveTroopsPhase()
+            } //TODO ugly fast solution for the additionalMoveCard
         }
 
     }
@@ -331,8 +339,6 @@ public class ChalmersRisk implements Controller {
             }
         }
     }
-
-
 }
 
 
