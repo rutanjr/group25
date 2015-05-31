@@ -11,7 +11,7 @@ import javafx.stage.StageStyle;
  */
 public class CardView {
     public static void display(ICard card){
-        if (!card.getTitle().equals(Constants.EMPTY_CARD.getTitle())) {
+        if (!card.getTitle().equals("EMPTY_CARD")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initStyle(StageStyle.UTILITY);
             alert.setTitle(card.getTitle());

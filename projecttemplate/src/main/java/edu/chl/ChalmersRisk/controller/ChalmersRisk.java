@@ -135,7 +135,7 @@ public class ChalmersRisk implements Controller {
             if (eventCard.phaseCheck() == 0) { // activates certaint event cards
                 eventCard.turnCard();
 
-                if (eventCard.getTitle().equals("Ops!")) {
+                if (eventCard.getTitle().equals("Ops!") || eventCard.getTitle().equals("Traitors! And new Allies.")) {
                     gB.update(2);
                 } else {
                     gB.update(1);
@@ -415,9 +415,9 @@ public class ChalmersRisk implements Controller {
             //deck.addCardToDeck(new AllChangeTroopCard(this.continents, 1)); //-------------OK
             //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); //-------------OK
             //deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player --- OK
+            //deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo)); -------- OK
 
-            //deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
-           // deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));
+            //deck.addCardToDeck(new TerritoryTroopCard(this.playerOne, this.playerTwo, 3));
            // deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(0), 3 ));
            // deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(1), 2 ));
         }
