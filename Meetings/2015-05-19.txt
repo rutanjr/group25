@@ -1,0 +1,41 @@
+Meeting Agenda 
+ 
+  Date: 2015­05­19 
+  Facilitator: Björn Bergqvist 
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist, Björn Bergqvist 
+ 
+1. Objectives (5 min). Resolve any issues preventing the team to  
+  continue. 
+Missed meeting. 
+Discussing which cards to implement. 
+SDD and UML.  
+ 
+2. Reports (15 min) from previous meeting 
+ 
+Robin has created a card interface. 
+Björn has created a class for implementing a deck of cards. 
+Oskar and Malin has worked on the graphical implementation of the project.  
+ 
+3. Discussion items (35 min)  
+ 
+Talk with supervisor about the missing meeting and how to make up for it.  
+ 
+Implement a method for ending the game, and a card that can trigger that method. Björn and 
+Robin will discuss other cards to implement after the meeting. 
+ 
+SDD and UML. Björn will transfer the photos of the UML into digital format.  
+ 
+Malin and Oskar are going to work together on the graphical implementation.  
+ 
+4. Outcomes and assignments (5 min)  
+ 
+Robin and Björn will keep working on the cards. 
+ 
+Malin and Oskar will keep working on the graphical implementation. 
+ 
+Björn will take responsibility to the UML and SDD, but everyone needs to work on it.  
+ 
+5. Wrap up 
+ 
+Next meeting after the supervised meeting on thursday.  
+ 
