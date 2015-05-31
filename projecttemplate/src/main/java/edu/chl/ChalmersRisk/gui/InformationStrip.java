@@ -10,12 +10,17 @@ import javafx.scene.text.Text;
 /**
  * @revisedBy rutanjr, Oskar Rutqvist
  * Created by Malin on 2015-05-05.
+ *
+ * Class for a strip displayed on the bottom of GameBoard. Used to display certain information to the player.
  */
 public class InformationStrip extends BorderPane {
 
     private Text gameText;
     private final Button nextButton;
 
+    /**
+     * Class constructor.
+     */
     public InformationStrip(){
         gameText = new Text("A new game has started");
         gameText.setFont(Font.font("Verdana", 12));
@@ -29,8 +34,6 @@ public class InformationStrip extends BorderPane {
 
         this.setLeft(gameText);
         this.setRight(nextButton);
-
-
 
     }
 

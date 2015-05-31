@@ -1,20 +1,21 @@
 package edu.chl.ChalmersRisk.gui;
 
-import edu.chl.ChalmersRisk.model.Die;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 /**
  * Created by Malin on 2015-05-30.
+ *
+ * Class for displaying a picture of a die
  */
 public class DiceView extends BorderPane {
 
 
     private ImageView image;
 
-
+    /**
+     * Class constructor. initializes the image to an empty die or zero-valued.
+     */
     public DiceView(){
 
         super();
@@ -27,7 +28,10 @@ public class DiceView extends BorderPane {
     }
 
 
-
+    /**
+     * Method to set the picture on the die.
+     * @param number determines what picture should be on the die.
+     */
     public void setPicture(int number){
         switch(number){
             case 0:

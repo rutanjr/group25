@@ -1,9 +1,8 @@
 package edu.chl.ChalmersRisk.controller;
 
 
-import edu.chl.ChalmersRisk.gui.TerritoryView;
-
 import edu.chl.ChalmersRisk.cardModels.*;
+import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.CardView;
@@ -96,8 +95,8 @@ public class ChalmersRisk implements Controller {
      */
     public void startNewGame() {
 
-        //loadMap("Chalmers");
-        loadMap("Test");
+        loadMap("Chalmers");
+        //loadMap("Test");
 
 
         gB = new GameBoard(map);
@@ -326,6 +325,7 @@ public class ChalmersRisk implements Controller {
         }
         if(oldPhase == lastPhase ){
             changePlayers();
+            gB.getInfoStrip().getNextButton().setText("NEXT");
         } else if(areAllTerritoriesTaken() && canPlayerGoToAttack()){
             //we may only come to the attackPhase if we can go to attack and all the territories are taken.
         } else if(canPlayerMoveTroops()) {
@@ -440,7 +440,6 @@ public class ChalmersRisk implements Controller {
             //first of all, see if they can end their turn
 
             if(canEndTurn()){
-
                 oldPhase = phase;
                 if(initialPhase()){
                     //when it's the initialphase the players shouldn't get out of phase 0

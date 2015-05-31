@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
  * Created by Malin on 2015-05-20.
  * @revisedBy Robin Jansson
  * @revisedBy rutanjr, Oskar Rutqvist
+ *
+ * Class used to control the GameBoard during the attack phase.
  */
 public class AttackPhaseController implements Controller {
 
@@ -26,6 +28,13 @@ public class AttackPhaseController implements Controller {
     private Maps map;
     ChalmersRisk chalmersRisk;
 
+
+    /**
+     * Class constructor
+     * @param player the player who is in control
+     * @param gameBoard the viev
+     * @param chalmersRisk used to be able to reference back in case the player wins
+     */
     public AttackPhaseController(Player player, GameBoard gameBoard, ChalmersRisk chalmersRisk){
         this.player = player;
         this.gameBoard = gameBoard;
@@ -33,6 +42,8 @@ public class AttackPhaseController implements Controller {
         map = gameBoard.getMap();
         this.chalmersRisk = chalmersRisk;
 
+
+        //sets listener to all the TerritoryViews
         TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
         for (TerritoryView tv: territoryViews) {
             //tv.setOnAction(new ButtonPressed());
@@ -42,6 +53,9 @@ public class AttackPhaseController implements Controller {
     }
 
 
+    /**
+     * Private class for the pressed territories in the game. Used to attack.
+     */
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
@@ -100,6 +114,7 @@ public class AttackPhaseController implements Controller {
                     }
                 }
 
+                //draw the dice on the gameboard
                 gameBoard.setDiceArea(player.getAttackRolls(),true);
                 gameBoard.setDiceArea(player.getDefenderRolls(),false);
 
@@ -120,6 +135,11 @@ public class AttackPhaseController implements Controller {
 
         }
 
+        /**
+         * Simple method to see if a territory is owned by someone else.
+         * @param territory the territory to check
+         * @return true if it is owned by someone else (or is empty), false if it isn't
+         */
         private boolean territoryOwnedBySomeoneElse(Territory territory){
             return !territory.isAvailableTo(player);
         }
@@ -128,7 +148,7 @@ public class AttackPhaseController implements Controller {
          * Checks of this player holds all territories and therefore wins the game.
          * @return true if the player wins.
          */
-    private boolean playerWon(){
+        private boolean playerWon(){
 
             for(Territory t: map.getTerritories()){
                 //if there is even one territory which the player does not own..
