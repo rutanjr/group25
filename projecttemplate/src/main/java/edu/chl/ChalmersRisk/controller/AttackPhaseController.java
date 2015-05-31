@@ -86,9 +86,10 @@ public class AttackPhaseController implements Controller {
 
                     //check if the player won the game
                     if(playerWon()){
-                        gameBoard.setMessage("GRATTIS DU VANN!!");
+                        gameBoard.setMessage("Congratulations you won!!!");
                         new WinView();
                         chalmersRisk.startNewGame();
+
                     }
                 }
 
@@ -112,7 +113,7 @@ public class AttackPhaseController implements Controller {
 
         }
 
-        public boolean territoryOwnedBySomeoneElse(Territory territory){
+        private boolean territoryOwnedBySomeoneElse(Territory territory){
             return !territory.isAvailableTo(player);
         }
 
@@ -120,7 +121,7 @@ public class AttackPhaseController implements Controller {
          * Checks of this player holds all territories and therefore wins the game.
          * @return true if the player wins.
          */
-        public boolean playerWon(){
+    private boolean playerWon(){
 
             for(Territory t: map.getTerritories()){
                 //if there is even one territory which the player does not own..

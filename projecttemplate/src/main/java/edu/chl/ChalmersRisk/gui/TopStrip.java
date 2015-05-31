@@ -30,7 +30,6 @@ public class TopStrip extends BorderPane{
 
 
         GridPane gridPane = new GridPane();
-
         gridPane.setHgap(10);
 
         defenderDiceArea = new DiceArea(2,"Defender's dice");
@@ -63,9 +62,13 @@ public class TopStrip extends BorderPane{
         attackerDiceArea.setDice(rolls);
     }
 
+
+    /**
+     * Method to draw the dice on the TopStrip
+     * @param rolls
+     * @param isAttacker
+     */
     public void setDiceArea(int [] rolls, boolean isAttacker){
-
-
         if(isAttacker){
             setAttackerDiceArea(rolls);
         }else{
