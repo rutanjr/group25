@@ -12,8 +12,8 @@ import edu.chl.ChalmersRisk.utilities.Constants;
  */
 public class LoseTerritoryCard implements ICard {
 
-    private String message = "An unsanctioned experiment in one of Chalmers building has gone awry and the people there, are no more";
-    private String title = "Ops!";
+    private String message;
+    private String title;
     private Player currentPlayer = Constants.EMPTY_PLAYER, playerA, playerB;
 
     /**
@@ -25,6 +25,8 @@ public class LoseTerritoryCard implements ICard {
     public LoseTerritoryCard(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
+        this.message = "An unsanctioned experiment in one of Chalmers building has gone awry and the people there, are no more";
+        this.title = "Ops!";
     }
 
     @Override
