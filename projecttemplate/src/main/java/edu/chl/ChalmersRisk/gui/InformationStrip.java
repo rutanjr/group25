@@ -18,7 +18,7 @@ public class InformationStrip extends BorderPane {
 
     public InformationStrip(){
         gameText = new Text("A new game has started");
-        gameText.setFont(Font.font("Verdana", 16));
+        gameText.setFont(Font.font("Verdana", 12));
         gameText.setFill(Color.valueOf("#D1E4FF"));
         nextButton = new Button("NEXT");
         nextButton.setPrefSize(100,50);
