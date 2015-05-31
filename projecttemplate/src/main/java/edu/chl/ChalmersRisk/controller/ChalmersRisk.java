@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * Created by rutanjr on 2015-03-31.
  * A class to be the main controller of the game, controls the board and then actions performed in the game.
  *
- * @revisedBy malin thelin, Björn Bergqvist
+ * @revisedBy malin thelin, Björn Bergqvist, Robin Jansson
  */
 public class ChalmersRisk implements Controller {
 
@@ -125,13 +125,15 @@ public class ChalmersRisk implements Controller {
                 if (deck.size() < 1) {
                     deck.resetDeck();
                 }
-                deck.addCardToBackOfDeck(eventCard);
+                if (!eventCard.getTitle().equals(Constants.EMPTY_CARD.getTitle())) { //to avoid placing EMPTY_CARD back in the deck
+                    deck.addCardToBackOfDeck(eventCard);
+                }
                 eventCard = deck.pullCard();
                 mayDrawCard = false;
             }
 
             CardView.display(eventCard);
-            
+
             if (eventCard.phaseCheck() == 0) { // activates certaint event cards
                 eventCard.turnCard();
                 gB.update(1);
@@ -403,13 +405,13 @@ public class ChalmersRisk implements Controller {
     private void createDeck() {
         deck  = new DeckOfCards();
         for (int i = 0 ; i < 300 ; i++) {
-            //deck.addCardToDeck(new BlankCard());
+            deck.addCardToDeck(new BlankCard());
         }
         for (int i = 0 ; i < 1 ; i++) {
 
             //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); ------------ probably OK
             //deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1)); -------------OK
-            deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
+            //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
             //deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
             //deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
            // deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));

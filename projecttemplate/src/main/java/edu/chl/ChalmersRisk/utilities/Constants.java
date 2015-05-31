@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 /**
  * Created by Malin on 2015-04-22.
- * @revisedBy rutanjr, Oskar Rutqvist
+ * @revisedBy rutanjr, Oskar Rutqvist, Robin Jansson
  * A class to keep constants in.
  */
 public class Constants {

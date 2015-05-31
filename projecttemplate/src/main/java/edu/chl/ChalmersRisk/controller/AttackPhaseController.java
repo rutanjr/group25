@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 
 /**
  * Created by Malin on 2015-05-20.
+ * @revisedBy Robin Jansson
  */
 public class AttackPhaseController implements Controller {
 

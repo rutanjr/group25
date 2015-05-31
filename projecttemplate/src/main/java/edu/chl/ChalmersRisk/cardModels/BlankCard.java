@@ -4,15 +4,19 @@ package edu.chl.ChalmersRisk.cardModels;
  * A blank card that wont have any effect on the game. This card doesn't have any effect but will help
  * with our abstraction of a deck.
  *
- * Created by chrh on 26-May-15.
+ * @author Robin Jansson
  */
 public class BlankCard implements ICard {
 
     private String title, message;
 
-    public BlankCard() {
-        this.title = "No effect";
+    public BlankCard(String title) {
+        this.title = title;
         this.message = "Nothing out of the ordinary occurs.";
+    }
+
+    public BlankCard() {
+        this("No effect");
     }
 
     @Override

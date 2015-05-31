@@ -7,7 +7,7 @@ import edu.chl.ChalmersRisk.model.Player;
  * A card that upon being drawn will destroy a territory from a player and makes it neutral,but keeps the
  * current troops on it.
  *
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class LoseTerritoryCard implements ICard {
 

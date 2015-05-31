@@ -5,7 +5,7 @@ import edu.chl.ChalmersRisk.model.Territory;
 
 /**
  * A card that upon being drawn will add troops to a specific territory.
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class TerritoryTroopCard implements ICard {
 

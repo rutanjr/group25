@@ -10,7 +10,7 @@ import edu.chl.ChalmersRisk.utilities.Constants;
  * implemented means that this card is unused. If in the future we implements a different ruleset for the game this game
  * this card could be activated.
  *
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class AdditionalAttackCard implements ICard {
 
