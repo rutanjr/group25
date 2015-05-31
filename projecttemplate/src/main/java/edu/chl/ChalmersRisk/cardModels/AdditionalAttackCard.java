@@ -2,7 +2,6 @@ package edu.chl.ChalmersRisk.cardModels;
 
 
 import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.utilities.Constants;
 
 /**
  * INACTIVE

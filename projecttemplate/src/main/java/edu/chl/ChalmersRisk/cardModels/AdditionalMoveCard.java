@@ -41,6 +41,5 @@ public class AdditionalMoveCard implements ICard {
      */
     @Override
     public void turnCard() {
-        //TODO should be a simple check with phasecheck and a call on the currentPlayer.doMovePhase()ish method
     }
 }
