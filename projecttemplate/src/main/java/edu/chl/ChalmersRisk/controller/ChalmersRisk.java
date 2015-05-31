@@ -81,7 +81,7 @@ public class ChalmersRisk implements Controller {
         phase = 0;
         stage = primaryStage;
 
-        // initilizes the deck and draw mechanich variables
+        // initilizes the deck and draw-mechanic variables
         createDeck();
         aMayDrawCard = false;
         bMayDrawCard = false;
