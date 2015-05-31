@@ -125,9 +125,7 @@ public class ChalmersRisk implements Controller {
                 if (deck.size() < 1) {
                     deck.resetDeck();
                 }
-                if (!eventCard.getTitle().equals(Constants.EMPTY_CARD.getTitle())) { //to avoid placing EMPTY_CARD back in the deck
-                    deck.addCardToBackOfDeck(eventCard);
-                }
+
                 eventCard = deck.pullCard();
                 mayDrawCard = false;
             }
@@ -136,8 +134,12 @@ public class ChalmersRisk implements Controller {
 
             if (eventCard.phaseCheck() == 0) { // activates certaint event cards
                 eventCard.turnCard();
-                gB.update(1);
-                gB.update(2);
+
+                if (eventCard.getTitle().equals("Ops!")) {
+                    gB.update(2);
+                } else {
+                    gB.update(1);
+                }
             }
 
             placeTroopPhase();
@@ -273,6 +275,11 @@ public class ChalmersRisk implements Controller {
      */
     public void endTurn(){
 
+        if (!eventCard.getTitle().equals(Constants.EMPTY_CARD.getTitle())) { //to avoid placing EMPTY_CARD back in the deck
+            deck.addCardToBackOfDeck(eventCard);
+            eventCard = Constants.EMPTY_CARD;
+        }
+
         //trivial, if we were at the last phase, we should change players.
         if(oldPhase == lastPhase ){
             changePlayers();
@@ -405,14 +412,15 @@ public class ChalmersRisk implements Controller {
     private void createDeck() {
         deck  = new DeckOfCards();
         for (int i = 0 ; i < 300 ; i++) {
-            deck.addCardToDeck(new BlankCard());
+            //deck.addCardToDeck(new BlankCard());
         }
         for (int i = 0 ; i < 1 ; i++) {
 
             //deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2)); ------------ probably OK
             //deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1)); -------------OK
-            //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
-            //deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
+
+            //deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer));
+            deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
             //deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
            // deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));
            // deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(0), 3 ));
