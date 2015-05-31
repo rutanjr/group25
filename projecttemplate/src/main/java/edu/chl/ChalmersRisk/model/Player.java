@@ -306,5 +306,7 @@ public class Player {
     /**
      * @return, the ArrayList of troops to deploy
      */
-    public ArrayList<Troop> getTroopsToPlaceArray() { return this.troopsToPlace; }
+    public ArrayList<Troop> getTroopsToPlaceArray() {
+        return this.troopsToPlace;
+    }
 }
