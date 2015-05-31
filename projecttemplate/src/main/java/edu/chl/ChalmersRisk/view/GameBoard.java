@@ -20,7 +20,6 @@ public class GameBoard extends BorderPane {
 
     private TerritoryView[] buttons;
     private Text message;
-    private Controller controller;
     private InformationStrip infoStrip;
     private TopStrip topInfo;
     private Maps map;
@@ -30,9 +29,8 @@ public class GameBoard extends BorderPane {
         this.setTop(new Button("YOLO"));
     }
 
-    public GameBoard(Maps map,Controller controller) {
-        this.controller = controller;
-
+    public GameBoard(Maps map) {
+       
         //informationstrip at the bottom.
         infoStrip = new InformationStrip();
         this.setBottom(infoStrip);
@@ -109,9 +107,7 @@ public class GameBoard extends BorderPane {
         topInfo.setGameText(text);
     }
 
-    public void setController(Controller controller){
-        this.controller = controller;
-    }
+   
 
     public InformationStrip getInfoStrip(){
         return infoStrip;

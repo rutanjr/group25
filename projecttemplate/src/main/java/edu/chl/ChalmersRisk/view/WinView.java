@@ -13,7 +13,7 @@ public class WinView {
         alert.initStyle(StageStyle.UTILITY);
         alert.setTitle("You win!");
         alert.setHeaderText(null);
-        alert.setContentText("You just on the game! Congratulations!");
+        alert.setContentText("You just won the game! Congratulations!");
         alert.showAndWait();
     }
 }
