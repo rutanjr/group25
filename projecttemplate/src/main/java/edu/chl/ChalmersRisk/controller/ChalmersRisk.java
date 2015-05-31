@@ -126,7 +126,9 @@ public class ChalmersRisk implements Controller {
                 mayDrawCard = false;
             }
 
-            CardView.display(eventCard);
+            if (!eventCard.getTitle().equals("No effect")) {
+                CardView.display(eventCard);
+            }
 
             if (eventCard.phaseCheck() == 0) { // activates certaint event cards
                 eventCard.turnCard();
