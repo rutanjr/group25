@@ -15,11 +15,10 @@ public class AdditionalTroopsCard implements ICard {
 
     private String title, message;
     private int bonusTroops;
-    private Player currentPlayer = Constants.EMPTY_PLAYER, playerA, playerB;
+    private Player currentPlayer;
 
-    public AdditionalTroopsCard(Player playerA, Player playerB, int bonusTroops ) {
-        this.playerA = playerA;
-        this.playerB = playerB;
+    public AdditionalTroopsCard(Player currentPlayer, int bonusTroops ) {
+        this.currentPlayer = currentPlayer;
         this.title = "Additional Troops";
         this.bonusTroops = bonusTroops;
 
@@ -51,8 +50,6 @@ public class AdditionalTroopsCard implements ICard {
     @Override
     public void turnCard() {
 
-        randPlayer();
-
         ArrayList<Troop> listTemp = new ArrayList<Troop>();
 
         for (int i = 0; i < bonusTroops; i++) {
@@ -61,15 +58,5 @@ public class AdditionalTroopsCard implements ICard {
         listTemp.addAll(currentPlayer.getTroopsToPlace());
 
         currentPlayer.receiveTroops(listTemp);
-    }
-
-    private void randPlayer() {
-        int randInt = (int)(Math.random()*2);
-
-        if (randInt == 0) {
-            currentPlayer = this.playerA;
-        } else if (randInt == 1) {
-            currentPlayer = this.playerB;
-        }
     }
 }
