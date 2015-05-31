@@ -356,9 +356,6 @@ public class ChalmersRisk implements Controller {
         return territories;
     }
 
-    public ArrayList<Continent> getContinents() {
-        return continents;
-    }
 
     /**
      * This is a class for the eventhandling of startbutton pressed. It's the button on the startscreen
@@ -368,7 +365,6 @@ public class ChalmersRisk implements Controller {
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-
             if(startScreen.getPlayerOne().getText().toString().equals("") || startScreen.getPlayerTwo().getText().toString().equals("")){
                 startScreen.setWarningText("Please enter names of the players");
             }else{
@@ -377,7 +373,6 @@ public class ChalmersRisk implements Controller {
                 players[1] = startScreen.getPlayerTwo().getText();
                 startGame(players, startScreen.getPrimaryStage());
             }
-
         }
     }
 

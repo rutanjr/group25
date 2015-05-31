@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 public class Constants {
 
     public static final Player EMPTY_PLAYER = new Player("EMPTY","FFFFFF");
-    public static final int width = 500;
+    public static final int width = 690;
     public static final int height = 500;
     public static final Continent EMPTY_CONTINENT = new Continent("EMPTY",0);
     public static final Territory EMPTY_TERRITORY = new Territory("EMPTY");
