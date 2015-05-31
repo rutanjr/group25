@@ -11,11 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
 
 
 
@@ -190,7 +186,6 @@ public class ChalmersRisk implements Controller {
                 total += c.getValue();
             }
         }
-
         return total;
     }
 
@@ -231,9 +226,11 @@ public class ChalmersRisk implements Controller {
         //trivial, if we were at the last phase, we should change players.
         if(oldPhase == lastPhase ){
             changePlayers();
-        } else if(areAllTerritoriesTaken() || canPlayerGoToAttack()){
+        } else if(areAllTerritoriesTaken() && canPlayerGoToAttack()){
             //we may only come to the attackPhase if we can go to attack and all the territories are taken.
-        }else{
+        } else if(canPlayerMoveTroops()) {
+            
+        } else{
             //just change players
             changePlayers();
         }
@@ -264,6 +261,23 @@ public class ChalmersRisk implements Controller {
 
     }
 
+    /**
+     * Simple check to see if the current player can move troops or not, if not then we skip this phase.
+     * @return true if moves are possible for the current player and false otherwise.
+     */
+    public boolean canPlayerMoveTroops() {
+        if(phase == 2){
+            for(Territory t: currentPlayer.getTerritories()){
+                if(t.getAmountOfTroops() > 1){
+                    return true;
+                }
+            }
+            return false;
+
+        }
+        return false;
+    }
+
     public void changePlayers(){
         if(currentPlayer.equals(playerOne)){
             currentPlayer = playerTwo;
@@ -278,8 +292,6 @@ public class ChalmersRisk implements Controller {
 
     }
 
-
-
     public ArrayList<Territory> getTerritories() {
         return territories;
     }
@@ -291,11 +303,9 @@ public class ChalmersRisk implements Controller {
     /**
      * HERE LIETH THE CLASSES FOR BUTTONPRESSES
      */
-
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-
 
             if(startScreen.getPlayerOne().getText().toString().equals("") || startScreen.getPlayerTwo().getText().toString().equals("")){
                 startScreen.setWarningText("Please enter names of the players");
@@ -305,8 +315,6 @@ public class ChalmersRisk implements Controller {
                 players[1] = startScreen.getPlayerTwo().getText();
                 startGame(players, startScreen.getPrimaryStage());
             }
-
-
 
         }
     }

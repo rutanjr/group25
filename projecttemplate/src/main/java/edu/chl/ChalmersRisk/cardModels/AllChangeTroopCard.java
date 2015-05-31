@@ -1,7 +1,6 @@
 package edu.chl.ChalmersRisk.cardModels;
 
 import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Territory;
 
 import java.util.ArrayList;
 

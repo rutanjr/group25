@@ -1,8 +1,6 @@
 package edu.chl.ChalmersRisk.gui;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 

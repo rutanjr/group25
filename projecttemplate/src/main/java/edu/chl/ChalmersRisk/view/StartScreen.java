@@ -1,17 +1,13 @@
 package edu.chl.ChalmersRisk.view;
 
-import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Territory;
-import javafx.geometry.*;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.util.ArrayList;
 
 /**
  * Created by Malin on 2015-04-17.

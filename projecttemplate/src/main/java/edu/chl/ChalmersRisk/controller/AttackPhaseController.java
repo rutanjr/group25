@@ -5,6 +5,7 @@ import edu.chl.ChalmersRisk.model.Maps;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
 import edu.chl.ChalmersRisk.view.GameBoard;
+import edu.chl.ChalmersRisk.view.WinView;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
@@ -41,8 +42,6 @@ public class AttackPhaseController implements Controller {
         public void handle(Event event) {
 
             TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
-
-
 
             //first if the player chooses a territory that he owns
             if(btn.getTerritory().getOwner().equals(player)  && btn.getTerritory().getAmountOfTroops() > 1){
@@ -82,6 +81,7 @@ public class AttackPhaseController implements Controller {
                     //check if the player won the game
                     if(playerWon()){
                         //TODO : some sort of endGame method.. somewhere? ChalmersRisk or here...?
+                        new WinView();
                         gameBoard.setMessage("GRATTIS DU VANN!!");
 
                     }

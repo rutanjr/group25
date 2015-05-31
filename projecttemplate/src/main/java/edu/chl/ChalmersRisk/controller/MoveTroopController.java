@@ -2,7 +2,6 @@ package edu.chl.ChalmersRisk.controller;
 
 import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import javafx.event.Event;
 import javafx.event.EventHandler;

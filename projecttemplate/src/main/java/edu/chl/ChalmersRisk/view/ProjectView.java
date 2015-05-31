@@ -1,9 +1,6 @@
 package edu.chl.ChalmersRisk.view;
 
-import edu.chl.ChalmersRisk.controller.ChalmersRisk;
-import edu.chl.ChalmersRisk.model.ChalmersMap;
 import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Project;
 import edu.chl.ChalmersRisk.model.Territory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -18,9 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import java.util.ArrayList;
 
-import static edu.chl.ChalmersRisk.controller.ChalmersRisk.*;
+import java.util.ArrayList;
 
 
 public class ProjectView extends Application {
