@@ -32,7 +32,7 @@ public class DiceArea extends Pane {
         Text text = new Text(string);
         text.setLayoutX(0);
         text.setLayoutY(0);
-        text.setFont(Font.font("Verdana", 16));
+        text.setFont(Font.font("Verdana", 12));
         text.setFill(Color.valueOf("#D1E4FF"));
         this.getChildren().add(text);
     }

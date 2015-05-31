@@ -23,7 +23,7 @@ public class TopStrip extends BorderPane{
 
     public TopStrip(){
         gameText = new Text("A new game has started");
-        gameText.setFont(Font.font("Verdana", 16));
+        gameText.setFont(Font.font("Verdana", 12));
         gameText.setFill(Color.valueOf("#D1E4FF"));
         this.setPadding(new Insets(15, 12, 15, 12));
         this.setStyle("-fx-background-color: #102745;");
