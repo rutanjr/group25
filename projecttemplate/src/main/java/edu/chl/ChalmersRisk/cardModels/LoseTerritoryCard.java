@@ -17,15 +17,6 @@ public class LoseTerritoryCard implements ICard {
     private Player currentPlayer = Constants.EMPTY_PLAYER, playerA, playerB;
 
     /**
-     * A constructor for an event card where the current player loses a territory at random
-     *
-     * @param currentPlayer, a reference to the current player (the player who drew this card).
-     */
-    public LoseTerritoryCard(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    /**
      * A constructor for an event card where a random player loses a territory at random
      *
      * @param playerA, a reference to one of the two players.

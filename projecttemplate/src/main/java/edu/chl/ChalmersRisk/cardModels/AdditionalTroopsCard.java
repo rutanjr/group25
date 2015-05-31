@@ -2,6 +2,7 @@ package edu.chl.ChalmersRisk.cardModels;
 
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Troop;
+import edu.chl.ChalmersRisk.utilities.Constants;
 
 import java.util.ArrayList;
 
@@ -14,12 +15,13 @@ public class AdditionalTroopsCard implements ICard {
 
     private String title, message;
     private int bonusTroops;
-    private Player currentPlayer;
+    private Player currentPlayer = Constants.EMPTY_PLAYER, playerA, playerB;
 
-    public AdditionalTroopsCard(Player currentPlayer, int bonusTroops ) {
+    public AdditionalTroopsCard(Player playerA, Player playerB, int bonusTroops ) {
+        this.playerA = playerA;
+        this.playerB = playerB;
         this.title = "Additional Troops";
         this.bonusTroops = bonusTroops;
-        this.currentPlayer = currentPlayer;
 
         this.message = "Congratulations, thanks to your previous conquest " +
                 "your army has been blessed with many new recruits " + this.bonusTroops + " new soldiers join your ranks.";
@@ -49,6 +51,8 @@ public class AdditionalTroopsCard implements ICard {
     @Override
     public void turnCard() {
 
+        randPlayer();
+
         ArrayList<Troop> listTemp = new ArrayList<Troop>();
 
         for (int i = 0; i < bonusTroops; i++) {
@@ -57,6 +61,15 @@ public class AdditionalTroopsCard implements ICard {
         listTemp.addAll(currentPlayer.getTroopsToPlace());
 
         currentPlayer.receiveTroops(listTemp);
-        //TODO TurnCard needs to be called AFTER the initial troops has been recieved ADD PRE/POST CONDITIONS
+    }
+
+    private void randPlayer() {
+        int randInt = (int)(Math.random()*2);
+
+        if (randInt == 0) {
+            currentPlayer = this.playerA;
+        } else if (randInt == 1) {
+            currentPlayer = this.playerB;
+        }
     }
 }
