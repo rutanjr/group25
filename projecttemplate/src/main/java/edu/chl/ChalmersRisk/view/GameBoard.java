@@ -5,16 +5,12 @@ import edu.chl.ChalmersRisk.controller.Controller;
 import edu.chl.ChalmersRisk.gui.InformationStrip;
 import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.gui.TopStrip;
-import edu.chl.ChalmersRisk.model.*;
-import edu.chl.ChalmersRisk.utilities.Constants;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import edu.chl.ChalmersRisk.model.Maps;
+import edu.chl.ChalmersRisk.model.Territory;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
-import java.awt.event.MouseEvent;
 
 /**
  * Created by rutanjr on 2015-03-31.
@@ -31,7 +27,6 @@ public class GameBoard extends BorderPane {
 
     public GameBoard(){
         this.setTop(new Button("YOLO"));
-        System.out.println("hallå");
     }
 
     public GameBoard(Maps map,Controller controller) {

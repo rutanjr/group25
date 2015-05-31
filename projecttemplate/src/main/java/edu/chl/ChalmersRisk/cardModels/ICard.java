@@ -25,7 +25,6 @@ public interface ICard {
      *          before the have been deployed.
      *          2 = The cards effect should be triggered right before the Attack phase.
      *          3 = The cards effect should be triggered right before the Move phase.
-     *          4 = The cards effect should be triggered when the player chooses to end his/her turn
      */
     public int phaseCheck();
 

@@ -14,12 +14,13 @@ import java.util.List;
 public class Continent {
 
     private String name;
+
     private final int value; // this is used if we intend to have different Continents giving a different amount of bonus troops
-    private ArrayList<Territory> territories = new ArrayList<Territory>();
+    private ArrayList<Territory> territories;
+
     private Player owner = Constants.EMPTY_PLAYER;
 
-    // Constructor
-
+    // Constructors
     public Continent(String name, int value){
         this(name,value,new ArrayList<Territory>());
     }
@@ -31,10 +32,12 @@ public class Continent {
     }
 
     // Query - Methods
-
     public String getName() { return this.name; }
+
     public int getValue()   { return this.value; }
-    public List<Territory> getTerritories() { return this.territories; }
+
+    public List<Territory> getTerritories() { return territories; }
+
     public Player getOwner() { return this.owner; }
 
     // Comand - Methods
@@ -44,9 +47,9 @@ public class Continent {
     }
 
     public void setOwner(Player owner) { this.owner = owner;}
-    /*
+    /**
     * Compares owners of territories to see if they are all owned by the same player.
-    *@param The Player object reference to the player who's tested if he controls all the
+    * @param player The Player object reference to the player who's tested if he controls all the
     * territories in the given continent.
     * @return True of the same player owns all territories in a continent
     */

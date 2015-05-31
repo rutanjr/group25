@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * A card that upon being drawn will switch a random territory with one random territory owned by your opponent.
  *
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class TerritoryChangeCard implements ICard {
 

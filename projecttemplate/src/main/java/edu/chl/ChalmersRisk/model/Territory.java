@@ -127,7 +127,7 @@ public class Territory {
     }
 
     public Continent getContinent() {
-        return this.continent;
+        return continent;
     }
 
     /**
@@ -166,7 +166,6 @@ public class Territory {
     public boolean isAvailableTo(Player player){
         return (owner.  equals(Constants.EMPTY_PLAYER) || owner.equals(player));
     }
-
 
     public String getUrl() {
         return url;

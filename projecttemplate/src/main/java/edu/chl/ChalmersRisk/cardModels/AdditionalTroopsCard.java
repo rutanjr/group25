@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * A card that upon being drawn will grant you additional troops to deploy
  *
- * Created by chrh on 12-May-15.
+ * @author Robin Jansson
  */
 public class AdditionalTroopsCard implements ICard {
 

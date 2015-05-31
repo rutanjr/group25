@@ -1,14 +1,13 @@
 package edu.chl.ChalmersRisk.cardModels;
 
 import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Territory;
 
 import java.util.ArrayList;
 
 /**
  * A card that upon being drawn will increase/decrease the number of troops in all territories.
  *
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class AllChangeTroopCard implements ICard {
 

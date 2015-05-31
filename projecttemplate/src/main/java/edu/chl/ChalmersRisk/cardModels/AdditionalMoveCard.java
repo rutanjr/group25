@@ -4,9 +4,12 @@ package edu.chl.ChalmersRisk.cardModels;
 import edu.chl.ChalmersRisk.model.Player;
 
 /**
- * A card that upon being drawn will grant the player an additional move phase this turn.
+ * INACTIVE
+ * A card that upon being drawn will grant the player an additional move phase this turn.  Due to how the game is currently
+ * implemented means that this card is unused. If in the future we implements a different ruleset for the game this game
+ * this card could be activated.
  *
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class AdditionalMoveCard implements ICard {
 

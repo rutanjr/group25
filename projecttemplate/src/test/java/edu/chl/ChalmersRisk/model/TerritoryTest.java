@@ -1,25 +1,36 @@
-package edu.chl.ChalmersRisk.controller;
+package edu.chl.ChalmersRisk.model;
 
-import edu.chl.ChalmersRisk.model.Continent;
-import edu.chl.ChalmersRisk.model.Player;
-import edu.chl.ChalmersRisk.model.Territory;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.*;
-/**
- * Created by Björn Bergqvist on 28/04/15.
- */
-public class ChalmersRiskTest {
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
-    /*
+/**
+ * Created by viking on 30/05/15.
+ */
+public class TerritoryTest {
     @Test
-    public void testTerritoriesAreConnected(){
+    public void testAddNeighbor() throws Exception {
+        ArrayList<Territory> territories = new ArrayList<Territory>();
+        Continent testContinent = new Continent("test",1,territories);
+        Player testPlayer1 = new Player("1","red");
+        Player testPlayer2 = new Player("2", "blue");
+
+
+        Territory testTer1 = new Territory("Test1",testContinent,testPlayer1);
+        Territory testTer2 = new Territory("Test1",testContinent,testPlayer1);
+
+
+        testTer1.addNeighbor(testTer2);
+
+        assertTrue(testTer1.getAdjacentTerritories().get(0) == testTer2);
+        assertTrue(testTer2.getAdjacentTerritories().get(0) == testTer1);
+    }
+
+    @Test
+    public void testIsConnectedTo() throws Exception {
         ArrayList<Territory> territories = new ArrayList<Territory>();
         Continent testContinent = new Continent("test",1,territories);
         Player testPlayer1 = new Player("1","red");
@@ -31,14 +42,14 @@ public class ChalmersRiskTest {
 
         //* This is a known bug that is being worked on.
         //Test when no territories are connected.
-        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer2, testPlayer1));
+        assertFalse(testTer1.isConnectedTo(testTer2));
         //*
         ArrayList<Territory> adjTers1 = new ArrayList<Territory>();
         adjTers1.add(testTer2);
         testTer1.addAdjacent(adjTers1);
 
         //Test when two territories are connected.
-        assertTrue(ChalmersRisk.territoriesAreConnected(testTer1, testTer2, testPlayer1));
+        assertTrue(testTer1.isConnectedTo(testTer2));
 
         Territory testTer3 = new Territory("Test1",testContinent,testPlayer1);
         ArrayList<Territory> adjTers2 = new ArrayList<Territory>();
@@ -57,7 +68,7 @@ public class ChalmersRiskTest {
         testTer4.addAdjacent(adjTers4);
 
         //Test with a chain of connected territories.
-        assertTrue(ChalmersRisk.territoriesAreConnected(testTer1, testTer5, testPlayer1));
+        assertTrue(testTer1.isConnectedTo(testTer5));
 
         ArrayList<Territory> adjTers5 = new ArrayList<Territory>();
         adjTers5.add(testTer2);
@@ -65,7 +76,7 @@ public class ChalmersRiskTest {
         testTer3.addAdjacent(adjTers5);
 
         //Test with a chain that includes a loop.
-        assertTrue(ChalmersRisk.territoriesAreConnected(testTer1, testTer5, testPlayer1));
+        assertTrue(testTer1.isConnectedTo(testTer5));
 
         ArrayList<Territory> adjTers6 = new ArrayList<Territory>();
         testTer5.addAdjacent(adjTers6);
@@ -73,7 +84,7 @@ public class ChalmersRiskTest {
         Territory testTer6 = new Territory("Test1",testContinent,testPlayer1);
 
         //Test with unreachable territory.
-        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer6, testPlayer1));
+        assertFalse(testTer1.isConnectedTo(testTer6));
 
         Territory testTer7 = new Territory("Test1",testContinent,testPlayer2);
         ArrayList<Territory> adjTers7 = new ArrayList<Territory>();
@@ -81,13 +92,6 @@ public class ChalmersRiskTest {
         testTer5.addAdjacent(adjTers7);
 
         //Test moving to territory that the player doesn't own.
-        assertFalse(ChalmersRisk.territoriesAreConnected(testTer1, testTer7, testPlayer1));
-
+        assertFalse(testTer1.isConnectedTo(testTer7));
     }
-
-    @Test
-    public void testMoveTroops(){
-
-    }
-    */
 }

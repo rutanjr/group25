@@ -5,9 +5,12 @@ import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.utilities.Constants;
 
 /**
- * A card that upon being drawn will grant the player an additional attack phase this turn.
+ * INACTIVE
+ * A card that upon being drawn will grant the player an additional attack phase this turn. Due to how the game is currently
+ * implemented means that this card is unused. If in the future we implements a different ruleset for the game this game
+ * this card could be activated.
  *
- * Created by chrh on 2015-05-19.
+ * @author Robin Jansson
  */
 public class AdditionalAttackCard implements ICard {
 
@@ -41,6 +44,5 @@ public class AdditionalAttackCard implements ICard {
      */
     @Override
     public void turnCard() {
-        //TODO should be a simple check with phasecheck and a call on the currentPlayer.doAttackPhase()ish method
     }
 }

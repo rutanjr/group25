@@ -1,8 +1,6 @@
 package edu.chl.ChalmersRisk.model;
 
 
-import edu.chl.ChalmersRisk.utilities.Constants;
-
 import java.util.ArrayList;
 
 /**
@@ -15,7 +13,6 @@ public class Player {
     private ArrayList<Territory> territories;
     private ArrayList<Troop> placedTroops;
     private ArrayList<Troop> troopsToPlace;
-
 
     //teamcolor
     private final String color;
@@ -70,12 +67,10 @@ public class Player {
 
     }
 
-
     public boolean isMyTerritory(Territory territory) {
         return territories.contains(territory);
     }
 
-    
     public int getnmbrOfTerritories() {
         return territories.size();
     }
@@ -89,27 +84,11 @@ public class Player {
     }
 
     /**
-     * To see if the player needs to place more troops.
-     * @return weather the player has troops the yet needs placing.
-     */
-    public boolean hasTroopsToPlace() {
-        return !troopsToPlace.isEmpty();
-    }
-
-    /**
      *
      * @return ArrayList of troops that needs placing.
      */
     public ArrayList<Troop> getTroopsToPlace() {
         return (ArrayList<Troop>) troopsToPlace.clone();
-    }
-
-    public int amountOfTroops(){
-        int count = 0;
-        for(Troop t : getTroopsToPlace()){
-            count++;
-        }
-        return count;
     }
 
     /**
@@ -149,7 +128,6 @@ public class Player {
     }
 
     /**
-<<<<<<< HEAD
      * A method for moving all available troops from one territory to another.
      * @param fromTerritory the territory to move the troops from.
      * @param toTerritory the territory to move the troops to.
@@ -309,9 +287,8 @@ public class Player {
         return defender.getAmountOfTroops()<1;
     }
 
-
     /**
-     * @return, the ArrayList of troops to deploy
+     * @return the ArrayList of troops to deploy
      */
     public ArrayList<Troop> getTroopsToPlaceArray() { return this.troopsToPlace; }
 
@@ -323,5 +300,6 @@ public class Player {
     public int [] getDefenderRolls(){
         return defenderRolls;
     }
+
 
 }
