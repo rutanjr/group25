@@ -170,12 +170,6 @@ public class ChalmersRisk implements Controller {
                 } else {
                     gB.update(1);
                 }
-                if(playerWon()){ // checks if a player won due to an event card -------------------------------------
-                    gB.setMessage("Congratulations you won!!!");
-                    new WinView();
-                    startNewGame();
-
-                }
             }
 
             placeTroopPhase();
