@@ -78,6 +78,8 @@ public class AttackPhaseController implements Controller {
 
                     gameBoard.setMessage("");
 
+                    ChalmersRisk.mayDrawCard = true;
+
                     //check if the player won the game
                     if(playerWon()){
                         //TODO : some sort of endGame method.. somewhere? ChalmersRisk or here...?

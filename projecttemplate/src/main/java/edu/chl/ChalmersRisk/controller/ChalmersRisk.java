@@ -4,6 +4,7 @@ package edu.chl.ChalmersRisk.controller;
 import edu.chl.ChalmersRisk.cardModels.*;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
+import edu.chl.ChalmersRisk.view.CardView;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.StartScreen;
 import javafx.event.ActionEvent;
@@ -39,7 +40,7 @@ public class ChalmersRisk implements Controller {
 
     private DeckOfCards deck;
     private ICard eventCard = new BlankCard(); // TODO uninitialized event card
-
+    public static boolean mayDrawCard = false;
 
     private StartScreen startScreen;
 
@@ -119,9 +120,18 @@ public class ChalmersRisk implements Controller {
     public void loopGame(){
         setTheScene();
         if(phase == 0){
-            if (eventCard.phaseCheck() == 0) {
+            // checks if the player is allowed to draw an event card
+            if (mayDrawCard) {
+                eventCard = deck.pullCard();
+                mayDrawCard = false;
+            }
+
+            CardView.display(eventCard);
+
+            if (eventCard.phaseCheck() == 0) { // activates certaint event cards
                 eventCard.turnCard();
             }
+
             placeTroopPhase();
         }else if(phase == 1){
             attackPhase();
@@ -363,15 +373,13 @@ public class ChalmersRisk implements Controller {
             deck.addCardToDeck(new AdditionalTroopsCard(this.currentPlayer, 2));
             deck.addCardToDeck(new AllChangeTroopCard(getContinents(), 1));
             deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
-            deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo));
+            deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
             deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
             deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));
             deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(0), 3 ));
-            deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(1).getTerritories().get(0), 3 ));
+            deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(1), 2 ));
         }
 
-        deck.shuffle();
+        deck.resetDeck();
     }
 }
-
-
