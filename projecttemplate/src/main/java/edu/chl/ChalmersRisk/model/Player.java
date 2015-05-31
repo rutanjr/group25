@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 /**
  * Created by rutanjr on 2015-03-31.
+ * @revisedBy Malin Thelin
+ * @revisedBy Björn Bergqvist - has written combat() and moveTroops()
  * Keeps track of the name of the player specific items, such as name, and troops belonging to this player, as well as all the territories the player currently holds.
  */
 public class Player {

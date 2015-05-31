@@ -18,9 +18,10 @@ public class DiceCup {
      * @return rolls of the die.
      */
     public int[] rollDice(int nbrOfRolls, boolean attackRoll){
-        //TODO  make the code
         int[] rolls;
 
+        //this initialization is done this way so that the rest of the array is filled with zeros, which in turn will
+        //display an empty picture on the GameBoard, replacing any other picture before
         if(attackRoll){
             rolls = new int[3];
         }else{
