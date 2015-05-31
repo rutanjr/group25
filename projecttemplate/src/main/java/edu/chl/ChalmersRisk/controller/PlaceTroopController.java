@@ -10,6 +10,9 @@ import javafx.scene.image.ImageView;
 
 /**
  * Created by Malin on 2015-05-12.
+ *
+ *
+ * Class used to control the GameBoard during the place troop phase.
  */
 public class PlaceTroopController implements Controller {
 
@@ -17,6 +20,12 @@ public class PlaceTroopController implements Controller {
     private final Player player;
     private final GameBoard gameBoard;
 
+
+    /**
+     * Class constructor
+     * @param player the player in control
+     * @param gameBoard the view
+     */
     public PlaceTroopController(Player player, GameBoard gameBoard){
         this.player = player;
         this.gameBoard = gameBoard;
@@ -38,8 +47,9 @@ public class PlaceTroopController implements Controller {
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
+            //if you have troops to place
             if(!player.getTroopsToPlace().isEmpty()){
-                //Clicks on the image view, we want the TerritoryView here. --> .getParent();
+
                 TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
 
                 //see if the player owns the territory OR if the territory is empty

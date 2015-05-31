@@ -9,6 +9,9 @@ import javafx.scene.image.ImageView;
 
 /**
  * Created by Malin on 2015-05-29.
+ *
+ *
+ * Class used to control the GameBoard during the move troop phase.
  */
 public class MoveTroopController implements Controller {
 
@@ -18,30 +21,37 @@ public class MoveTroopController implements Controller {
     private TerritoryView moveFrom;
     private int amtOfTroops;
 
+    /**
+     * Class constructor
+     * @param player the player who is in control
+     * @param gameBoard the view
+     */
     public MoveTroopController(Player player, GameBoard gameBoard){
 
         this.player = player;
         this.gameBoard = gameBoard;
         amtOfTroops = 0;
 
-
+        //sets listener to all the TerritoryViews
         TerritoryView[] territoryViews = gameBoard.getTerritoryViews();
         for (TerritoryView tv: territoryViews) {
             tv.getImage().setOnMouseClicked(new ButtonPressed());
         }
 
+        //because move troops is the last phase, when you press the nextButton it's the next player's turn.
         gameBoard.getInfoStrip().getNextButton().setText("END TURN");
     }
 
 
 
     /**
-     * Class for the pressed territories in the game. Moves troops.
+     * Private class for the pressed territories in the game. Moves troops.
      */
     private class ButtonPressed implements EventHandler {
         @Override
         public void handle(Event event) {
 
+            //the button being pressed
             TerritoryView btn = (TerritoryView)((ImageView) event.getSource()).getParent();
 
             //first let the player pick a territory

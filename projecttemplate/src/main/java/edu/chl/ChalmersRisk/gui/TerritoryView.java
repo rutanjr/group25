@@ -11,6 +11,9 @@ import javafx.scene.paint.Color;
 /**
  * @revisedBy rutanjr, Oskar Rutqvist
  * Created by Malin on 2015-05-14.
+ *
+ *
+ * Class used to display a territory on the map.
  */
 public class TerritoryView extends StackPane {
 
@@ -19,10 +22,18 @@ public class TerritoryView extends StackPane {
     private Button button;
     private ImageView image;
 
+    /**
+     * Empty class constructor
+     */
     public TerritoryView(){
         this(Constants.EMPTY_TERRITORY);
     }
 
+
+    /**
+     * Class constructor
+     * @param territory the territory that this view should display
+     */
     public TerritoryView(Territory territory){
         super();
         this.territory = territory;
@@ -46,11 +57,12 @@ public class TerritoryView extends StackPane {
     }
 
 
-
+    /**
+     * Method that paints and sets the text on the button on the view
+     */
     public void paintButton() {
 
         button.setStyle("-fx-background-color: #" + this.getTerritory().getOwner().getColor() + ";");
-
 
         button.setText("" + this.getTerritory().getAmountOfTroops());
 
@@ -58,10 +70,18 @@ public class TerritoryView extends StackPane {
         image.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor())));
     }
 
+
+    /**
+     * Method is used to set a border around a button.
+     */
     public void setFocused(){
-        button.setEffect(Constants.createDropShadow(Color.BLACK,1.0));
+        button.setEffect(Constants.createDropShadow(Color.BLACK,0.8));
     }
 
+
+    /**
+     * Method is used to clear any borders on a button.
+     */
     public void removeFocused(){
         button.setEffect(Constants.createDropShadow(Color.valueOf("#" + this.getTerritory().getOwner().getColor()),0));
     }

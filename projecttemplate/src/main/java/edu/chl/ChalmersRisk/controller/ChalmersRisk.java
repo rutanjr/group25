@@ -1,9 +1,8 @@
 package edu.chl.ChalmersRisk.controller;
 
 
-import edu.chl.ChalmersRisk.gui.TerritoryView;
-
 import edu.chl.ChalmersRisk.cardModels.*;
+import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.*;
 import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.CardView;
@@ -96,8 +95,8 @@ public class ChalmersRisk implements Controller {
      */
     public void startNewGame() {
 
-        //loadMap("Chalmers");
-        loadMap("Test");
+        loadMap("Chalmers");
+        //loadMap("Test");
 
 
         gB = new GameBoard(map);

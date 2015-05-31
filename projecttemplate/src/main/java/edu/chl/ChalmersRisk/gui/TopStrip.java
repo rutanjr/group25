@@ -2,9 +2,7 @@ package edu.chl.ChalmersRisk.gui;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
-
 import javafx.scene.layout.GridPane;
-
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -12,6 +10,9 @@ import javafx.scene.text.Text;
 /**
  * @revisedBy rutanjr, Oskar Rutqvist
  * Created by Malin on 2015-05-19.
+ *
+ * Class for a strip displayed at the top of GameBoard. Used to display certain information to the player. And also the
+ * dice that will be thrown during the attack phase.
  */
 public class TopStrip extends BorderPane{
 
@@ -20,7 +21,9 @@ public class TopStrip extends BorderPane{
     private DiceArea defenderDiceArea;
     private DiceArea attackerDiceArea;
 
-
+    /**
+     * Class constructor
+     */
     public TopStrip(){
         gameText = new Text("A new game has started");
         gameText.setFont(Font.font("Verdana", 12));
@@ -65,8 +68,8 @@ public class TopStrip extends BorderPane{
 
     /**
      * Method to draw the dice on the TopStrip
-     * @param rolls
-     * @param isAttacker
+     * @param rolls the rolls to draw
+     * @param isAttacker if it's the attacker's rolls or not
      */
     public void setDiceArea(int [] rolls, boolean isAttacker){
         if(isAttacker){
