@@ -60,7 +60,7 @@ public class Player {
             if(!troopsToPlace.get(0).isPlaced()) {
                 troopsToPlace.get(0).placeMe(territory);
                 if(!territory.getOwner().equals(this)){
-                    addTerritories(territory);
+                    addTerritory(territory);
                 }
             }
             placedTroops.add(troopsToPlace.get(0));
@@ -132,7 +132,7 @@ public class Player {
     /**
      * @param t1, a territory that will have its owner changed and added into this players list of territories.
      */
-    public void addTerritories(Territory t1) {
+    public void addTerritory(Territory t1) {
 
         if (!territories.contains(t1)) {
             territories.add(t1);
