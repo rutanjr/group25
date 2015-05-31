@@ -4,6 +4,7 @@ import edu.chl.ChalmersRisk.gui.TerritoryView;
 import edu.chl.ChalmersRisk.model.Maps;
 import edu.chl.ChalmersRisk.model.Player;
 import edu.chl.ChalmersRisk.model.Territory;
+import edu.chl.ChalmersRisk.utilities.Constants;
 import edu.chl.ChalmersRisk.view.GameBoard;
 import edu.chl.ChalmersRisk.view.WinView;
 import javafx.event.Event;
@@ -82,7 +83,13 @@ public class AttackPhaseController implements Controller {
 
                     gameBoard.setMessage("");
 
-                    ChalmersRisk.mayDrawCard = true;
+                    if (ChalmersRisk.cardWinnerA == Constants.EMPTY_PLAYER) {
+                        ChalmersRisk.cardWinnerA = player;
+                        ChalmersRisk.aMayDrawCard = true;
+                    } else if (ChalmersRisk.cardWinnerB == Constants.EMPTY_PLAYER) {
+                        ChalmersRisk.cardWinnerB = player;
+                        ChalmersRisk.bMayDrawCard = true;
+                    }
 
                     //check if the player won the game
                     if(playerWon()){

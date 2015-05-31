@@ -41,7 +41,11 @@ public class ChalmersRisk implements Controller {
 
     private DeckOfCards deck;
     private ICard eventCard = Constants.EMPTY_CARD;
-    public static boolean mayDrawCard = false;
+    public static boolean aMayDrawCard = false;
+    public static boolean bMayDrawCard = false;
+
+    public static Player cardWinnerA = Constants.EMPTY_PLAYER;
+    public static Player cardWinnerB = Constants.EMPTY_PLAYER;
 
 
     private StartScreen startScreen;
@@ -137,13 +141,22 @@ public class ChalmersRisk implements Controller {
         setTheScene();
         if(phase == 0){
             // checks if the player is allowed to draw an event card
-            if (mayDrawCard) {
+            if (aMayDrawCard && cardWinnerA == currentPlayer) {
                 if (deck.size() < 1) {
                     deck.resetDeck();
                 }
 
                 eventCard = deck.pullCard();
-                mayDrawCard = false;
+                aMayDrawCard = false;
+                cardWinnerA = Constants.EMPTY_PLAYER;
+            } else if (bMayDrawCard && cardWinnerB == currentPlayer) {
+                if (deck.size() < 1) {
+                    deck.resetDeck();
+                }
+
+                eventCard = deck.pullCard();
+                bMayDrawCard = false;
+                cardWinnerB = Constants.EMPTY_PLAYER;
             }
 
             CardView.display(eventCard);
