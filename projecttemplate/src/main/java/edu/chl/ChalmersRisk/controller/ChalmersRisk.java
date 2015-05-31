@@ -77,7 +77,6 @@ public class ChalmersRisk implements Controller {
         playerOne = new Player(players[0],"0000ff");
         playerTwo = new Player(players[1],"ff0000");
         currentPlayer = playerOne;
-        phase = 0;
         stage = primaryStage;
 
         // initilizes the deck and draw-mechanic variables
@@ -98,6 +97,7 @@ public class ChalmersRisk implements Controller {
         loadMap("Chalmers");
         //loadMap("Test");
 
+        phase = 0;
 
         gB = new GameBoard(map);
         Scene gameBoard = new Scene(gB, map.getWidth(),Constants.height);
