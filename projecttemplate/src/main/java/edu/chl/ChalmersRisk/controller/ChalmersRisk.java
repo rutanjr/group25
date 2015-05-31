@@ -128,9 +128,6 @@ public class ChalmersRisk implements Controller {
             placeTroopPhase();
         }else if(phase == 1){
             attackPhase();
-            if (eventCard.phaseCheck() == 2) {
-                attackPhase();
-            } //TODO ugly fast solution for the additionalAttackCard
         }else if(phase == 2){
             moveTroopsPhase();
             if (eventCard.phaseCheck() == 3) {
