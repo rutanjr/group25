@@ -375,9 +375,9 @@ public class ChalmersRisk implements Controller {
             deck.addCardToDeck(new LoseTerritoryCard(this.currentPlayer)); // this will effect the player who draws the card.
             deck.addCardToDeck(new LoseTerritoryCard(playerOne, playerTwo)); // this will effect a random player
             deck.addCardToDeck(new TerritoryChangeCard(playerOne, playerTwo));
-            deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));
-            deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(0), 3 ));
-            deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(1), 2 ));
+           // deck.addCardToDeck(new TerritoryTroopCard(this.currentPlayer, 3));
+           // deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(0), 3 ));
+           // deck.addCardToDeck(new TerritoryTroopCard( getContinents().get(0).getTerritories().get(1), 2 ));
         }
 
         deck.resetDeck();
