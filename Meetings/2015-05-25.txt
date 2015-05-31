@@ -1,0 +1,47 @@
+Meeting Agenda
+
+  Date:  2015-05-25
+  Facilitator: Malin Thelin
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist, Björn Bergqvist
+
+
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+  - Bugs in the Cardcode
+  - Clean-up in ChalmersRisk
+  - Sit down together with the SDD
+  - More graphics
+
+
+2. Reports (15 min) from previous meeting
+
+
+- gitinspector looks good.
+- Malin has been working on the AttackPhase
+- Björn has done some hotfixes
+- Oskar has been working on some graphics
+- Robin has been working on the cards
+
+3. Discussion items (35 min) 
+
+
+- Get the game working with pictures instead of javafx buttons
+- We have been trying to start working on the SDD for a while now, but we realize the best for us would be to sit everyone together, working on it.
+
+4. Outcomes and assignments (5 min) 
+
+
+- Tomorrow at 08.00 we will all sit and do the SDD together
+- Malin keeps working on AttackPhase
+- Malin & Oskar keeps working with the graphics
+- Robin continues with the Cards
+- Björn focuses a bit more on the SDD and also sits with the Cards.
+
+5. Wrap up
+NAN
+
+  - Wednesday 2015-05-27 after lunch
+
+
