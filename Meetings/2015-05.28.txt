@@ -1,0 +1,38 @@
+Meeting Agenda
+
+  Date: 
+  Facilitator: Oskar Rutqvist
+  Participants: Robin Jansson, Malin Thelin, Oskar Rutqvist, Björn Bergqvist
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue.
+
+
+ - Refactor code in ChalmersRisk class to better suiting classes. 
+ - Merge the cards to the rest of the application. 
+ - Use-cases in the RAD.
+
+2. Reports (15 min) from previous meeting
+
+
+ - Björn implemented a card view.
+ - Malin completed the attack phase.
+ - Robin made some bug-fixes and implementation of cards. 
+ - Oskar worked with the view. 
+
+3. Discussion items (35 min) 
+
+ - We discussed SDD and RAD and things to do here. 
+ - Discussed Move-troops, combat and checking territory connection. 
+ - Whether or not to implement at dice-view.
+
+4. Outcomes and assignments (5 min) 
+
+ - Malin fixes a dice-view to display the dice rolls. 
+ - Oskar looks at showing Continents and which territories that are connected. Oskar also looks at the over-all view in the project.  
+ - Viking looks at the refactoring move Move-troops, combat method and Checking-territory-connection. 
+ - Robin continues with cards. 
+
+
+5. Wrap up
+
+   - Next meeting 08.00 tomorrow Friday 2015-05-29. 
