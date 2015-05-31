@@ -68,6 +68,12 @@ public class GameBoard extends BorderPane {
             }
 
         }
+
+        if(phaseNumber == 2){
+
+
+
+        }
     }
 
     public TerritoryView[] getTerritoryViews(){
@@ -100,6 +106,10 @@ public class GameBoard extends BorderPane {
 
     public Maps getMap(){
         return map;
+    }
+
+    public void setDiceArea(int [] rolls, boolean isAttacker){
+        topInfo.setDiceArea(rolls, isAttacker);
     }
 
 }

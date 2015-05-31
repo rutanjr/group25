@@ -13,8 +13,8 @@ import javafx.scene.text.Text;
  */
 public class InformationStrip extends BorderPane {
 
-    Text gameText;
-    Button nextButton;
+    private Text gameText;
+    private final Button nextButton;
 
     public InformationStrip(){
         gameText = new Text("A new game has started");
