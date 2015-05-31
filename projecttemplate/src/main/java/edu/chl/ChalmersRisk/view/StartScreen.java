@@ -25,7 +25,6 @@ public class StartScreen extends GridPane{
             this.primaryStage = primaryStage;
 
             this.setAlignment(Pos.CENTER);
-            System.out.println("Grid created");
 
             //Change these values to set the distances between objects in the view.
             this.setHgap(10);

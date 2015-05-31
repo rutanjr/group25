@@ -74,13 +74,6 @@ public class ChalmersRisk implements Controller {
         gameIsRunning = true;
         this.primaryStage = primaryStage;
 
-
-
-        //TODO : remove when not needed
-        System.out.println("HALLLÅÅÅ");
-        System.out.println(playerOne.getName());
-        System.out.println(playerTwo.getName());
-
         // TODO : what if you want a different map? Future thing
         //loadMap("Chalmers");
         loadMap("Test");
@@ -174,7 +167,6 @@ public class ChalmersRisk implements Controller {
 
 
     public void setTheScene(){
-            System.out.println("phase 0");
             gameIsRunning = false;
 
     }
@@ -349,7 +341,6 @@ public class ChalmersRisk implements Controller {
                     phase++;
                     phase %= 3;
                 }
-                System.out.println("PHASE :" + phase);
                 endTurn();
             }
         }

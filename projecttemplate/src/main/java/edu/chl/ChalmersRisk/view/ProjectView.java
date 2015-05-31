@@ -27,18 +27,11 @@ public class ProjectView extends Application {
     String[] args;
 
     public ProjectView() {
-        System.out.println("Projectview no param constructor");
-        System.out.println(this);
     }
 
     public ProjectView(ArrayList<Territory> territories, ArrayList<Continent> continents) {
         this.territories = territories;
-        for (Territory t : territories)
-            System.out.println(t.getName());
-
         this.continents = continents;
-        for(Continent c: continents)
-            System.out.println(c.getName());
     }
 
     @Override
@@ -46,7 +39,6 @@ public class ProjectView extends Application {
         primaryStage.setTitle("ChalmersRisk");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        System.out.println("Grid created");
 
         //Change these values to set the distances between objects in the view.
         grid.setHgap(10);

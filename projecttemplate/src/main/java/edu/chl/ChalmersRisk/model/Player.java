@@ -54,7 +54,6 @@ public class Player {
         while (!troopsToPlace.isEmpty() && nrOfPlaced < number) {
             if(!troopsToPlace.get(0).isPlaced()) {
                 troopsToPlace.get(0).placeMe(territory);
-                System.out.println("Placing troop!");
                 if(!territory.getOwner().equals(this)){
                     addTerritory(territory);
                 }
@@ -85,27 +84,11 @@ public class Player {
     }
 
     /**
-     * To see if the player needs to place more troops.
-     * @return weather the player has troops the yet needs placing.
-     */
-    public boolean hasTroopsToPlace() {
-        return !troopsToPlace.isEmpty();
-    }
-
-    /**
      *
      * @return ArrayList of troops that needs placing.
      */
     public ArrayList<Troop> getTroopsToPlace() {
         return (ArrayList<Troop>) troopsToPlace.clone();
-    }
-
-    public int amountOfTroops(){
-        int count = 0;
-        for(Troop t : getTroopsToPlace()){
-            count++;
-        }
-        return count;
     }
 
     /**
@@ -301,7 +284,6 @@ public class Player {
             return false;
         }
     }
-
 
     /**
      * @return, the ArrayList of troops to deploy
