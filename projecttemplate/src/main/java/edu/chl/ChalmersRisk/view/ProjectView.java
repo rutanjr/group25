@@ -65,18 +65,6 @@ public class ProjectView extends Application {
         TextField playerTwo = new TextField();
         grid.add(playerTwo,2,2);
 
-        startButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-               // ChalmersRisk.startGame(new String[] {playerOne.getText(), playerTwo.getText()}, primaryStage);
-            }
-        });
-
-       /* int i = 0;
-        for (Button territorybutton: gameBoard.getTerritoryButtons()){
-            grid.add(territorybutton, 0, i);
-            i ++;
-        }*/
 
         Scene scene = new Scene(grid, 500, 500);
         primaryStage.setScene(scene);

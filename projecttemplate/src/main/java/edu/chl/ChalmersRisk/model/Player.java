@@ -14,7 +14,6 @@ public class Player {
     private ArrayList<Troop> placedTroops;
     private ArrayList<Troop> troopsToPlace;
 
-
     //teamcolor
     private String color;
 
@@ -65,12 +64,10 @@ public class Player {
 
     }
 
-
     public boolean isMyTerritory(Territory territory) {
         return territories.contains(territory);
     }
 
-    
     public int getnmbrOfTerritories() {
         return territories.size();
     }
@@ -286,7 +283,7 @@ public class Player {
     }
 
     /**
-     * @return, the ArrayList of troops to deploy
+     * @return the ArrayList of troops to deploy
      */
     public ArrayList<Troop> getTroopsToPlaceArray() {
         return this.troopsToPlace;
