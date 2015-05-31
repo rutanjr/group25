@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  * Created by Malin on 2015-04-28.
- *
+ * @revisedBy rutanjr, Oskar Rutqvist
  * The application that will be run
  */
 public class CRApplication extends Application {

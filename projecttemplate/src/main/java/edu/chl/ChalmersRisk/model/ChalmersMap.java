@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 /**
- * @revisedBy rutanjr
+ * @revisedBy rutanjr, Oskar Rutqvist
  * Created by Malin on 2015-04-23.
  */
 public class ChalmersMap implements Maps {

@@ -358,7 +358,6 @@ public class ChalmersRisk implements Controller {
     private class StartButtonPressed implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-
             if(startScreen.getPlayerOne().getText().toString().equals("") || startScreen.getPlayerTwo().getText().toString().equals("")){
                 startScreen.setWarningText("Please enter names of the players");
             }else{
@@ -367,7 +366,6 @@ public class ChalmersRisk implements Controller {
                 players[1] = startScreen.getPlayerTwo().getText();
                 startGame(players, startScreen.getPrimaryStage());
             }
-
         }
     }
 

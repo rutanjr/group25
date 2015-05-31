@@ -7,6 +7,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
+ * @revisedBy rutanjr, Oskar Rutqvist
  * Created by Malin on 2015-05-19.
  */
 public class TopStrip extends BorderPane{

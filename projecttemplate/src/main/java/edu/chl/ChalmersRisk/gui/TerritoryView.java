@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 /**
+ * @revisedBy rutanjr, Oskar Rutqvist
  * Created by Malin on 2015-05-14.
  */
 public class TerritoryView extends StackPane {

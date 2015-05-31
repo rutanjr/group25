@@ -2,9 +2,9 @@ package edu.chl.ChalmersRisk;
 
 import javafx.application.Application;
 
-/*
-  Application entry class (if using standard java and Swing)
-*/
+/**
+ * @revisedBy rutanjr, Oskar Rutqvist
+ */
 public final class Main {
 
 
