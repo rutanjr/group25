@@ -3,6 +3,8 @@ package edu.chl.ChalmersRisk.gui;
 import edu.chl.ChalmersRisk.utilities.BubbleSort;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -30,6 +32,8 @@ public class DiceArea extends Pane {
         Text text = new Text(string);
         text.setLayoutX(0);
         text.setLayoutY(0);
+        text.setFont(Font.font("Verdana", 16));
+        text.setFill(Color.valueOf("#D1E4FF"));
         this.getChildren().add(text);
     }
 
@@ -40,8 +44,6 @@ public class DiceArea extends Pane {
 
         for(int i = 0 ; i <rolls.length;i++){
             dice[i].setPicture(rolls[i]);
-
-            System.out.println("ROLLS ::: "+rolls[i]);
         }
     }
 
