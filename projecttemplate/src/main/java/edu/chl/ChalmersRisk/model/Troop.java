@@ -23,10 +23,6 @@ public class Troop {
 
     //if a troop is not placed, it has to be placed before a player can finish their turn.
     public boolean isPlaced(){
-        if(territory != null){
-            placed = true;
-        }
-
         return placed;
     }
 
@@ -35,6 +31,10 @@ public class Troop {
     public void placeMe(Territory territory){
         this.territory = territory;
         this.territory.addTroops(1);
+        if(territory != null){
+            placed = true;
+        }
+
     }
 
 

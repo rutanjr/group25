@@ -25,12 +25,14 @@ public class GameBoard extends BorderPane {
     private TopStrip topInfo;
     private Maps map;
 
+
     public GameBoard(){
         this.setTop(new Button("YOLO"));
     }
 
     public GameBoard(Maps map,Controller controller) {
         this.controller = controller;
+
 
         //informationstrip at the bottom.
         infoStrip = new InformationStrip();
@@ -57,6 +59,10 @@ public class GameBoard extends BorderPane {
         this.setCenter(gp);
     }
 
+    /**
+     * Updates the gameboard. All territories are updated. Only done in phase 1 & 2.
+     * @param phaseNumber Updates if its 1 or 2
+     */
     public void update(int phaseNumber){
 
         //if placing troops phase
@@ -66,6 +72,12 @@ public class GameBoard extends BorderPane {
             for(int i =0; i<buttons.length;i++){
                 buttons[i].paintButton();
             }
+
+        }
+
+        if(phaseNumber == 2){
+
+
 
         }
     }
@@ -78,6 +90,10 @@ public class GameBoard extends BorderPane {
         return infoStrip.getGameText();
     }
 
+    /**
+     * Sets the text in the infostrip to this message.
+     * @param text message to show.
+     */
     public void setGameText(String text){
         infoStrip.setGameText(text);
     }
@@ -86,6 +102,10 @@ public class GameBoard extends BorderPane {
         return message;
     }
 
+    /**
+     * Sets the topstrip message to this.
+     * @param text to show in the topstrip.
+     */
     public void setMessage(String text){
         topInfo.setGameText(text);
     }
@@ -100,6 +120,10 @@ public class GameBoard extends BorderPane {
 
     public Maps getMap(){
         return map;
+    }
+
+    public void setDiceArea(int [] rolls, boolean isAttacker){
+        topInfo.setDiceArea(rolls, isAttacker);
     }
 
 }

@@ -11,11 +11,11 @@ import java.util.ArrayList;
  */
 public interface Maps {
 
-    public ArrayList<Territory> getTerritories();
-    public ArrayList<Continent> getContinents();
+    ArrayList<Territory> getTerritories();
+    ArrayList<Continent> getContinents();
 
-    public double getWidth();
-    public double getHeight();
-    public ImageView getBackground();
+    double getWidth();
+    double getHeight();
+    ImageView getBackground();
 
 }

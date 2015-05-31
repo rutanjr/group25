@@ -9,16 +9,19 @@ import java.util.ArrayList;
  */
 public class Player {
 
-    private String name;
+    private final String name;
     private ArrayList<Territory> territories;
     private ArrayList<Troop> placedTroops;
     private ArrayList<Troop> troopsToPlace;
 
     //teamcolor
-    private String color;
+    private final String color;
 
     //A cup of dice to use when resolving combat.
-    private DiceCup cupOfDice;
+    private final DiceCup cupOfDice;
+    private int [] attackRolls;
+    private int [] defenderRolls;
+
 
     public Player(String name, String color){
         this.name = name;
@@ -224,22 +227,28 @@ public class Player {
 
         //Creating attacker's die array.
         if(atkTroops>=3){
-            atkRoll = cupOfDice.rollDice(3);
+            atkRoll = cupOfDice.rollDice(3,true);
         }
         else if (atkTroops==2){
-            atkRoll = cupOfDice.rollDice(2);
+            atkRoll = cupOfDice.rollDice(2,true);
         } else {
-            atkRoll = cupOfDice.rollDice(1);
+            atkRoll = cupOfDice.rollDice(1,true);
         }
 
 
         //Creating defender's die array.
         if (defTroops>=2){
-            defRoll = cupOfDice.rollDice(2);
-            System.out.println(defRoll[0]);
+            defRoll = cupOfDice.rollDice(2,false);
         } else {
-            defRoll = cupOfDice.rollDice(1);
+            defRoll = cupOfDice.rollDice(1,false);
         }
+
+
+        //now we have both attackrolls and defenderrolls, cloned because later both atkRoll and defRoll is changed.
+        attackRolls = atkRoll.clone();
+        defenderRolls = defRoll.clone();
+
+
 
         while (atkTroops > 0 && defTroops >0){
             int atkHighest = 0;
@@ -275,17 +284,22 @@ public class Player {
             defTroops--;
         }
 
-        if (defender.getAmountOfTroops()<1){
-            return true;
-        } else {
-            return false;
-        }
+        return defender.getAmountOfTroops()<1;
     }
 
     /**
      * @return the ArrayList of troops to deploy
      */
-    public ArrayList<Troop> getTroopsToPlaceArray() {
-        return this.troopsToPlace;
+    public ArrayList<Troop> getTroopsToPlaceArray() { return this.troopsToPlace; }
+
+
+    public int [] getAttackRolls(){
+        return attackRolls;
     }
+
+    public int [] getDefenderRolls(){
+        return defenderRolls;
+    }
+
+
 }
