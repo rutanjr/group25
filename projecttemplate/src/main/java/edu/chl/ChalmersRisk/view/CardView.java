@@ -9,12 +9,15 @@ import javafx.stage.StageStyle;
  */
 public class CardView {
     public static void display(ICard card){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initStyle(StageStyle.UTILITY);
-        alert.setTitle(card.getTitle());
-        alert.setHeaderText(null);
-        alert.setContentText(card.getMessage());
+        if (!card.getTitle().equals("EMPTY_CARD")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initStyle(StageStyle.UTILITY);
+            alert.setTitle(card.getTitle());
+            alert.setHeaderText(null);
+            alert.setContentText(card.getMessage());
 
-        alert.showAndWait();
+            alert.showAndWait();
+        }
+
     }
 }
